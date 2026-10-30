@@ -90,6 +90,16 @@ When it is a good moment to commit, say so and suggest a short commit message.
 
 Follow `docs/design-tokens.md` exactly: colours, fonts, spacing, the 5 approved screens. Light and dark themes; text contrast at least 4.5:1; touch targets at least 44px; works at phone width; layouts must not break when Taglish text is longer.
 
+## Google AI Pro tools (Ian uses these manually; Claude cannot reach them)
+
+- GitHub is the backup for code, lessons and docs/command-log.md — every push. Never put the repo inside a Google Drive sync folder.
+- Google Drive (Drive for Desktop): only for progress exports (hakbang-progress-*.json). These are personal data and must never be committed to the public repo; keep them in .gitignore.
+- NotebookLM: after each completed unit, remind Ian to upload that unit's lesson file and docs/command-log.md to his "Hakbang Study" notebook, for audio overviews, mind maps and flashcards.
+- Gemini Deep Research: monthly refresh of PH job requirements (JobStreet, Indeed, OnlineJobs.ph).
+- Gemini image tools / Flow: branding, logo and promo video only. Lesson diagrams stay SVG.
+- Google AI Studio: only in Phase 4, for the free-tier Gemini API.
+- Jules: do not use; it conflicts with the no-autopilot rule.
+
 ## Privacy
 
 - Never copy real code from Ian's lab system (LIS) or from Silip's private repo. Use simplified look-alike examples only, and only ones Ian approves.
