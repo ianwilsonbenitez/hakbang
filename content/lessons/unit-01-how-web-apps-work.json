@@ -8,45 +8,45 @@
   },
   "minutes": 10,
   "diagram": {
-    "file": "docs/diagrams/unit-01-how-web-apps-work.mmd",
+    "file": "docs/diagrams/unit-01-how-web-apps-work.svg",
     "alt": {
-      "en": "Flow diagram from left to right: the Browser (Encoder screen) sends a request to the Server (MedTech checker), which checks rules and reads or saves in the Database (Lab masterlist), then sends a response back to the Browser.",
-      "tl": "Diagram mula kaliwa pakanan: nagpapadala ng request ang Browser (screen ng Encoder) papunta sa Server (MedTech na nagche-check), na nagbabasa o nagse-save sa Database (masterlist ng lab), bago magbalik ng response sa Browser."
+      "en": "Vertical flow diagram from top to bottom: the Browser (Encoder's front-desk screen) sends a request down to the Server (Supervisor check), which checks rules before saving or reading in the Database (records list), then sends a response back up to the Browser.",
+      "tl": "Patayong diagram mula taas pababa: nagpapadala ng request ang Browser (screen ng Encoder sa front desk) pababa sa Server (Supervisor check), na nagche-check muna ng rules bago mag-save o magbasa sa Database (records list), tapos nagbabalik ng response paakyat sa Browser."
     }
   },
   "explain": [
     {
-      "en": "Every web app—whether it is an online shop, a clinic portal, or a booking site—splits its work across three parts: the browser, the server, and the database. Think of them like three clear stations inside a laboratory.",
-      "tl": "Bawat web app (app na binubuksan sa internet, gaya ng online shop o clinic portal) ay nahahati sa tatlong bahagi: browser, server, at database. Isipin mo silang tatlong magkakahiwalay na station sa loob ng lab."
+      "en": "Most web apps with saved data—like an online shop, a service portal, or a booking site—split their work across three parts: the browser, the server, and the database. Think of them as three stations in an office.",
+      "tl": "Karamihan ng web apps na may sine-save na data (mga app sa internet gaya ng online shop, service portal, o booking site) ay nahahati sa tatlong bahagi: browser, server, at database. Isipin mo silang tatlong station sa isang opisina."
     },
     {
-      "en": "The browser (like Chrome or Safari on your phone or laptop) is the Encoder at the front desk. It shows forms, buttons, and results neatly on screen, and collects what the user types—but it does not have the final say on laboratory rules.",
-      "tl": "Ang browser (ang pang-open mo ng site gaya ng Chrome o Safari) ay parang Encoder sa front desk. Trabaho niyang ipakita nang maayos ang forms at buttons sa screen at kunin ang tina-type mo—pero hindi siya ang masusunod pagdating sa higpit ng rules."
+      "en": "The browser (like Chrome or Safari) is the Encoder's screen at the front desk. It displays forms, buttons, and results, and takes in what the Encoder types—but the screen itself does not decide the rules.",
+      "tl": "Ang browser (ang pang-open mo ng site gaya ng Chrome o Safari) ay ang screen ng Encoder sa front desk. Trabaho nitong magpakita ng forms at resulta at kunin ang tina-type ng Encoder—pero hindi ang screen ang nagde-decide sa rules."
     },
     {
-      "en": "Behind the scenes sits the server—the MedTech checking every form. Before anything touches the database (the lab's official masterlist where records are permanently stored), the server checks the rules: Is the user allowed? Are required fields complete? Is the test verified? The Encoder never writes straight into the masterlist.",
-      "tl": "Sa likod naman naka-pwesto ang server (ang computer na nagbabantay ng logic at rules ng app)—parang MedTech na nagche-check ng bawat papel. Bago may mabago sa database (ang permanenteng taguan ng records, parang official masterlist ng lab), dadaan muna sa server: May permiso ba ang user? Kumpleto ba ang form? Verified na ba? Hindi pwedeng dumiretso ang Encoder sa masterlist."
+      "en": "The server is the Supervisor check in the middle that enforces the rules. Before anything reaches the database (the permanent records list), the server checks if the form is complete and verified. The front-desk screen never writes straight to the records list.",
+      "tl": "Ang server (ang computer sa gitna) ay parang Supervisor check—ang server ang nagche-check ng rules. Bago may ma-save sa database (ang permanenteng records list), tinitingnan muna ng server kung kumpleto at verified ang data. Hindi pwedeng dumiretso ang screen sa records list."
     },
     {
-      "en": "Every click follows one round-trip: the browser sends a request to the server, the server checks the rules and talks to the database, and the server sends back a response—either the approved data or a clear error message.",
-      "tl": "Bawat pindot mo ng Save o Search, iisa lang ang biyahe: magpapadala ang browser ng request (mensaheng may hinihinging gawa o data) papunta sa server, tse-check-in ito ng server at kukuha o magse-save sa database, tapos magbabalik ng response (ang sagot ng server—pwedeng requested record o error kung may mali) pabalik sa browser."
+      "en": "Every click follows one round-trip: the browser sends a request, the server checks the rules before reading or saving in the database, and the server sends back a response—either the result or an error.",
+      "tl": "Bawat pindot, iisa lang ang biyahe: magpapadala ang browser ng request (mensaheng may hinihinging action), ine-check ito ng server bago magbasa o mag-save sa database, tapos magbabalik ang server ng response (ang sagot—resulta man o error) pabalik sa browser."
     }
   ],
   "glossary": [
     {
       "term": "browser",
-      "en": "The app on your device (such as Chrome or Safari) that displays screens and sends user actions to the server.",
-      "tl": "Ang app sa phone o computer mo (gaya ng Chrome o Safari) na nagpapakita ng screen at nagpapadala ng ginawa ng user—parang Encoder sa front desk."
+      "en": "The app on your device (such as Chrome or Safari) that displays screens and sends user actions to the server—like the Encoder's screen at the front desk.",
+      "tl": "Ang app sa phone o computer mo (gaya ng Chrome o Safari) na nagpapakita ng forms at nagpapadala ng ginawa ng user—ang screen ng Encoder sa front desk."
     },
     {
       "term": "server",
-      "en": "The computer in the middle that enforces rules, checks permissions, and decides what gets saved or returned.",
-      "tl": "Ang tagapag-check sa gitna na nagpapatupad ng rules at nagde-decide kung tama at pwede bang i-save o ilabas ang data—parang MedTech."
+      "en": "The computer in the middle that enforces rules, checks permissions, and decides what gets saved or returned—like a Supervisor check.",
+      "tl": "Ang tagapag-check sa gitna na nagpapatupad ng rules at nagde-decide kung tama at pwede bang i-save o ilabas ang data—parang Supervisor check."
     },
     {
       "term": "database",
-      "en": "The organized, permanent storage where an app keeps its records safe.",
-      "tl": "Ang maayos at permanenteng taguan ng lahat ng records ng app—parang official masterlist ng lab."
+      "en": "The organized, permanent storage where an app keeps its records safe—like an official records list.",
+      "tl": "Ang maayos at permanenteng taguan ng lahat ng records ng app—parang official records list."
     },
     {
       "term": "request",
@@ -57,53 +57,67 @@
       "term": "response",
       "en": "The reply sent back from the server to the browser—either the result you asked for or an error.",
       "tl": "Ang sagot ng server pabalik sa browser—pwedeng yung data na hiningi mo, o kaya paliwanag kung bakit hindi pwede."
+    },
+    {
+      "term": "if / return",
+      "en": "if checks whether a rule is true; return stops the function and sends back the answer.",
+      "tl": "Ang if ang nagche-check kung totoo ba ang isang rule; ang return naman ang nagtatapos sa function at nagbabalik ng sagot."
+    },
+    {
+      "term": "= vs ===",
+      "en": "A single = changes (assigns) a value, while === compares two values to check if they are equal.",
+      "tl": "Ang isang = ay nagpapalit ng value, habang ang tatlong === ay nagkukumpara lang kung magkapareho ang dalawang value."
     }
   ],
   "task": {
     "question": {
-      "en": "An Encoder clicks 'Release Result' on a lab test that has not been verified yet. Which part of the web app must block it and say 'Not yet verified'?",
-      "tl": "Pinindot ng Encoder ang 'Release Result' sa isang lab test na hindi pa verified. Aling bahagi ng web app ang dapat pumigil dito at magsabi ng 'Not yet verified'?"
+      "en": "An Encoder clicks 'Release Result' on a record that has not been verified yet. Which part of the web app must block it and say 'Not yet verified'?",
+      "tl": "Pinindot ng Encoder ang 'Release Result' sa isang record na hindi pa verified. Aling bahagi ng web app ang dapat pumigil dito at magsabi ng 'Not yet verified'?"
     },
     "options": [
       {
         "id": "a",
         "text": {
-          "en": "The browser, because it hides or disables buttons on screen",
-          "tl": "Ang browser, kasi siya ang nagtatago o nagdi-disable ng button sa screen"
+          "en": "The browser, by hiding or disabling buttons on screen",
+          "tl": "Ang browser, sa pagtago o pag-disable lang ng button sa screen"
         }
       },
       {
         "id": "b",
         "text": {
           "en": "The server, because it checks the rules before allowing changes",
-          "tl": "Ang server, kasi siya ang nagche-check ng rules bago payagan ang anumang action"
+          "tl": "Ang server, kasi ito ang nagche-check ng rules bago payagan ang anumang action"
         }
       },
       {
         "id": "c",
         "text": {
-          "en": "The database, because it designs the user screen",
-          "tl": "Ang database, kasi siya ang gumagawa ng screen ng user"
+          "en": "The database alone, with no rule-checking server in between",
+          "tl": "Ang database lang mag-isa, nang walang server sa gitna na nagche-check ng rules"
         }
       }
     ],
     "answer": "b",
     "why": {
-      "en": "Disabling a button in the browser helps the user, but someone can still bypass the screen. Like a MedTech, the server must always enforce the rule before releasing or saving anything.",
-      "tl": "Nakakatulong ang pag-disable ng button sa browser, pero pwedeng malusutan ang nasa screen. Gaya ng MedTech, sa server dapat nakabantay ang rule bago may ma-release o ma-save sa masterlist."
+      "en": "Disabling a button in the browser helps the user, but someone can still bypass the screen. Like a Supervisor check, the server must always enforce the rule before releasing or saving anything.",
+      "tl": "Nakakatulong ang pag-disable ng button sa browser, pero pwedeng malusutan ang nasa screen. Gaya ng Supervisor check, sa server dapat nakabantay ang rule bago may ma-release o ma-save sa records list."
     }
   },
   "exercise": {
     "prompt": {
-      "en": "Here is a tiny rule running on the server. Even if code is new to you, read it like a sentence: fill in the blank using === (which means 'is equal to') so the server only releases the result when result.verified is true.",
-      "tl": "Heto ang isang maikling rule sa loob ng server. Kahit bago pa sa'yo ang code, basahin lang ito na parang pangungusap: punan ang patlang gamit ang === (ibig sabihin ay 'kapareho ba ng') para ma-release lang kapag true ang result.verified."
+      "en": "Here is a tiny rule running on the server (if checks a condition, return sends back the reply, and === means 'is equal to'). Fill in the blank so the server only releases the result when result.verified is true.",
+      "tl": "Heto ang isang maikling rule sa server (if ang pang-check ng kundisyon, return ang nagbabalik ng sagot, at === ang 'kapareho ba ng'). Punan ang patlang para ma-release lang kapag true ang result.verified."
     },
-    "code": "function canReleaseResult(result) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: MedTech verification needed\";\n}",
-    "answer": "result.verified === true",
+    "code": "function canReleaseResult(result) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: Supervisor check needed\";\n}",
+    "acceptedAnswers": [
+      "result.verified === true",
+      "true === result.verified",
+      "result.verified == true"
+    ],
     "hints": [
       {
-        "en": "Check the verified property of result to see if the MedTech already approved it.",
-        "tl": "Silipin mo ang result.verified para malaman kung na-approve na ba ito ng MedTech."
+        "en": "Check the verified property of result to see if the Supervisor already approved it.",
+        "tl": "Silipin mo ang result.verified para malaman kung na-approve na ba ito ng Supervisor."
       },
       {
         "en": "In JavaScript, use === (three equals signs) to compare result.verified with true.",
@@ -117,15 +131,170 @@
   },
   "bugCheck": {
     "prompt": {
-      "en": "An AI wrote this server check, but it approves every lab request—even unverified ones! Tap the line with the bug.",
-      "tl": "Isinulat ng AI ang server check na ito, pero nakakalusot lahat ng lab request kahit hindi pa verified! Pindutin ang line na may bug."
+      "en": "An AI wrote this server check, but it approves every request—even unverified ones! Tap the line with the bug.",
+      "tl": "Isinulat ng AI ang server check na ito, pero nakakalusot lahat ng request kahit hindi pa verified! Pindutin ang line na may bug."
     },
-    "code": "function checkLabRequest(request) {\n  if (request.verified = true) {\n    return \"Save to masterlist\";\n  }\n  return \"Reject: not verified\";\n}",
+    "code": "function checkRequest(request) {\n  if (request.verified = true) {\n    return \"Save to records list\";\n  }\n  return \"Reject: not verified\";\n}",
     "bugLine": 2,
     "why": {
-      "en": "A single = overwrites request.verified to true instead of checking it. Use === to compare without changing the value—otherwise the server acts like a sleepy MedTech stamping 'Approved' on every form.",
-      "tl": "Ang isang = ay nagpapalit ng value (ginagawa niyang true ang request.verified) imbes na mag-check. Dapat === ang gamit para magkumpara—kung hindi, parang inaantok na MedTech ang server na tinatatakang 'Approved' lahat ng papel."
+      "en": "A single = overwrites request.verified to true instead of checking it. Use === to compare without changing the value—otherwise the server acts like a sleepy Supervisor stamping 'Approved' on every form.",
+      "tl": "Ang isang = ay nagpapalit ng value (ginagawa niyang true ang request.verified) imbes na mag-check. Dapat === ang gamit para magkumpara—kung hindi, parang inaantok na Supervisor ang server na tinatatakang 'Approved' lahat ng form."
     }
+  },
+  "check": [
+    {
+      "question": {
+        "en": "Two shoppers tap 'Buy Now' on the very last item in an online shop at the same time. Which part makes sure only one order succeeds?",
+        "tl": "Sabay na pinindot ng dalawang customer ang 'Buy Now' sa pinakahuling piraso ng item sa isang online shop. Aling bahagi ang magsisiguro na isa lang sa kanila ang makakabili?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "The browser on each shopper's phone",
+            "tl": "Ang browser sa phone ng bawat customer"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "The server, after checking the real stock in the database",
+            "tl": "Ang server, matapos i-check ang totoong stock sa database"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "The database alone, with no rule-checking server in between",
+            "tl": "Ang database lang mag-isa, nang walang server sa gitna na nagche-check ng rules"
+          }
+        }
+      ],
+      "answer": "b",
+      "why": {
+        "en": "Each shopper's browser only knows what is on their own screen; the server asks the shared database for the real stock and only allows the first order.",
+        "tl": "Ang alam lang ng bawat browser ay kung ano ang nasa sarili niyang screen; tinatanong ng server ang iisang database para sa totoong stock at ang unang order lang ang pinapayagan nito."
+      }
+    },
+    {
+      "question": {
+        "en": "At 5:00 PM, the Encoder closes Chrome and shuts down the front-desk computer. Why are today's approved records still there the next morning?",
+        "tl": "Pagpatak ng 5:00 PM, isinara ng Encoder ang Chrome at pinatay ang computer sa front desk. Bakit nandoon pa rin kinabukasan ang mga approved records ngayong araw?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "Because Chrome stores all permanent records on the front-desk computer",
+            "tl": "Kasi naka-save sa Chrome ng front-desk computer ang lahat ng permanenteng records"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "Because the server keeps records in temporary memory without a database",
+            "tl": "Kasi itinatabi lang ng server ang records sa pansamantalang memory nang walang database"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "Because the server saved them permanently in the database",
+            "tl": "Kasi nai-save na sila nang permanente ng server sa loob ng database"
+          }
+        }
+      ],
+      "answer": "c",
+      "why": {
+        "en": "The records are not stored on the front-desk computer. Once the server saved them, they stay in the database even when this computer is off.",
+        "tl": "Wala sa front-desk computer ang records. Nasa database sila na sine-save ng server, kaya nandoon pa rin kahit patay ang computer."
+      }
+    },
+    {
+      "question": {
+        "en": "In a booking app, you select 'Tuesday, 9:00 AM' and tap 'Book Slot'. A second later, your screen shows 'Booking confirmed'. What is that 'Booking confirmed' message?",
+        "tl": "Sa isang booking app, pinili mo ang 'Tuesday, 9:00 AM' at pinindot ang 'Book Slot'. Maya-maya, lumabas sa screen mo ang 'Booking confirmed'. Ano ang tawag sa mensaheng 'Booking confirmed' na bumalik sa screen mo?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "A response from the server back to the browser",
+            "tl": "Isang response mula sa server pabalik sa browser"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "A request from the browser to the server",
+            "tl": "Isang request mula sa browser papunta sa server"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "A direct edit made by the browser inside the database",
+            "tl": "Isang direktang pag-edit ng browser sa loob ng database"
+          }
+        }
+      ],
+      "answer": "a",
+      "why": {
+        "en": "Tapping 'Book Slot' sent a request to the server. After saving your schedule in the database, the server sent 'Booking confirmed' back as the response.",
+        "tl": "Nagpadala ng request sa server noong pinindot mo ang 'Book Slot'. Matapos i-save ang schedule mo sa database, ibinalik ng server ang 'Booking confirmed' bilang response."
+      }
+    }
+  ],
+  "tracer": {
+    "code": "function checkBookingHours(hours) {\n  if (hours >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
+    "predict": {
+      "question": {
+        "en": "Before stepping: the browser sends hours = 6 for an advance booking. Will line 3 (\"Accept booking\") run?",
+        "tl": "Bago i-step: nagpadala ang browser ng hours = 6 para sa isang advance booking. Tatakbo ba ang line 3 (\"Accept booking\")?"
+      },
+      "answer": {
+        "en": "No, because 6 >= 8 is false, so the server skips line 3 and runs line 5 instead.",
+        "tl": "Hindi, dahil false ang 6 >= 8, kaya lalaktawan ng server ang line 3 at patatakbuhin ang line 5."
+      }
+    },
+    "steps": [
+      {
+        "line": 1,
+        "vars": {
+          "hours": "6"
+        },
+        "note": {
+          "en": "The server receives the request from the browser with hours set to 6.",
+          "tl": "Natanggap ng server ang request mula sa browser kung saan 6 ang hours."
+        }
+      },
+      {
+        "line": 2,
+        "vars": {
+          "hours": "6"
+        },
+        "condition": "6 >= 8 → false",
+        "skippedLines": [
+          3
+        ],
+        "note": {
+          "en": "The server checks the rule: is 6 at least 8? That is false, so line 3 is skipped.",
+          "tl": "Ine-check ng server ang rule: Hindi bababa sa 8 ba ang 6? False ito, kaya nilaktawan ang line 3."
+        }
+      },
+      {
+        "line": 5,
+        "vars": {
+          "hours": "6"
+        },
+        "skippedLines": [
+          3
+        ],
+        "note": {
+          "en": "The server returns \"Hold: below 8 hours\" as its response—no invalid booking enters the records list.",
+          "tl": "Ibinalik ng server ang \"Hold: below 8 hours\" bilang response—walang maling booking na pumasok sa records list."
+        }
+      }
+    ]
   }
 }
-

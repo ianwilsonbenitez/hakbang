@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 420" role="img" aria-label="Vertical flow diagram from top to bottom: the Browser (Encoder's front-desk screen) sends a request down to the Server (Supervisor check), which checks rules before saving or reading in the Database (records list), then sends a response back up to the Browser.">
+  <title>Vertical flow diagram from top to bottom: the Browser (Encoder's front-desk screen) sends a request down to the Server (Supervisor check), which checks rules before saving or reading in the Database (records list), then sends a response back up to the Browser.</title>
+  <g fill="currentColor" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <!-- Station 1: Browser -->
+    <rect x="24" y="14" width="312" height="76" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" />
+    <text x="180" y="46" text-anchor="middle" font-size="17" font-weight="600">Browser</text>
+    <text x="180" y="70" text-anchor="middle" font-size="14" opacity="0.82">Encoder's front-desk screen</text>
+
+    <!-- Connector 1: Browser <-> Server -->
+    <text x="142" y="125" text-anchor="end" font-size="14" font-weight="600">1. Request</text>
+    <text x="142" y="145" text-anchor="end" font-size="14" opacity="0.8">submit / view</text>
+    <line x1="158" y1="98" x2="158" y2="162" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="152,155 158,163 164,155" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+
+    <line x1="202" y1="164" x2="202" y2="100" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="196,107 202,99 208,107" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="218" y="125" text-anchor="start" font-size="14" font-weight="600">4. Response</text>
+    <text x="218" y="145" text-anchor="start" font-size="14" opacity="0.8">result / error</text>
+
+    <!-- Station 2: Server -->
+    <rect x="24" y="172" width="312" height="76" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
+    <text x="180" y="204" text-anchor="middle" font-size="17" font-weight="600">Server</text>
+    <text x="180" y="228" text-anchor="middle" font-size="14" opacity="0.85">Supervisor check</text>
+
+    <!-- Connector 2: Server <-> Database -->
+    <text x="142" y="283" text-anchor="end" font-size="14" font-weight="600">2. Save / read</text>
+    <text x="142" y="303" text-anchor="end" font-size="14" opacity="0.8">after checks</text>
+    <line x1="158" y1="256" x2="158" y2="320" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="152,313 158,321 164,313" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+
+    <line x1="202" y1="322" x2="202" y2="258" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="196,265 202,257 208,265" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="218" y="283" text-anchor="start" font-size="14" font-weight="600">3. Record</text>
+    <text x="218" y="303" text-anchor="start" font-size="14" opacity="0.8">stored data</text>
+
+    <!-- Station 3: Database -->
+    <rect x="24" y="330" width="312" height="76" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" />
+    <text x="180" y="362" text-anchor="middle" font-size="17" font-weight="600">Database</text>
+    <text x="180" y="386" text-anchor="middle" font-size="14" opacity="0.82">Records list (saved data)</text>
+  </g>
+</svg>
