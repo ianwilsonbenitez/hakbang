@@ -1,0 +1,10 @@
+flowchart LR
+  Browser["Browser: Encoder screen"]
+  Server["Server: MedTech checker"]
+  Database[("Database: Lab masterlist")]
+
+  Browser -- "1. Request: submit or view form" --> Server
+  Server -- "2. Check rules, then save or read" --> Database
+  Database -- "3. Matching record" --> Server
+  Server -- "4. Response: result or error message" --> Browser
+

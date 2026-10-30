@@ -1,0 +1,15 @@
+# dependencies and build output
+node_modules
+dist
+
+# secrets and personal settings: never commit
+.env
+.env.*
+.claude/settings.local.json
+
+# editor and OS noise
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+*.log

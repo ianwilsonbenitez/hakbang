@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "unit-01-how-web-apps-work",
+  "unit": 1,
+  "title": {
+    "en": "How a web app works",
+    "tl": "Paano gumagana ang web app"
+  },
+  "minutes": 10,
+  "diagram": {
+    "file": "docs/diagrams/unit-01-how-web-apps-work.mmd",
+    "alt": {
+      "en": "Flow diagram from left to right: the Browser (Encoder screen) sends a request to the Server (MedTech checker), which checks rules and reads or saves in the Database (Lab masterlist), then sends a response back to the Browser.",
+      "tl": "Diagram mula kaliwa pakanan: nagpapadala ng request ang Browser (screen ng Encoder) papunta sa Server (MedTech na nagche-check), na nagbabasa o nagse-save sa Database (masterlist ng lab), bago magbalik ng response sa Browser."
+    }
+  },
+  "explain": [
+    {
+      "en": "Every web app—whether it is an online shop, a clinic portal, or a booking site—splits its work across three parts: the browser, the server, and the database. Think of them like three clear stations inside a laboratory.",
+      "tl": "Bawat web app (app na binubuksan sa internet, gaya ng online shop o clinic portal) ay nahahati sa tatlong bahagi: browser, server, at database. Isipin mo silang tatlong magkakahiwalay na station sa loob ng lab."
+    },
+    {
+      "en": "The browser (like Chrome or Safari on your phone or laptop) is the Encoder at the front desk. It shows forms, buttons, and results neatly on screen, and collects what the user types—but it does not have the final say on laboratory rules.",
+      "tl": "Ang browser (ang pang-open mo ng site gaya ng Chrome o Safari) ay parang Encoder sa front desk. Trabaho niyang ipakita nang maayos ang forms at buttons sa screen at kunin ang tina-type mo—pero hindi siya ang masusunod pagdating sa higpit ng rules."
+    },
+    {
+      "en": "Behind the scenes sits the server—the MedTech checking every form. Before anything touches the database (the lab's official masterlist where records are permanently stored), the server checks the rules: Is the user allowed? Are required fields complete? Is the test verified? The Encoder never writes straight into the masterlist.",
+      "tl": "Sa likod naman naka-pwesto ang server (ang computer na nagbabantay ng logic at rules ng app)—parang MedTech na nagche-check ng bawat papel. Bago may mabago sa database (ang permanenteng taguan ng records, parang official masterlist ng lab), dadaan muna sa server: May permiso ba ang user? Kumpleto ba ang form? Verified na ba? Hindi pwedeng dumiretso ang Encoder sa masterlist."
+    },
+    {
+      "en": "Every click follows one round-trip: the browser sends a request to the server, the server checks the rules and talks to the database, and the server sends back a response—either the approved data or a clear error message.",
+      "tl": "Bawat pindot mo ng Save o Search, iisa lang ang biyahe: magpapadala ang browser ng request (mensaheng may hinihinging gawa o data) papunta sa server, tse-check-in ito ng server at kukuha o magse-save sa database, tapos magbabalik ng response (ang sagot ng server—pwedeng requested record o error kung may mali) pabalik sa browser."
+    }
+  ],
+  "glossary": [
+    {
+      "term": "browser",
+      "en": "The app on your device (such as Chrome or Safari) that displays screens and sends user actions to the server.",
+      "tl": "Ang app sa phone o computer mo (gaya ng Chrome o Safari) na nagpapakita ng screen at nagpapadala ng ginawa ng user—parang Encoder sa front desk."
+    },
+    {
+      "term": "server",
+      "en": "The computer in the middle that enforces rules, checks permissions, and decides what gets saved or returned.",
+      "tl": "Ang tagapag-check sa gitna na nagpapatupad ng rules at nagde-decide kung tama at pwede bang i-save o ilabas ang data—parang MedTech."
+    },
+    {
+      "term": "database",
+      "en": "The organized, permanent storage where an app keeps its records safe.",
+      "tl": "Ang maayos at permanenteng taguan ng lahat ng records ng app—parang official masterlist ng lab."
+    },
+    {
+      "term": "request",
+      "en": "A message sent from the browser to the server asking to view or change something.",
+      "tl": "Ang mensaheng ipinapadala ng browser papunta sa server kapag may gusto kang tingnan o i-save."
+    },
+    {
+      "term": "response",
+      "en": "The reply sent back from the server to the browser—either the result you asked for or an error.",
+      "tl": "Ang sagot ng server pabalik sa browser—pwedeng yung data na hiningi mo, o kaya paliwanag kung bakit hindi pwede."
+    }
+  ],
+  "task": {
+    "question": {
+      "en": "An Encoder clicks 'Release Result' on a lab test that has not been verified yet. Which part of the web app must block it and say 'Not yet verified'?",
+      "tl": "Pinindot ng Encoder ang 'Release Result' sa isang lab test na hindi pa verified. Aling bahagi ng web app ang dapat pumigil dito at magsabi ng 'Not yet verified'?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The browser, because it hides or disables buttons on screen",
+          "tl": "Ang browser, kasi siya ang nagtatago o nagdi-disable ng button sa screen"
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The server, because it checks the rules before allowing changes",
+          "tl": "Ang server, kasi siya ang nagche-check ng rules bago payagan ang anumang action"
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The database, because it designs the user screen",
+          "tl": "Ang database, kasi siya ang gumagawa ng screen ng user"
+        }
+      }
+    ],
+    "answer": "b",
+    "why": {
+      "en": "Disabling a button in the browser helps the user, but someone can still bypass the screen. Like a MedTech, the server must always enforce the rule before releasing or saving anything.",
+      "tl": "Nakakatulong ang pag-disable ng button sa browser, pero pwedeng malusutan ang nasa screen. Gaya ng MedTech, sa server dapat nakabantay ang rule bago may ma-release o ma-save sa masterlist."
+    }
+  },
+  "exercise": {
+    "prompt": {
+      "en": "Here is a tiny rule running on the server. Even if code is new to you, read it like a sentence: fill in the blank using === (which means 'is equal to') so the server only releases the result when result.verified is true.",
+      "tl": "Heto ang isang maikling rule sa loob ng server. Kahit bago pa sa'yo ang code, basahin lang ito na parang pangungusap: punan ang patlang gamit ang === (ibig sabihin ay 'kapareho ba ng') para ma-release lang kapag true ang result.verified."
+    },
+    "code": "function canReleaseResult(result) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: MedTech verification needed\";\n}",
+    "answer": "result.verified === true",
+    "hints": [
+      {
+        "en": "Check the verified property of result to see if the MedTech already approved it.",
+        "tl": "Silipin mo ang result.verified para malaman kung na-approve na ba ito ng MedTech."
+      },
+      {
+        "en": "In JavaScript, use === (three equals signs) to compare result.verified with true.",
+        "tl": "Sa JavaScript, gumagamit tayo ng === (tatlong equals) para ikumpara ang result.verified sa true."
+      },
+      {
+        "en": "Type result.verified === true inside the blank.",
+        "tl": "Ilagay ang result.verified === true sa patlang."
+      }
+    ]
+  },
+  "bugCheck": {
+    "prompt": {
+      "en": "An AI wrote this server check, but it approves every lab request—even unverified ones! Tap the line with the bug.",
+      "tl": "Isinulat ng AI ang server check na ito, pero nakakalusot lahat ng lab request kahit hindi pa verified! Pindutin ang line na may bug."
+    },
+    "code": "function checkLabRequest(request) {\n  if (request.verified = true) {\n    return \"Save to masterlist\";\n  }\n  return \"Reject: not verified\";\n}",
+    "bugLine": 2,
+    "why": {
+      "en": "A single = overwrites request.verified to true instead of checking it. Use === to compare without changing the value—otherwise the server acts like a sleepy MedTech stamping 'Approved' on every form.",
+      "tl": "Ang isang = ay nagpapalit ng value (ginagawa niyang true ang request.verified) imbes na mag-check. Dapat === ang gamit para magkumpara—kung hindi, parang inaantok na MedTech ang server na tinatatakang 'Approved' lahat ng papel."
+    }
+  }
+}
+
