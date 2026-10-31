@@ -41,7 +41,7 @@
     {
       "term": "server",
       "en": "The computer in the middle that enforces rules, checks permissions, and decides what gets saved or returned—like a Supervisor check.",
-      "tl": "Ang tagapag-check sa gitna na nagpapatupad ng rules at nagde-decide kung tama at pwede bang i-save o ilabas ang data—parang Supervisor check."
+      "tl": "Ang computer sa gitna na nagpapatupad ng rules, nagche-check ng permissions, at nagde-decide kung ano ang pwedeng i-save o ibalik—parang Supervisor check."
     },
     {
       "term": "database",
@@ -67,6 +67,16 @@
       "term": "= vs ===",
       "en": "A single = changes (assigns) a value, while === compares two values to check if they are equal.",
       "tl": "Ang isang = ay nagpapalit ng value, habang ang tatlong === ay nagkukumpara lang kung magkapareho ang dalawang value."
+    },
+    {
+      "term": "function",
+      "en": "A named set of steps in code that takes an input, runs a task or check, and returns a result.",
+      "tl": "Isang may-pangalang grupo ng steps sa code na tumatanggap ng input, gumagawa ng check, at nagbabalik ng resulta."
+    },
+    {
+      "term": "property",
+      "en": "A named piece of data inside an object, written after a dot—like verified in result.verified (a field on a form).",
+      "tl": "Isang partikular na detalye sa loob ng data na nakasulat pagkatapos ng tuldok—gaya ng verified sa result.verified (parang isang field sa form)."
     }
   ],
   "task": {
@@ -246,11 +256,11 @@
     }
   ],
   "tracer": {
-    "code": "function checkBookingHours(hours) {\n  if (hours >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
+    "code": "function checkBookingHours(hoursAhead) {\n  if (hoursAhead >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
     "predict": {
       "question": {
-        "en": "Before stepping: the browser sends hours = 6 for an advance booking. Will line 3 (\"Accept booking\") run?",
-        "tl": "Bago i-step: nagpadala ang browser ng hours = 6 para sa isang advance booking. Tatakbo ba ang line 3 (\"Accept booking\")?"
+        "en": "Before stepping: the browser sends hoursAhead = 6 for an advance booking. Will line 3 (\"Accept booking\") run?",
+        "tl": "Bago i-step: nagpadala ang browser ng hoursAhead = 6 para sa isang advance booking. Tatakbo ba ang line 3 (\"Accept booking\")?"
       },
       "answer": {
         "en": "No, because 6 >= 8 is false, so the server skips line 3 and runs line 5 instead.",
@@ -261,17 +271,17 @@
       {
         "line": 1,
         "vars": {
-          "hours": "6"
+          "hoursAhead": "6"
         },
         "note": {
-          "en": "The server receives the request from the browser with hours set to 6.",
-          "tl": "Natanggap ng server ang request mula sa browser kung saan 6 ang hours."
+          "en": "The server receives the request from the browser with hoursAhead set to 6.",
+          "tl": "Natanggap ng server ang request mula sa browser kung saan 6 ang hoursAhead."
         }
       },
       {
         "line": 2,
         "vars": {
-          "hours": "6"
+          "hoursAhead": "6"
         },
         "condition": "6 >= 8 → false",
         "skippedLines": [
@@ -285,7 +295,7 @@
       {
         "line": 5,
         "vars": {
-          "hours": "6"
+          "hoursAhead": "6"
         },
         "skippedLines": [
           3
