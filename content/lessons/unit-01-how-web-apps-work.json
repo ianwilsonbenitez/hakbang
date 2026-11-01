@@ -75,8 +75,8 @@
     },
     {
       "term": "property",
-      "en": "A named piece of data inside an object, written after a dot—like verified in result.verified (a field on a form).",
-      "tl": "Isang partikular na detalye sa loob ng data na nakasulat pagkatapos ng tuldok—gaya ng verified sa result.verified (parang isang field sa form)."
+      "en": "A named piece of data that belongs to something, written after a dot—like verified in result.verified (a field on a form).",
+      "tl": "Isang may-pangalang detalye ng isang record o item na nakasulat pagkatapos ng tuldok—gaya ng verified sa result.verified (parang isang field sa form)."
     }
   ],
   "task": {
@@ -175,8 +175,8 @@
         {
           "id": "c",
           "text": {
-            "en": "The database alone, with no rule-checking server in between",
-            "tl": "Ang database lang mag-isa, nang walang server sa gitna na nagche-check ng rules"
+            "en": "The database, by replying directly to each shopper's phone",
+            "tl": "Ang database, sa direktang pagsagot sa phone ng bawat customer"
           }
         }
       ],
