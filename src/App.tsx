@@ -1,6 +1,12 @@
 import { useLayoutEffect, useState } from 'react'
 import { useLanguage } from './language-context'
+import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
+import { LessonScreen } from './LessonScreen'
+import { validateLesson } from './lib/lesson'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
+
+// Checked once when the app loads. Later, lessons will come from imported files too.
+const lessonResult = validateLesson(unit01)
 
 const buttonClass =
   'min-h-11 rounded-md border border-border-strong bg-surface px-4 font-semibold text-accent'
@@ -34,6 +40,15 @@ function App() {
         <button type="button" onClick={switchLanguage} className={buttonClass}>
           {t.switchLanguage}
         </button>
+      </div>
+      <div className="mt-8">
+        {lessonResult.ok ? (
+          <LessonScreen lesson={lessonResult.lesson} />
+        ) : (
+          <p role="alert" className="text-review">
+            {t.lessonInvalid}
+          </p>
+        )}
       </div>
     </main>
   )
