@@ -3,6 +3,7 @@ import { useLanguage } from './language-context'
 import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
 import { LessonScreen } from './LessonScreen'
 import { validateLesson } from './lib/lesson'
+import { isTaskPassed, loadProgress, markTaskPassed, saveProgress } from './lib/progress'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
 
 // Checked once when the app loads. Later, lessons will come from imported files too.
@@ -20,6 +21,15 @@ function App() {
     document.documentElement.dataset.theme = theme
     saveTheme(localStorage, theme)
   }, [theme])
+
+  const [progress, setProgress] = useState(() => loadProgress(localStorage))
+
+  // Saves only here, when the learner does something. Never on load, so a load can never overwrite saved data.
+  function handleTaskPassed(lessonId: string) {
+    const updated = markTaskPassed(progress, lessonId)
+    setProgress(updated)
+    saveProgress(localStorage, updated)
+  }
 
   const themeName = theme === 'dark' ? t.themeDark : t.themeLight
 
@@ -43,7 +53,11 @@ function App() {
       </div>
       <div className="mt-8">
         {lessonResult.ok ? (
-          <LessonScreen lesson={lessonResult.lesson} />
+          <LessonScreen
+            lesson={lessonResult.lesson}
+            taskPassed={isTaskPassed(progress, lessonResult.lesson.id)}
+            onTaskPassed={() => handleTaskPassed(lessonResult.lesson.id)}
+          />
         ) : (
           <p role="alert" className="text-review">
             {t.lessonInvalid}

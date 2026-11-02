@@ -19,5 +19,6 @@ export const en = {
   answerCorrect: 'Correct!',
   answerWrong: 'Not quite.',
   whyLabel: 'Why',
+  taskDone: 'Task done',
   lessonInvalid: 'This lesson file is not valid, so it cannot be shown.',
 }
