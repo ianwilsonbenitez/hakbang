@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DiagramView } from './DiagramView'
 import { useLanguage } from './language-context'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
@@ -14,12 +15,10 @@ const secondaryButtonClass =
   'min-h-11 rounded-md border border-border-strong bg-surface px-4 font-semibold text-accent disabled:opacity-50'
 
 function PictureStep({ lesson }: { lesson: Lesson }) {
-  const { language, t } = useLanguage()
-  // Placeholder until the SVG diagram component is built; the alt text already explains the picture.
+  const { language } = useLanguage()
   return (
     <div className="rounded-2xl border border-border bg-surface p-5">
-      <p className="font-mono text-xs uppercase tracking-wider text-text-subtle">{t.diagramSoon}</p>
-      <p className="mt-3 text-text-muted">{pick(lesson.diagram.alt, language)}</p>
+      <DiagramView file={lesson.diagram.file} alt={pick(lesson.diagram.alt, language)} />
     </div>
   )
 }

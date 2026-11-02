@@ -12,7 +12,6 @@ export const en = {
   stepExplain: 'Explain',
   stepTry: 'Try it',
   stepsLabel: 'Lesson steps',
-  diagramSoon: 'The diagram is coming soon. What it shows:',
   back: 'Back',
   next: 'Next',
   checkAnswer: 'Check answer',

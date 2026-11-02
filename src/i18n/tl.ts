@@ -14,7 +14,6 @@ export const tl: typeof en = {
   stepExplain: 'Paliwanag',
   stepTry: 'Subukan mo',
   stepsLabel: 'Mga hakbang ng lesson',
-  diagramSoon: 'Malapit nang lumabas ang diagram. Ito ang ipapakita nito:',
   back: 'Bumalik',
   next: 'Susunod',
   checkAnswer: 'I-check ang sagot',
