@@ -72,3 +72,43 @@ index.html → main.tsx → LanguageProvider → App → LessonScreen → Diagra
 | `CLAUDE.md`, `GEMINI.md` | Rules for the two AIs. |
 | `docs/design-tokens.md`, `docs/lesson-schema.md` | Look and feel, and the lesson file format. |
 | `docs/later-ideas.md` | Ideas that are not in v1. |
+
+## Terms I met
+
+One line each, in plain words. Add a new line whenever a new word shows up.
+
+**React**
+
+| Term | Meaning |
+| --- | --- |
+| component | A function that returns a piece of screen, like `LessonScreen`. |
+| props | Inputs a parent gives to a component, like `taskPassed` and `onTaskPassed`. |
+| state | A value React remembers between redraws (`useState`). Changing it redraws the screen. |
+| callback | A function passed down as a prop so a child can tell its parent "something happened". |
+| lifting state up | Keeping the state in the parent (`App`) so it survives when a child disappears. |
+| mount / unmount | A component appears on screen / is removed. `TryStep` is unmounted when you leave that step, so its own state resets. |
+| effect (`useEffect`, `useLayoutEffect`) | Code that runs after the screen is drawn, and again when the values in its `[ ]` change. Not for "save when the user did something"; use a click handler for that. |
+| context / provider | A shared box any component can read, like the current language. |
+
+**Data and safety**
+
+| Term | Meaning |
+| --- | --- |
+| immutable update | Do not edit the old object; make a new one with the change (`{ ...old, new }`). React sees "new object" and redraws. |
+| parse / validate | Check data you do not trust and keep only the good parts. Never throw. |
+| `schemaVersion` | A number in saved data. If it does not match, the app starts empty and does not overwrite what is saved. |
+| idempotent | Doing it twice gives the same result as doing it once (`markTaskPassed`). |
+| localStorage | The browser's small saved box for this site. See it in DevTools, Application tab. |
+| defense in depth | More than one safety check, so one mistake does not break everything (`isSafeSvg` plus our own repo). |
+| `currentColor` | An SVG colour that copies the page's text colour, so the picture follows light and dark. |
+
+**Tools and workflow**
+
+| Term | Meaning |
+| --- | --- |
+| Vitest test | A small program that checks one function gives the right answer. `npm test`. |
+| lint | A style and mistake checker. `npm run lint`. |
+| build | Turns the app into the final files, and checks TypeScript types. `npm run build`. |
+| type (TypeScript) | A label saying what shape a value has, so mistakes show before the app runs. |
+| commit / push | Save a snapshot with a message / upload it to GitHub. |
+| i18n | "Internationalization": every visible text lives in `en.ts` and `tl.ts`, not in the screens. |
