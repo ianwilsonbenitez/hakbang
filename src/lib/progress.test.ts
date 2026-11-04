@@ -76,6 +76,61 @@ describe('parseProgress', () => {
     })
   })
 
+  it('still loads old data that has only taskPassed', () => {
+    const raw = { schemaVersion: 1, lessons: { 'lesson-a': { taskPassed: true } } }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual({ taskPassed: true })
+  })
+
+  it('keeps all the new facts when they are valid', () => {
+    const entry = {
+      taskPassed: true,
+      exerciseSolved: true,
+      exerciseHintsUsed: 2,
+      checkBestScore: 3,
+      bugCheckPassed: false,
+    }
+    const raw = { schemaVersion: 1, lessons: { 'lesson-a': entry } }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual(entry)
+  })
+
+  it('keeps an entry that has only one new fact', () => {
+    const raw = { schemaVersion: 1, lessons: { 'lesson-a': { exerciseSolved: true } } }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual({ exerciseSolved: true })
+  })
+
+  it('drops a bad checkBestScore but keeps the good fields next to it', () => {
+    for (const bad of [5, -1, 1.5, '2', null, NaN]) {
+      const raw = {
+        schemaVersion: 1,
+        lessons: { 'lesson-a': { taskPassed: true, checkBestScore: bad } },
+      }
+      expect(parseProgress(raw).lessons['lesson-a']).toEqual({ taskPassed: true })
+    }
+  })
+
+  it('drops a bad exerciseHintsUsed but keeps the good fields next to it', () => {
+    for (const bad of [4, -1, 0.5, '1', undefined]) {
+      const raw = {
+        schemaVersion: 1,
+        lessons: { 'lesson-a': { exerciseSolved: true, exerciseHintsUsed: bad } },
+      }
+      expect(parseProgress(raw).lessons['lesson-a']).toEqual({ exerciseSolved: true })
+    }
+  })
+
+  it('drops an entry whose only fields are bad', () => {
+    const raw = {
+      schemaVersion: 1,
+      lessons: { 'lesson-a': { checkBestScore: 9, bugCheckPassed: 'yes' }, 'lesson-b': {} },
+    }
+    expect(parseProgress(raw).lessons).toEqual({})
+  })
+
+  it('drops entries that are not objects', () => {
+    const raw = { schemaVersion: 1, lessons: { a: 'x', b: 5, c: [], d: null } }
+    expect(parseProgress(raw).lessons).toEqual({})
+  })
+
   it('ignores unknown extra fields', () => {
     const raw = {
       schemaVersion: 1,
@@ -112,6 +167,14 @@ describe('markTaskPassed and isTaskPassed', () => {
   it('gives the same result when called twice', () => {
     const once = markTaskPassed(emptyProgress(), 'lesson-a')
     expect(markTaskPassed(once, 'lesson-a')).toEqual(once)
+  })
+
+  it('keeps the other facts of the same lesson', () => {
+    const before = { schemaVersion: 1, lessons: { 'lesson-a': { checkBestScore: 2 } } }
+    expect(markTaskPassed(before, 'lesson-a').lessons['lesson-a']).toEqual({
+      checkBestScore: 2,
+      taskPassed: true,
+    })
   })
 })
 
