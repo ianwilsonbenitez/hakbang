@@ -31,5 +31,8 @@ dist-ssr
 # personal progress backups: never commit
 hakbang-progress-*.json
 
+# Ian's personal study levels: stays on his computer, never commit
+docs/learning-log.md
+
 # OS noise
 Thumbs.db

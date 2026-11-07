@@ -76,6 +76,7 @@ When it is a good moment to commit, say so and suggest a short commit message.
 - After each change, tell Ian in 2–3 lines **which file changed and why**, in plain words.
 - Every logic function (hints, scoring, validation, storage, tracer) gets Vitest tests.
 - End a task with one short "check your understanding" question about what was just built. Don't answer it for him.
+- Repetition is wanted. Ian learns best when ideas, quizzes and tests come back again, each time with a different example. When he recalls terms from earlier, check what he got right, fill gaps with a new example, and bring a term back later in a new setting. Explain gaps in plain English words (he finds English easier than Tagalog for technical terms).
 - Bigger design or scope questions → use the `hakbang-architect` agent. Before Ian commits a feature → offer the `hakbang-reviewer` agent.
 - If Ian asks "what does this do?" about any file or command → use the `explainer` agent.
 
