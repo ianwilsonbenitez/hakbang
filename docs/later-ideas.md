@@ -13,6 +13,16 @@ Ideas Ian suggested. Do not build any of these in Milestone 1. Revisit after v1 
 - Idea: add DOMPurify (a well-known library that cleans SVG with an allowlist) and run it on every SVG before it is shown. `isSafeSvg` stays in one place, so it is easy to replace.
 - Cost: needs Ian's approval (new library), about 20 KB more in the bundle, and a DOM test tool such as jsdom, because Vitest has no browser DOM here.
 
+## Unit 0: first coding words for absolute beginners
+- Why: Ian finds basic words (const, boolean, type, export, import) hard at first. A short beginner unit before Unit 1 would help him and other career shifters.
+- Outline from Gemini (Nov 7, 2026): plain beginner meanings, everyday comparisons first, a new example each time an idea comes back, easy and hard tasks mixed inside the normal lesson format (no schema change).
+- Review notes from Claude:
+  - Split into two lessons: values (const, string, boolean), then function and return.
+  - Add type, export and import, since they appear in real files like `mastery.ts`.
+  - Hard task tests one idea only (for example reassigning a const, or two return lines, not both).
+- Needs: the lesson validator rejects `"unit": 0` today (`checkPositiveInteger` in `src/lib/lesson.ts`). Either allow 0 (small change plus a test) or use another unit number.
+- Not part of Milestone 1. Revisit after Task 8 or after M1.
+
 ## Automate Google tools (for example NotebookLM)
 - Why: after each unit, upload the lesson file and command log without doing it by hand.
 - Open questions: does the tool have a public way to automate it, and does it fit the no-autopilot rule? Research first, then decide.
