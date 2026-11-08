@@ -33,4 +33,11 @@ export const en = {
   statusNotStarted: 'Not started',
   statusInProgress: 'In progress',
   statusFinished: 'Finished',
+  backToMap: 'Back to skill map',
+  columnEmpty: 'No skills here yet',
+  levelUnderstands: 'Level 1: Understands',
+  levelBuilds: 'Level 2: Builds with AI',
+  levelDebugs: 'Level 3: Debugs and explains alone',
+  pipOn: 'done',
+  pipOff: 'not yet',
 }

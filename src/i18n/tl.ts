@@ -35,4 +35,11 @@ export const tl: typeof en = {
   statusNotStarted: 'Hindi pa nasisimulan',
   statusInProgress: 'Ginagawa pa',
   statusFinished: 'Tapos na',
+  backToMap: 'Bumalik sa mapa ng skill',
+  columnEmpty: 'Wala pang skill dito',
+  levelUnderstands: 'Level 1: Naiintindihan',
+  levelBuilds: 'Level 2: Nakakagawa gamit ang AI',
+  levelDebugs: 'Level 3: Nakaka-debug at nakakapagpaliwanag nang mag-isa',
+  pipOn: 'tapos na',
+  pipOff: 'hindi pa',
 }

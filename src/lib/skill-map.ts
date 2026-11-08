@@ -1,4 +1,5 @@
 import type { en } from '../i18n/en'
+import type { Lesson } from './lesson'
 import type { LessonParts } from './mastery'
 import type { Progress } from './progress'
 import { getMastery, isFinished } from './mastery'
@@ -26,6 +27,26 @@ export const SKILL_NODES: SkillNode[] = [
   { id: 'decisions-in-code', column: 'javascript', titleKey: 'nodeDecisionsInCode', lessonId: null },
   { id: 'spot-the-bug', column: 'debugging', titleKey: 'nodeSpotTheBug', lessonId: null },
 ]
+
+// The four columns, left to right (top to bottom on a phone).
+export const SKILL_COLUMNS: { id: SkillColumn; titleKey: keyof typeof en }[] = [
+  { id: 'foundations', titleKey: 'columnFoundations' },
+  { id: 'javascript', titleKey: 'columnJavascript' },
+  { id: 'debugging', titleKey: 'columnDebugging' },
+  { id: 'react', titleKey: 'columnReact' },
+]
+
+export function getNodesInColumn(column: SkillColumn): SkillNode[] {
+  return SKILL_NODES.filter((node) => node.column === column)
+}
+
+// Turns a whole lesson into the two small flags that getMastery needs.
+export function getLessonParts(lesson: Lesson): LessonParts {
+  return {
+    hasExercise: lesson.exercise !== undefined,
+    hasBugCheck: lesson.bugCheck !== undefined,
+  }
+}
 
 // The status of a node on the skill map. The questions are asked in this order,
 // and the first one that fits decides the answer:

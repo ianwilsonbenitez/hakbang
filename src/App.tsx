@@ -3,11 +3,20 @@ import { useLanguage } from './language-context'
 import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
 import { LessonScreen } from './LessonScreen'
 import { validateLesson } from './lib/lesson'
+import { getLessonParts } from './lib/skill-map'
+import { SkillMapScreen } from './SkillMapScreen'
 import { isTaskPassed, loadProgress, markTaskPassed, saveProgress } from './lib/progress'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
 
 // Checked once when the app loads. Later, lessons will come from imported files too.
 const lessonResult = validateLesson(unit01)
+
+// The optional parts of each known lesson, so the map can work out the pips.
+const partsByLessonId = lessonResult.ok
+  ? { [lessonResult.lesson.id]: getLessonParts(lessonResult.lesson) }
+  : {}
+
+type View = { name: 'map' } | { name: 'lesson'; lessonId: string }
 
 const buttonClass =
   'min-h-11 rounded-md border border-border-strong bg-surface px-4 font-semibold text-accent'
@@ -23,6 +32,7 @@ function App() {
   }, [theme])
 
   const [progress, setProgress] = useState(() => loadProgress(localStorage))
+  const [view, setView] = useState<View>({ name: 'map' })
 
   // Saves only here, when the learner does something. Never on load, so a load can never overwrite saved data.
   function handleTaskPassed(lessonId: string) {
@@ -34,7 +44,7 @@ function App() {
   const themeName = theme === 'dark' ? t.themeDark : t.themeLight
 
   return (
-    <main className="mx-auto max-w-3xl p-6">
+    <main className="mx-auto max-w-5xl p-6">
       <h1 className="text-2xl font-bold">{t.appName}</h1>
       <p className="mt-2 text-text-muted">
         {t.themeLabel}: {themeName}
@@ -52,16 +62,31 @@ function App() {
         </button>
       </div>
       <div className="mt-8">
-        {lessonResult.ok ? (
-          <LessonScreen
-            lesson={lessonResult.lesson}
-            taskPassed={isTaskPassed(progress, lessonResult.lesson.id)}
-            onTaskPassed={() => handleTaskPassed(lessonResult.lesson.id)}
+        {view.name === 'map' ? (
+          <SkillMapScreen
+            progress={progress}
+            partsByLessonId={partsByLessonId}
+            onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
           />
         ) : (
-          <p role="alert" className="text-review">
-            {t.lessonInvalid}
-          </p>
+          <>
+            <button type="button" onClick={() => setView({ name: 'map' })} className={buttonClass}>
+              {t.backToMap}
+            </button>
+            <div className="mt-6">
+              {lessonResult.ok && lessonResult.lesson.id === view.lessonId ? (
+                <LessonScreen
+                  lesson={lessonResult.lesson}
+                  taskPassed={isTaskPassed(progress, lessonResult.lesson.id)}
+                  onTaskPassed={() => handleTaskPassed(lessonResult.lesson.id)}
+                />
+              ) : (
+                <p role="alert" className="text-review">
+                  {t.lessonInvalid}
+                </p>
+              )}
+            </div>
+          </>
         )}
       </div>
     </main>
