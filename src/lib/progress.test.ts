@@ -4,6 +4,7 @@ import {
   emptyProgress,
   isTaskPassed,
   loadProgress,
+  markExerciseSolved,
   markTaskPassed,
   parseProgress,
   saveProgress,
@@ -206,5 +207,34 @@ describe('loadProgress and saveProgress', () => {
   it('does not crash when storage is blocked', () => {
     expect(loadProgress(blockedStorage)).toEqual(emptyProgress())
     expect(() => saveProgress(blockedStorage, emptyProgress())).not.toThrow()
+  })
+})
+
+describe('markExerciseSolved', () => {
+  it('records the exercise as solved with the hints used', () => {
+    const result = markExerciseSolved(emptyProgress(), 'lesson-a', 2)
+    expect(result.lessons['lesson-a']).toEqual({ exerciseSolved: true, exerciseHintsUsed: 2 })
+  })
+
+  it('keeps the other saved facts of the lesson', () => {
+    const before = { ...emptyProgress(), lessons: { 'lesson-a': { taskPassed: true } } }
+    const result = markExerciseSolved(before, 'lesson-a', 0)
+    expect(result.lessons['lesson-a']).toEqual({
+      taskPassed: true,
+      exerciseSolved: true,
+      exerciseHintsUsed: 0,
+    })
+  })
+
+  it('keeps the smaller hint count when solved again with more hints', () => {
+    const first = markExerciseSolved(emptyProgress(), 'lesson-a', 1)
+    const second = markExerciseSolved(first, 'lesson-a', 3)
+    expect(second.lessons['lesson-a'].exerciseHintsUsed).toBe(1)
+  })
+
+  it('does not change the old progress object', () => {
+    const before = emptyProgress()
+    markExerciseSolved(before, 'lesson-a', 1)
+    expect(before.lessons).toEqual({})
   })
 })

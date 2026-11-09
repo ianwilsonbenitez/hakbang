@@ -5,7 +5,13 @@ import { LessonScreen } from './LessonScreen'
 import { validateLesson } from './lib/lesson'
 import { getLessonParts } from './lib/skill-map'
 import { SkillMapScreen } from './SkillMapScreen'
-import { isTaskPassed, loadProgress, markTaskPassed, saveProgress } from './lib/progress'
+import {
+  isTaskPassed,
+  loadProgress,
+  markExerciseSolved,
+  markTaskPassed,
+  saveProgress,
+} from './lib/progress'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
 
 // Checked once when the app loads. Later, lessons will come from imported files too.
@@ -41,7 +47,13 @@ function App() {
     saveProgress(localStorage, updated)
   }
 
-  const themeName = theme === 'dark' ? t.themeDark : t.themeLight
+  function handleExerciseSolved(lessonId: string, hintsUsed: number) {
+    const updated = markExerciseSolved(progress, lessonId, hintsUsed)
+    setProgress(updated)
+    saveProgress(localStorage, updated)
+  }
+
+  const themeName =theme === 'dark' ? t.themeDark : t.themeLight
 
   return (
     <main className="mx-auto max-w-5xl p-6">
@@ -79,6 +91,12 @@ function App() {
                   lesson={lessonResult.lesson}
                   taskPassed={isTaskPassed(progress, lessonResult.lesson.id)}
                   onTaskPassed={() => handleTaskPassed(lessonResult.lesson.id)}
+                  exerciseSolved={
+                    progress.lessons[lessonResult.lesson.id]?.exerciseSolved === true
+                  }
+                  onExerciseSolved={(hintsUsed) =>
+                    handleExerciseSolved(lessonResult.lesson.id, hintsUsed)
+                  }
                 />
               ) : (
                 <p role="alert" className="text-review">

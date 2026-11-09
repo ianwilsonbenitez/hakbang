@@ -102,6 +102,22 @@ export function markTaskPassed(progress: Progress, lessonId: string): Progress {
   }
 }
 
+// Records the solved exercise and how many hints it took. If it was solved before,
+// the smaller hint count is kept, so a later retake with more hints never makes it look worse.
+export function markExerciseSolved(progress: Progress, lessonId: string, hintsUsed: number): Progress {
+  const before = progress.lessons[lessonId]
+  const bestHints =
+    before?.exerciseHintsUsed === undefined ? hintsUsed : Math.min(before.exerciseHintsUsed, hintsUsed)
+
+  return {
+    ...progress,
+    lessons: {
+      ...progress.lessons,
+      [lessonId]: { ...before, exerciseSolved: true, exerciseHintsUsed: bestHints },
+    },
+  }
+}
+
 export function isTaskPassed(progress: Progress, lessonId: string): boolean {
   return progress.lessons[lessonId]?.taskPassed === true
 }

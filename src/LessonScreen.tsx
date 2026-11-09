@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DiagramView } from './DiagramView'
+import { ExercisePanel } from './ExercisePanel'
 import { useLanguage } from './language-context'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
@@ -114,9 +115,17 @@ type LessonScreenProps = {
   lesson: Lesson
   taskPassed: boolean
   onTaskPassed: () => void
+  exerciseSolved: boolean
+  onExerciseSolved: (hintsUsed: number) => void
 }
 
-export function LessonScreen({ lesson, taskPassed, onTaskPassed }: LessonScreenProps) {
+export function LessonScreen({
+  lesson,
+  taskPassed,
+  onTaskPassed,
+  exerciseSolved,
+  onExerciseSolved,
+}: LessonScreenProps) {
   const { language, t } = useLanguage()
   const [step, setStep] = useState<LessonStep>('picture')
 
@@ -172,7 +181,17 @@ export function LessonScreen({ lesson, taskPassed, onTaskPassed }: LessonScreenP
       <div className="mt-6">
         {step === 'picture' && <PictureStep lesson={lesson} />}
         {step === 'explain' && <ExplainStep lesson={lesson} />}
-        {step === 'try' && <TryStep lesson={lesson} onTaskPassed={onTaskPassed} />}
+        {/* Hidden and not removed, so opened hints and typed answers survive a step change. */}
+        <div className={step === 'try' ? 'space-y-8' : 'hidden'}>
+          <TryStep lesson={lesson} onTaskPassed={onTaskPassed} />
+          {lesson.exercise !== undefined && (
+            <ExercisePanel
+              exercise={lesson.exercise}
+              solved={exerciseSolved}
+              onSolved={onExerciseSolved}
+            />
+          )}
+        </div>
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
