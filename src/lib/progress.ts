@@ -118,6 +118,21 @@ export function markExerciseSolved(progress: Progress, lessonId: string, hintsUs
   }
 }
 
+// Keeps the best score, so a bad retake never takes a level away (same idea as the hint count above).
+export function markCheckScore(progress: Progress, lessonId: string, score: number): Progress {
+  const before = progress.lessons[lessonId]
+  const bestScore =
+    before?.checkBestScore === undefined ? score : Math.max(before.checkBestScore, score)
+
+  return {
+    ...progress,
+    lessons: {
+      ...progress.lessons,
+      [lessonId]: { ...before, checkBestScore: bestScore },
+    },
+  }
+}
+
 export function isTaskPassed(progress: Progress, lessonId: string): boolean {
   return progress.lessons[lessonId]?.taskPassed === true
 }

@@ -4,6 +4,7 @@ import {
   emptyProgress,
   isTaskPassed,
   loadProgress,
+  markCheckScore,
   markExerciseSolved,
   markTaskPassed,
   parseProgress,
@@ -235,6 +236,37 @@ describe('markExerciseSolved', () => {
   it('does not change the old progress object', () => {
     const before = emptyProgress()
     markExerciseSolved(before, 'lesson-a', 1)
+    expect(before.lessons).toEqual({})
+  })
+})
+
+describe('markCheckScore', () => {
+  it('records the score of the first try', () => {
+    const result = markCheckScore(emptyProgress(), 'lesson-a', 2)
+    expect(result.lessons['lesson-a']).toEqual({ checkBestScore: 2 })
+  })
+
+  it('keeps the other saved facts of the lesson', () => {
+    const before = { ...emptyProgress(), lessons: { 'lesson-a': { taskPassed: true } } }
+    const result = markCheckScore(before, 'lesson-a', 3)
+    expect(result.lessons['lesson-a']).toEqual({ taskPassed: true, checkBestScore: 3 })
+  })
+
+  it('keeps the higher score when the retake is worse', () => {
+    const first = markCheckScore(emptyProgress(), 'lesson-a', 3)
+    const second = markCheckScore(first, 'lesson-a', 1)
+    expect(second.lessons['lesson-a'].checkBestScore).toBe(3)
+  })
+
+  it('takes the higher score when the retake is better', () => {
+    const first = markCheckScore(emptyProgress(), 'lesson-a', 1)
+    const second = markCheckScore(first, 'lesson-a', 2)
+    expect(second.lessons['lesson-a'].checkBestScore).toBe(2)
+  })
+
+  it('does not change the old progress object', () => {
+    const before = emptyProgress()
+    markCheckScore(before, 'lesson-a', 2)
     expect(before.lessons).toEqual({})
   })
 })
