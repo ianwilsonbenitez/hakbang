@@ -33,6 +33,8 @@ hakbang-progress-*.json
 
 # Ian's personal study levels: stays on his computer, never commit
 docs/learning-log.md
+# Ian's reading notes after each session (also personal)
+docs/session-*-notes.md
 
 # OS noise
 Thumbs.db

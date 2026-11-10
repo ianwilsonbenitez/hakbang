@@ -23,6 +23,13 @@ Ideas Ian suggested. Do not build any of these in Milestone 1. Revisit after v1 
 - Needs: the lesson validator rejects `"unit": 0` today (`checkPositiveInteger` in `src/lib/lesson.ts`). Either allow 0 (small change plus a test) or use another unit number.
 - Not part of Milestone 1. Revisit after Task 8 or after M1.
 
+## Exercise answers: accept missing spaces
+- Why: `isAcceptedAnswer` (`src/lib/exercise.ts`) only trims and squeezes repeated spaces. A valid answer written without spaces, like `result.verified===true`, is rejected because the lesson lists `result.verified === true`. A learner who types correct JavaScript could be marked wrong.
+- Capital letters stay strict on purpose: `Result.Verified` is a different name in JavaScript.
+- Ideas: (a) ignore all spaces when comparing, or (b) keep the current rule and let Gemini list the no-space form in `acceptedAnswers`. Option (a) is a small code change plus a test; option (b) touches `docs/lesson-schema.md`, so Ian approves and both AIs are told.
+- Watch out: ignoring all spaces could accept wrong answers in other lessons, for example `a b` and `ab`. Decide per exercise type.
+- Not part of Milestone 1. Found Nov 9, 2026 while discussing `normalizeAnswer`.
+
 ## Automate Google tools (for example NotebookLM)
 - Why: after each unit, upload the lesson file and command log without doing it by hand.
 - Open questions: does the tool have a public way to automate it, and does it fit the no-autopilot rule? Research first, then decide.
