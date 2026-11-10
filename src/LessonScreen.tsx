@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CheckPanel } from './CheckPanel'
 import { DiagramView } from './DiagramView'
 import { ExercisePanel } from './ExercisePanel'
 import { useLanguage } from './language-context'
@@ -117,6 +118,8 @@ type LessonScreenProps = {
   onTaskPassed: () => void
   exerciseSolved: boolean
   onExerciseSolved: (hintsUsed: number) => void
+  checkBestScore: number | undefined
+  onCheckFinished: (rightCount: number) => void
 }
 
 export function LessonScreen({
@@ -125,6 +128,8 @@ export function LessonScreen({
   onTaskPassed,
   exerciseSolved,
   onExerciseSolved,
+  checkBestScore,
+  onCheckFinished,
 }: LessonScreenProps) {
   const { language, t } = useLanguage()
   const [step, setStep] = useState<LessonStep>('picture')
@@ -191,6 +196,11 @@ export function LessonScreen({
               onSolved={onExerciseSolved}
             />
           )}
+          <CheckPanel
+            questions={lesson.check}
+            bestScore={checkBestScore}
+            onFinished={onCheckFinished}
+          />
         </div>
       </div>
 

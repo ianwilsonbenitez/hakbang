@@ -52,4 +52,10 @@ export const tl: typeof en = {
   hintLabel: 'Hint',
   hintsUsedLabel: 'Hints na nagamit',
   hintsOf: 'sa',
+  checkTitle: 'Check · walang hints',
+  checkQuestionLabel: 'Tanong',
+  checkOf: 'sa',
+  checkFinish: 'Tapusin',
+  checkScoreLabel: 'Ang score mo',
+  checkBestLabel: 'Pinakamataas',
 }

@@ -8,6 +8,7 @@ import { SkillMapScreen } from './SkillMapScreen'
 import {
   isTaskPassed,
   loadProgress,
+  markCheckScore,
   markExerciseSolved,
   markTaskPassed,
   saveProgress,
@@ -49,6 +50,12 @@ function App() {
 
   function handleExerciseSolved(lessonId: string, hintsUsed: number) {
     const updated = markExerciseSolved(progress, lessonId, hintsUsed)
+    setProgress(updated)
+    saveProgress(localStorage, updated)
+  }
+
+  function handleCheckFinished(lessonId: string, rightCount: number) {
+    const updated = markCheckScore(progress, lessonId, rightCount)
     setProgress(updated)
     saveProgress(localStorage, updated)
   }
@@ -96,6 +103,10 @@ function App() {
                   }
                   onExerciseSolved={(hintsUsed) =>
                     handleExerciseSolved(lessonResult.lesson.id, hintsUsed)
+                  }
+                  checkBestScore={progress.lessons[lessonResult.lesson.id]?.checkBestScore}
+                  onCheckFinished={(rightCount) =>
+                    handleCheckFinished(lessonResult.lesson.id, rightCount)
                   }
                 />
               ) : (

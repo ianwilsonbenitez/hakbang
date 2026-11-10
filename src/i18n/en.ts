@@ -50,4 +50,10 @@ export const en = {
   hintLabel: 'Hint',
   hintsUsedLabel: 'Hints used',
   hintsOf: 'of',
+  checkTitle: 'Check · no hints',
+  checkQuestionLabel: 'Question',
+  checkOf: 'of',
+  checkFinish: 'Finish',
+  checkScoreLabel: 'Your score',
+  checkBestLabel: 'Best',
 }
