@@ -115,8 +115,8 @@
   },
   "exercise": {
     "prompt": {
-      "en": "Here is a tiny rule running on the server (if checks a condition, return sends back the reply, and === means 'is equal to'). Fill in the blank so the server only releases the result when result.verified is true.",
-      "tl": "Heto ang isang maikling rule sa server (if ang pang-check ng kundisyon, return ang nagbabalik ng sagot, at === ang 'kapareho ba ng'). Punan ang patlang para ma-release lang kapag true ang result.verified."
+      "en": "Here is a tiny rule running on the server. In this code, result is one record and result.verified is its verified field (if checks a condition, return sends back the reply, and === means 'is equal to'). Fill in the blank so the server only releases the result when result.verified is true.",
+      "tl": "Heto ang isang maikling rule sa server. Sa code na ito, ang result ay isang record at ang result.verified ang verified field nito (if ang pang-check ng kundisyon, return ang nagbabalik ng sagot, at === ang 'kapareho ba ng'). Punan ang patlang para ma-release lang kapag true ang result.verified."
     },
     "code": "function canReleaseResult(result) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: Supervisor check needed\";\n}",
     "acceptedAnswers": [
@@ -126,8 +126,8 @@
     ],
     "hints": [
       {
-        "en": "Check the verified property of result to see if the Supervisor already approved it.",
-        "tl": "Silipin mo ang result.verified para malaman kung na-approve na ba ito ng Supervisor."
+        "en": "Check the verified field on result (written as result.verified) to see if the Supervisor already approved it.",
+        "tl": "Silipin mo ang verified field ng result (nakasulat bilang result.verified) para malaman kung na-approve na ba ito ng Supervisor."
       },
       {
         "en": "In JavaScript, use === (three equals signs) to compare result.verified with true.",
@@ -141,8 +141,8 @@
   },
   "bugCheck": {
     "prompt": {
-      "en": "An AI wrote this server check, but it approves every request—even unverified ones! Tap the line with the bug.",
-      "tl": "Isinulat ng AI ang server check na ito, pero nakakalusot lahat ng request kahit hindi pa verified! Pindutin ang line na may bug."
+      "en": "An AI wrote this server check, where request is one form and request.verified is its verified field. Remember: === checks if two values are equal, while a single = overwrites a value. Tap the line with the bug that makes the server approve every request—even unverified ones!",
+      "tl": "Isinulat ng AI ang server check na ito, kung saan ang request ay isang form at ang request.verified ang verified field nito. Tandaan: === ang nagkukumpara kung magkapareho, habang ang isang = ay nagpapalit ng value. Pindutin ang line na may bug kaya nakakalusot lahat ng request kahit hindi pa verified!"
     },
     "code": "function checkRequest(request) {\n  if (request.verified = true) {\n    return \"Save to records list\";\n  }\n  return \"Reject: not verified\";\n}",
     "bugLine": 2,
@@ -259,8 +259,8 @@
     "code": "function checkBookingHours(hoursAhead) {\n  if (hoursAhead >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
     "predict": {
       "question": {
-        "en": "Before stepping: the browser sends hoursAhead = 6 for an advance booking. Will line 3 (\"Accept booking\") run?",
-        "tl": "Bago i-step: nagpadala ang browser ng hoursAhead = 6 para sa isang advance booking. Tatakbo ba ang line 3 (\"Accept booking\")?"
+        "en": "Before stepping: hoursAhead is how many hours in advance a customer books, and >= 8 means '8 or more'. The browser sends hoursAhead = 6. Will line 3 (\"Accept booking\") run?",
+        "tl": "Bago i-step: ang hoursAhead ay ilang oras bago ang schedule nag-book ang customer, at ang >= 8 ay '8 o higit pa'. Nagpadala ang browser ng hoursAhead = 6. Tatakbo ba ang line 3 (\"Accept booking\")?"
       },
       "answer": {
         "en": "No, because 6 >= 8 is false, so the server skips line 3 and runs line 5 instead.",
