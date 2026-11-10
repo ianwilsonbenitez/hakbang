@@ -33,3 +33,24 @@ Ideas Ian suggested. Do not build any of these in Milestone 1. Revisit after v1 
 ## Automate Google tools (for example NotebookLM)
 - Why: after each unit, upload the lesson file and command log without doing it by hand.
 - Open questions: does the tool have a public way to automate it, and does it fit the no-autopilot rule? Research first, then decide.
+
+## Install-tools lessons (Windows)
+- Why: Ian wants to see how the usual developer tools are installed (Node.js, VS Code, Git, GitHub account), so a beginner has an idea of the setup.
+- Smallest first version (hakbang-architect, Nov 10, 2026): one normal lesson with the current format. Diagram = the four tools and what each is for. Task and check = concept questions. Leave `exercise` and `bugCheck` out (they are optional). No schema change.
+- Later, if step-by-step screenshots are wanted: a new optional `steps` block in `docs/lesson-schema.md`. Ian approves, and both AIs are told.
+- Watch out: the validator rejects `"unit": 0` today, so pick a unit number or allow 0 first. Use official download pages only.
+- Milestone 2, not Milestone 1.
+
+## Recap questions on earlier topics (spaced review)
+- Why: Ian learns best by repetition with new examples. The approved design already has a "Review now" card.
+- Smallest first version: a Review screen that re-asks the `check` questions of lessons already passed, starting with the oldest. Needs one new optional saved field (a date such as `checkLastSeen`) with a default in `parseProgress`. No lesson schema change, no `schemaVersion` bump.
+- Richer version: a per-unit `recap` list written by Gemini. That adds an optional field to the lesson schema (Ian approves, both AIs told).
+- Wait for the Review screen. Milestone 2.
+
+## Learning roadmap and the 8 fundamentals (Nov 10, 2026)
+Source: a BreakPoint reel (one creator's opinion, so compare with the monthly job research). The 8: programming basics, DSA, how the web works, databases and SQL, Git, debugging, testing, security basics.
+- Covered: how the web works (Unit 1), conditions and one logic bug check.
+- Order agreed by hakbang-architect and Fable: finish Milestone 1 first (Tasks A and B, bug check screen, tracer, Export / Import, phone-width check). Then Milestone 2: Unit 0, then Security 1 (secrets and `.env`, "never trust what arrives", using `parseProgress` and `validateLesson` as examples), then Testing, Git, reading error messages, lists and loops. Later: login and permissions, private data, SQL, simple data structures.
+- Method upgrades, in order: predict before step (free with the tracer), explain-it-back, reading real error messages, then spaced review.
+- Real examples already in Ian's own work: the `git add` typo error (debugging), `npm test` (testing), `.gitignore` (secrets).
+- Privacy: use look-alike examples only. Never copy code or records from the lab system.
