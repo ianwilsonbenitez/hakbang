@@ -26,12 +26,28 @@ function PictureStep({ lesson }: { lesson: Lesson }) {
 }
 
 function ExplainStep({ lesson }: { lesson: Lesson }) {
-  const { language } = useLanguage()
+  const { language, t } = useLanguage()
+  const glossary = lesson.glossary ?? []
   return (
     <div className="space-y-4 leading-relaxed">
       {lesson.explain.map((paragraph, index) => (
         <p key={index}>{pick(paragraph, language)}</p>
       ))}
+      {glossary.length > 0 && (
+        <section className="rounded-xl border border-border bg-surface p-4">
+          <h3 className="font-mono text-xs uppercase tracking-wider text-text-subtle">
+            {t.glossaryTitle}
+          </h3>
+          <dl className="mt-3 space-y-3">
+            {glossary.map((entry) => (
+              <div key={entry.term}>
+                <dt className="font-mono font-semibold">{entry.term}</dt>
+                <dd className="text-text-muted">{pick(entry, language)}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
     </div>
   )
 }
