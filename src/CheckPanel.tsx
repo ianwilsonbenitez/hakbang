@@ -96,12 +96,19 @@ export function CheckPanel({ questions, bestScore, onFinished }: CheckPanelProps
           <ol className="space-y-3">
             {questions.map((item, i) => {
               const isRight = answers[i] === item.answer
+              const rightOption = item.options.find((option) => option.id === item.answer)
               return (
                 <li key={i} className="rounded-lg border border-border bg-surface-raised p-3">
                   <p className="font-semibold">{pick(item.question, language)}</p>
                   <p className={isRight ? 'mt-1 font-semibold text-success' : 'mt-1 font-semibold text-review'}>
                     {isRight ? t.answerCorrect : t.answerWrong}
                   </p>
+                  {!isRight && rightOption !== undefined && (
+                    <p className="mt-1">
+                      <span className="font-semibold">{t.checkRightAnswerLabel}: </span>
+                      {pick(rightOption.text, language)}
+                    </p>
+                  )}
                   <p className="mt-1 text-text-muted">
                     <span className="font-semibold">{t.whyLabel}: </span>
                     {pick(item.why, language)}

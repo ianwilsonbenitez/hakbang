@@ -20,6 +20,7 @@ export const en = {
   answerWrong: 'Not quite.',
   whyLabel: 'Why',
   glossaryTitle: 'Words to know',
+  checkRightAnswerLabel: 'Right answer',
   taskDone: 'Task done',
   lessonInvalid: 'This lesson file is not valid, so it cannot be shown.',
   skillMapTitle: 'Skill map',

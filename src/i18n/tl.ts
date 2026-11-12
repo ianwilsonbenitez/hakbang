@@ -22,6 +22,7 @@ export const tl: typeof en = {
   answerWrong: 'Hindi pa tama.',
   whyLabel: 'Bakit',
   glossaryTitle: 'Mga salitang dapat malaman',
+  checkRightAnswerLabel: 'Tamang sagot',
   taskDone: 'Tapos na ang task',
   lessonInvalid: 'Hindi valid ang lesson file na ito, kaya hindi ito maipapakita.',
   skillMapTitle: 'Mapa ng mga skill',
