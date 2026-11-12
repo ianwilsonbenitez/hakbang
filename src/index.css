@@ -57,6 +57,11 @@
   --radius-xl: 16px;
 }
 
+/* Show >=, ===, => as the real typed characters. A learner has to type them, so they must not merge into one symbol. */
+.font-mono {
+  font-variant-ligatures: none;
+}
+
 body {
   margin: 0;
   background: var(--hk-bg);

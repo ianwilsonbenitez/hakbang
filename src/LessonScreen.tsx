@@ -4,6 +4,7 @@ import { CheckPanel } from './CheckPanel'
 import { DiagramView } from './DiagramView'
 import { ExercisePanel } from './ExercisePanel'
 import { useLanguage } from './language-context'
+import { TracerPanel } from './TracerPanel'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
 import {
@@ -210,6 +211,7 @@ export function LessonScreen({
         {/* Hidden and not removed, so opened hints and typed answers survive a step change. */}
         <div className={step === 'try' ? 'space-y-8' : 'hidden'}>
           <TryStep lesson={lesson} onTaskPassed={onTaskPassed} />
+          {lesson.tracer !== undefined && <TracerPanel tracer={lesson.tracer} />}
           {lesson.exercise !== undefined && (
             <ExercisePanel
               exercise={lesson.exercise}
