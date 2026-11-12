@@ -60,4 +60,9 @@ export const tl: typeof en = {
   checkFinish: 'Tapusin',
   checkScoreLabel: 'Ang score mo',
   checkBestLabel: 'Pinakamataas',
+  bugCheckTitle: 'Bug check · walang hints',
+  bugCheckDone: 'Bug check tapos na',
+  bugCheckLineLabel: 'Linya',
+  bugCheckFound: 'Tama! Nakita mo ang bug.',
+  bugCheckNotThisLine: 'Hindi ito ang linya. Pumili ng ibang linya.',
 }

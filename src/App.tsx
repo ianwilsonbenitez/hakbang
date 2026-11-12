@@ -8,6 +8,7 @@ import { SkillMapScreen } from './SkillMapScreen'
 import {
   isTaskPassed,
   loadProgress,
+  markBugCheckPassed,
   markCheckScore,
   markExerciseSolved,
   markTaskPassed,
@@ -60,6 +61,12 @@ function App() {
     saveProgress(localStorage, updated)
   }
 
+  function handleBugCheckPassed(lessonId: string) {
+    const updated = markBugCheckPassed(progress, lessonId)
+    setProgress(updated)
+    saveProgress(localStorage, updated)
+  }
+
   const themeName =theme === 'dark' ? t.themeDark : t.themeLight
 
   return (
@@ -108,6 +115,10 @@ function App() {
                   onCheckFinished={(rightCount) =>
                     handleCheckFinished(lessonResult.lesson.id, rightCount)
                   }
+                  bugCheckPassed={
+                    progress.lessons[lessonResult.lesson.id]?.bugCheckPassed === true
+                  }
+                  onBugCheckPassed={() => handleBugCheckPassed(lessonResult.lesson.id)}
                 />
               ) : (
                 <p role="alert" className="text-review">

@@ -58,4 +58,9 @@ export const en = {
   checkFinish: 'Finish',
   checkScoreLabel: 'Your score',
   checkBestLabel: 'Best',
+  bugCheckTitle: 'Bug check · no hints',
+  bugCheckDone: 'Bug check done',
+  bugCheckLineLabel: 'Line',
+  bugCheckFound: 'Correct! You found the bug.',
+  bugCheckNotThisLine: 'Not this line. Tap another line.',
 }
