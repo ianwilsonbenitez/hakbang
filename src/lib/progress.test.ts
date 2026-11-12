@@ -4,6 +4,7 @@ import {
   emptyProgress,
   isTaskPassed,
   loadProgress,
+  markBugCheckPassed,
   markCheckScore,
   markExerciseSolved,
   markTaskPassed,
@@ -267,6 +268,30 @@ describe('markCheckScore', () => {
   it('does not change the old progress object', () => {
     const before = emptyProgress()
     markCheckScore(before, 'lesson-a', 2)
+    expect(before.lessons).toEqual({})
+  })
+})
+
+describe('markBugCheckPassed', () => {
+  it('records that the bug check was passed', () => {
+    const result = markBugCheckPassed(emptyProgress(), 'lesson-a')
+    expect(result.lessons['lesson-a']).toEqual({ bugCheckPassed: true })
+  })
+
+  it('keeps the other saved facts of the lesson', () => {
+    const before = { ...emptyProgress(), lessons: { 'lesson-a': { checkBestScore: 3 } } }
+    const result = markBugCheckPassed(before, 'lesson-a')
+    expect(result.lessons['lesson-a']).toEqual({ checkBestScore: 3, bugCheckPassed: true })
+  })
+
+  it('gives the same result when called twice', () => {
+    const once = markBugCheckPassed(emptyProgress(), 'lesson-a')
+    expect(markBugCheckPassed(once, 'lesson-a')).toEqual(once)
+  })
+
+  it('does not change the old progress object', () => {
+    const before = emptyProgress()
+    markBugCheckPassed(before, 'lesson-a')
     expect(before.lessons).toEqual({})
   })
 })

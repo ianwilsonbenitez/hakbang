@@ -133,6 +133,17 @@ export function markCheckScore(progress: Progress, lessonId: string, score: numb
   }
 }
 
+// Same idea as markTaskPassed: a new object, and calling it twice gives the same result.
+export function markBugCheckPassed(progress: Progress, lessonId: string): Progress {
+  return {
+    ...progress,
+    lessons: {
+      ...progress.lessons,
+      [lessonId]: { ...progress.lessons[lessonId], bugCheckPassed: true },
+    },
+  }
+}
+
 export function isTaskPassed(progress: Progress, lessonId: string): boolean {
   return progress.lessons[lessonId]?.taskPassed === true
 }
