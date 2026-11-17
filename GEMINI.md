@@ -34,5 +34,11 @@ Ian types every git and terminal command himself. Never run `git`, `npm` or othe
 
 Before Ian switches to the Claude chat, remind him to commit your work first, so the two AIs never edit at the same time.
 
+## What to work on
+
+Read `docs/gemini-brief.md` at the start of every session. It lists the lesson work after the Nov 2026 review and the quality bar for every lesson.
+Do one task per session, and only the task Ian names.
+If Ian says you are the Reviewer, report problems and change no file.
+
 @docs/lesson-schema.md
 @docs/design-tokens.md
