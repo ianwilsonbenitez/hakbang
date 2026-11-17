@@ -24,12 +24,12 @@
       "tl": "Ang browser (ang pang-open mo ng site gaya ng Chrome o Safari) ay ang screen ng Encoder sa front desk. Trabaho nitong magpakita ng forms at resulta at kunin ang tina-type ng Encoder—pero hindi ang screen ang nagde-decide sa rules."
     },
     {
-      "en": "The server is the Supervisor check in the middle that enforces the rules. In code, an if check runs the lines inside only when the check in the brackets (...) is true, and === compares two values to see if they match (for example, if (verified === true)). The front-desk screen never writes straight to the database (the permanent records list).",
-      "tl": "Ang server (ang computer sa gitna) ay parang Supervisor check na nagpapatupad ng rules. Sa code, pinatatakbo lang ng if ang mga linya sa loob kapag true ang check sa loob ng panaklong (...), at === ang nagkukumpara kung magkapareho ang dalawang value (halimbawa, if (verified === true)). Hindi kailanman dumidiretso ang screen sa database (ang permanenteng records list)."
+      "en": "The server is the Supervisor check in the middle that enforces the rules before anything reaches the database (the permanent records list). In code, an if check runs the lines inside only when the check in parentheses ( ) is true. A single = puts a value into a name, while === compares two values to see if they match (for example, if (verified === true)).",
+      "tl": "Ang server (ang computer sa gitna) ay parang Supervisor check na nagpapatupad ng rules bago may ma-save sa database (ang permanenteng records list). Sa code, pinatatakbo lang ng if ang mga linya sa loob kapag true ang check sa loob ng parentheses ( ). Ang isang = ay naglalagay ng value sa isang pangalan, habang ang === ay nagko-compare kung magkapareho ang dalawang value (halimbawa, if (verified === true))."
     },
     {
-      "en": "Every click follows one round-trip: the browser sends a request, the server checks the rules before reading or saving in the database, and the server sends back a response—either the result or an error.",
-      "tl": "Bawat pindot, iisa lang ang biyahe: magpapadala ang browser ng request (mensaheng may hinihinging action), ine-check ito ng server bago magbasa o mag-save sa database, tapos magbabalik ang server ng response (ang sagot—resulta man o error) pabalik sa browser."
+      "en": "Every click follows one round-trip: the browser sends a request, the server checks the rules with the database, and the server sends back a response. In code, a function is a named set of steps that runs on the server, and return sends the final answer back.",
+      "tl": "Bawat pindot, iisa lang ang biyahe: magpapadala ang browser ng request (mensaheng may hinihinging action), ine-check ito ng server sa database, at magbabalik ang server ng response (ang sagot). Sa code, ang function ay isang may-pangalang set ng steps sa server, at ang return ang nagpapadala pabalik ng sagot."
     }
   ],
   "glossary": [
@@ -66,17 +66,12 @@
     {
       "term": "= vs ===",
       "en": "A single = changes (assigns) a value, while === compares two values to check if they are equal.",
-      "tl": "Ang isang = ay nagpapalit ng value, habang ang tatlong === ay nagkukumpara lang kung magkapareho ang dalawang value."
+      "tl": "Ang isang = ay nagpapalit ng value, habang ang tatlong === ay nagko-compare lang kung magkapareho ang dalawang value."
     },
     {
       "term": "function",
       "en": "A named set of steps in code that takes an input, runs a task or check, and returns a result.",
-      "tl": "Isang may-pangalang grupo ng steps sa code na tumatanggap ng input, gumagawa ng check, at nagbabalik ng resulta."
-    },
-    {
-      "term": "property",
-      "en": "A named piece of data that belongs to something, written after a dot—like verified in result.verified (a field on a form).",
-      "tl": "Isang may-pangalang detalye ng isang record o item na nakasulat pagkatapos ng tuldok—gaya ng verified sa result.verified (parang isang field sa form)."
+      "tl": "Isang may-pangalang set ng steps sa code na tumatanggap ng input, gumagawa ng check, at nagre-return ng resulta."
     }
   ],
   "task": {
@@ -115,28 +110,26 @@
   },
   "exercise": {
     "prompt": {
-      "en": "Complete this rule running on the server. Use === to compare so the server returns \"Released\" only when verified is equal to true.",
-      "tl": "Kumpletuhin ang rule na ito sa server. Gumamit ng === para magkumpara nang ibalik lang ng server ang \"Released\" kapag ang verified ay kapareho ng true."
+      "en": "Complete this rule running on the server. Use === to compare so the function returns \"Released\" only when verified is true.",
+      "tl": "Kumpletuhin ang rule na ito sa server. Gumamit ng === para mag-compare, para i-return lang ng function ang \"Released\" kapag true ang verified."
     },
     "code": "function canReleaseResult(verified) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: Supervisor check needed\";\n}",
     "acceptedAnswers": [
       "verified === true",
-      "true === verified",
-      "verified == true",
-      "verified"
+      "true === verified"
     ],
     "hints": [
       {
-        "en": "Check whether verified matches true inside the if brackets.",
-        "tl": "I-check sa loob ng panaklong ng if kung kapareho ba ng true ang verified."
+        "en": "Compare verified with true inside the if parentheses ( ).",
+        "tl": "I-compare ang verified at true sa loob ng parentheses ( ) ng if."
       },
       {
         "en": "Put === (three equals signs) between verified and true.",
-        "tl": "Maglagay ng === (tatlong equals) sa pagitan ng verified at true."
+        "tl": "Maglagay ng === (three equals signs) sa pagitan ng verified at true."
       },
       {
         "en": "Type verified === true inside the blank.",
-        "tl": "Ilagay ang verified === true sa patlang."
+        "tl": "I-type ang verified === true sa patlang."
       }
     ]
   },
@@ -149,7 +142,7 @@
     "bugLine": 2,
     "why": {
       "en": "Line 2 uses a single =, which changes verified to true instead of checking it. It should use === (if (verified === true)) to compare the values without changing them.",
-      "tl": "Isang = lang ang gamit sa line 2, kaya pinapalitan nito ng true ang verified imbes na i-check ito. Dapat === ang gamit (if (verified === true)) para ikumpara lang ang value nang hindi ito binabago."
+      "tl": "Isang = lang ang gamit sa line 2, kaya pinapalitan nito ng true ang verified imbes na i-check ito. Dapat === ang gamit (if (verified === true)) para i-compare lang ang values nang hindi sila binabago."
     }
   },
   "check": [
@@ -257,53 +250,53 @@
     }
   ],
   "tracer": {
-    "code": "function checkBookingHours(hoursAhead) {\n  if (hoursAhead >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
+    "code": "function checkSlot(slotStatus) {\n  if (slotStatus === \"open\") {\n    return \"Booking confirmed\";\n  }\n  return \"Sorry, slot is taken\";\n}",
     "predict": {
       "question": {
-        "en": "Before stepping: the rule accepts a booking only when hoursAhead is 8 or more. What does the function return when hoursAhead is 6?",
-        "tl": "Bago i-step: tinatanggap lang ng rule ang booking kapag 8 o higit pa ang hoursAhead. Ano ang ibabalik ng function kapag 6 ang hoursAhead?"
+        "en": "Before stepping: what does checkSlot return when slotStatus is \"taken\"?",
+        "tl": "Bago i-step: ano ang ire-return ng checkSlot kapag ang slotStatus ay \"taken\"?"
       },
       "answer": {
-        "en": "\"Hold: below 8 hours\", because 6 is less than 8, so the server skips line 3 and runs line 5.",
-        "tl": "\"Hold: below 8 hours\", dahil mas mababa sa 8 ang 6, kaya nilalaktawan ng server ang line 3 at pinatatakbo ang line 5."
+        "en": "\"Sorry, slot is taken\", because \"taken\" === \"open\" is false, so the server skips line 3 and runs line 5.",
+        "tl": "\"Sorry, slot is taken\", dahil false ang \"taken\" === \"open\", kaya nilalaktawan ng server ang line 3 at pinatatakbo ang line 5."
       }
     },
     "steps": [
       {
         "line": 1,
         "vars": {
-          "hoursAhead": "6"
+          "slotStatus": "\"taken\""
         },
         "note": {
-          "en": "The server receives the request from the browser with hoursAhead set to 6.",
-          "tl": "Natanggap ng server ang request mula sa browser kung saan 6 ang hoursAhead."
+          "en": "The server receives the booking request with slotStatus set to \"taken\".",
+          "tl": "Natanggap ng server ang booking request kung saan \"taken\" ang slotStatus."
         }
       },
       {
         "line": 2,
         "vars": {
-          "hoursAhead": "6"
+          "slotStatus": "\"taken\""
         },
-        "condition": "6 >= 8 → false",
+        "condition": "\"taken\" === \"open\" → false",
         "skippedLines": [
           3
         ],
         "note": {
-          "en": "The server checks the rule: is hoursAhead 8 or more? Since 6 is less than 8, the check is false and line 3 is skipped.",
-          "tl": "Ine-check ng server ang rule: 8 o higit pa ba ang hoursAhead? Dahil mas mababa sa 8 ang 6, false ito at nilaktawan ang line 3."
+          "en": "The server compares slotStatus with \"open\": \"taken\" === \"open\" is false, so line 3 is skipped.",
+          "tl": "Kino-compare ng server ang slotStatus sa \"open\": false ang \"taken\" === \"open\", kaya nilaktawan ang line 3."
         }
       },
       {
         "line": 5,
         "vars": {
-          "hoursAhead": "6"
+          "slotStatus": "\"taken\""
         },
         "skippedLines": [
           3
         ],
         "note": {
-          "en": "The server returns \"Hold: below 8 hours\" as its response—no invalid booking enters the records list.",
-          "tl": "Ibinalik ng server ang \"Hold: below 8 hours\" bilang response—walang maling booking na pumasok sa records list."
+          "en": "The function runs line 5 and returns \"Sorry, slot is taken\" as the response.",
+          "tl": "Pinatakbo ng function ang line 5 at ni-return ang \"Sorry, slot is taken\" bilang response."
         }
       }
     ]
