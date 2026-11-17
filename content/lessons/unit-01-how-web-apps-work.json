@@ -24,8 +24,8 @@
       "tl": "Ang browser (ang pang-open mo ng site gaya ng Chrome o Safari) ay ang screen ng Encoder sa front desk. Trabaho nitong magpakita ng forms at resulta at kunin ang tina-type ng Encoder—pero hindi ang screen ang nagde-decide sa rules."
     },
     {
-      "en": "The server is the Supervisor check in the middle that enforces the rules. Before anything reaches the database (the permanent records list), the server checks if the form is complete and verified. The front-desk screen never writes straight to the records list.",
-      "tl": "Ang server (ang computer sa gitna) ay parang Supervisor check—ang server ang nagche-check ng rules. Bago may ma-save sa database (ang permanenteng records list), tinitingnan muna ng server kung kumpleto at verified ang data. Hindi pwedeng dumiretso ang screen sa records list."
+      "en": "The server is the Supervisor check in the middle that enforces the rules. In code, an if check runs the lines inside only when the check in the brackets (...) is true, and === compares two values to see if they match (for example, if (verified === true)). The front-desk screen never writes straight to the database (the permanent records list).",
+      "tl": "Ang server (ang computer sa gitna) ay parang Supervisor check na nagpapatupad ng rules. Sa code, pinatatakbo lang ng if ang mga linya sa loob kapag true ang check sa loob ng panaklong (...), at === ang nagkukumpara kung magkapareho ang dalawang value (halimbawa, if (verified === true)). Hindi kailanman dumidiretso ang screen sa database (ang permanenteng records list)."
     },
     {
       "en": "Every click follows one round-trip: the browser sends a request, the server checks the rules before reading or saving in the database, and the server sends back a response—either the result or an error.",
@@ -115,40 +115,41 @@
   },
   "exercise": {
     "prompt": {
-      "en": "Here is a tiny rule running on the server. In this code, result is one record and result.verified is its verified field (if checks a condition, return sends back the reply, and === means 'is equal to'). Fill in the blank so the server only releases the result when result.verified is true.",
-      "tl": "Heto ang isang maikling rule sa server. Sa code na ito, ang result ay isang record at ang result.verified ang verified field nito (if ang pang-check ng kundisyon, return ang nagbabalik ng sagot, at === ang 'kapareho ba ng'). Punan ang patlang para ma-release lang kapag true ang result.verified."
+      "en": "Complete this rule running on the server. Use === to compare so the server returns \"Released\" only when verified is equal to true.",
+      "tl": "Kumpletuhin ang rule na ito sa server. Gumamit ng === para magkumpara nang ibalik lang ng server ang \"Released\" kapag ang verified ay kapareho ng true."
     },
-    "code": "function canReleaseResult(result) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: Supervisor check needed\";\n}",
+    "code": "function canReleaseResult(verified) {\n  if (____) {\n    return \"Released\";\n  }\n  return \"Hold: Supervisor check needed\";\n}",
     "acceptedAnswers": [
-      "result.verified === true",
-      "true === result.verified",
-      "result.verified == true"
+      "verified === true",
+      "true === verified",
+      "verified == true",
+      "verified"
     ],
     "hints": [
       {
-        "en": "Check the verified field on result (written as result.verified) to see if the Supervisor already approved it.",
-        "tl": "Silipin mo ang verified field ng result (nakasulat bilang result.verified) para malaman kung na-approve na ba ito ng Supervisor."
+        "en": "Check whether verified matches true inside the if brackets.",
+        "tl": "I-check sa loob ng panaklong ng if kung kapareho ba ng true ang verified."
       },
       {
-        "en": "In JavaScript, use === (three equals signs) to compare result.verified with true.",
-        "tl": "Sa JavaScript, gumagamit tayo ng === (tatlong equals) para ikumpara ang result.verified sa true."
+        "en": "Put === (three equals signs) between verified and true.",
+        "tl": "Maglagay ng === (tatlong equals) sa pagitan ng verified at true."
       },
       {
-        "en": "Type result.verified === true inside the blank.",
-        "tl": "Ilagay ang result.verified === true sa patlang."
+        "en": "Type verified === true inside the blank.",
+        "tl": "Ilagay ang verified === true sa patlang."
       }
     ]
   },
   "bugCheck": {
     "prompt": {
-      "en": "An AI wrote this server check, where request is one form and request.verified is its verified field. Remember: === checks if two values are equal, while a single = overwrites a value. Tap the line with the bug that makes the server approve every request—even unverified ones!",
-      "tl": "Isinulat ng AI ang server check na ito, kung saan ang request ay isang form at ang request.verified ang verified field nito. Tandaan: === ang nagkukumpara kung magkapareho, habang ang isang = ay nagpapalit ng value. Pindutin ang line na may bug kaya nakakalusot lahat ng request kahit hindi pa verified!"
+      "en": "This server function should save a record only when verified is true, and reject it otherwise—but right now it saves every record. Tap the line with the bug.",
+      "tl": "Dapat mag-save lang ang server function na ito kapag true ang verified, at mag-reject kapag hindi—pero ngayon, sine-save nito lahat ng record. Pindutin ang line na may bug."
     },
-    "code": "function checkRequest(request) {\n  if (request.verified = true) {\n    return \"Save to records list\";\n  }\n  return \"Reject: not verified\";\n}",
+    "code": "function checkRequest(verified) {\n  if (verified = true) {\n    return \"Save to records list\";\n  }\n  return \"Reject: not verified\";\n}",
     "bugLine": 2,
     "why": {
-      "en": "A single = overwrites request.verified to true instead of checking it. Use === to compare without changing the value—otherwise the server acts like a sleepy Supervisor stamping 'Approved' on every form.",
-      "tl": "Ang isang = ay nagpapalit ng value (ginagawa niyang true ang request.verified) imbes na mag-check. Dapat === ang gamit para magkumpara—kung hindi, parang inaantok na Supervisor ang server na tinatatakang 'Approved' lahat ng form."
+      "en": "Line 2 uses a single =, which changes verified to true instead of checking it. It should use === (if (verified === true)) to compare the values without changing them.",
+      "tl": "Isang = lang ang gamit sa line 2, kaya pinapalitan nito ng true ang verified imbes na i-check ito. Dapat === ang gamit (if (verified === true)) para ikumpara lang ang value nang hindi ito binabago."
     }
   },
   "check": [
@@ -259,12 +260,12 @@
     "code": "function checkBookingHours(hoursAhead) {\n  if (hoursAhead >= 8) {\n    return \"Accept booking\";\n  }\n  return \"Hold: below 8 hours\";\n}",
     "predict": {
       "question": {
-        "en": "Before stepping: hoursAhead is how many hours in advance a customer books, and >= 8 means '8 or more'. The browser sends hoursAhead = 6. Will line 3 (\"Accept booking\") run?",
-        "tl": "Bago i-step: ang hoursAhead ay ilang oras bago ang schedule nag-book ang customer, at ang >= 8 ay '8 o higit pa'. Nagpadala ang browser ng hoursAhead = 6. Tatakbo ba ang line 3 (\"Accept booking\")?"
+        "en": "Before stepping: the rule accepts a booking only when hoursAhead is 8 or more. What does the function return when hoursAhead is 6?",
+        "tl": "Bago i-step: tinatanggap lang ng rule ang booking kapag 8 o higit pa ang hoursAhead. Ano ang ibabalik ng function kapag 6 ang hoursAhead?"
       },
       "answer": {
-        "en": "No, because 6 >= 8 is false, so the server skips line 3 and runs line 5 instead.",
-        "tl": "Hindi, dahil false ang 6 >= 8, kaya lalaktawan ng server ang line 3 at patatakbuhin ang line 5."
+        "en": "\"Hold: below 8 hours\", because 6 is less than 8, so the server skips line 3 and runs line 5.",
+        "tl": "\"Hold: below 8 hours\", dahil mas mababa sa 8 ang 6, kaya nilalaktawan ng server ang line 3 at pinatatakbo ang line 5."
       }
     },
     "steps": [
@@ -288,8 +289,8 @@
           3
         ],
         "note": {
-          "en": "The server checks the rule: is 6 at least 8? That is false, so line 3 is skipped.",
-          "tl": "Ine-check ng server ang rule: Hindi bababa sa 8 ba ang 6? False ito, kaya nilaktawan ang line 3."
+          "en": "The server checks the rule: is hoursAhead 8 or more? Since 6 is less than 8, the check is false and line 3 is skipped.",
+          "tl": "Ine-check ng server ang rule: 8 o higit pa ba ang hoursAhead? Dahil mas mababa sa 8 ang 6, false ito at nilaktawan ang line 3."
         }
       },
       {
