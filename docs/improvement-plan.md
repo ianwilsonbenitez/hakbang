@@ -1,7 +1,9 @@
-# Hakbang improvement plan (proposal, Nov 15, 2026)
+# Hakbang improvement plan (Nov 15, 2026)
 
 Written by Claude Fable 5.2 after reading all of `src/`, Unit 1, and the docs.
-**Status: proposal. Nothing here is approved until Ian says so.** Schema changes and new libraries always need Ian's OK first.
+**Status: approved by Ian on Nov 17, 2026 ("go na yan").** Schema changes and new libraries still need Ian's OK first, one at a time.
+
+**Detailed designs for items 8–15 and 19–20 are in `docs/design-phases-c-d-f.md`. Read that file before building any of those items.**
 
 For the AI that continues this work: follow `CLAUDE.md` as usual (plan first, no autopilot, tests for logic, one small step per session). Each numbered item below is sized for one or two study sessions.
 
@@ -75,6 +77,8 @@ This answers the Milestone 1 line "Ian can explain, without AI, what each main f
     | `isAcceptedAnswer` | `exercise.ts` | `.some()` over a list |
 
     Each one gets a tracer and a bug check (for example `Math.max` swapped for `Math.min`).
+
+    **Needed first (Claude):** `App.tsx` imports only `unit-01`. Before these lessons can be seen, the app must load every file in `content/lessons/`, validate each one, and give each a node on the map. Plan this as its own item before item 16. The full brief for Gemini is in `docs/gemini-brief.md`.
 17. **Ian writes 3 to 5 lines per session.** Claude writes a failing test first; Ian writes the function body; `npm test` turns green. First candidates: `isCheckPassed(score)` in `mastery.ts`, `countFinishedNodes(...)`, `backupFileName(date)` for Export.
 18. Replace reading `docs/file-map.md` with a one-minute explain-back in chat at the start of a session: one file, three sentences, in Ian's words.
 
