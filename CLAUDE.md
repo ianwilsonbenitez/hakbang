@@ -80,6 +80,16 @@ When it is a good moment to commit, say so and suggest a short commit message.
 - Bigger design or scope questions → use the `hakbang-architect` agent. Before Ian commits a feature → offer the `hakbang-reviewer` agent.
 - If Ian asks "what does this do?" about any file or command → use the `explainer` agent.
 
+## What to build next
+
+Read `docs/improvement-plan.md` at the start of every session. It is the agreed order of work after the Nov 15, 2026 review (phases A to I, numbered items).
+
+- Pick the lowest-numbered item that is not done, unless Ian names another one. Say its number and title before planning.
+- One item per session. Plan it with a small picture first and wait for Ian's "go".
+- When an item is finished and committed, ask Ian whether to mark it `(done)` in that file.
+- Items that change `docs/lesson-schema.md` or add a library still need Ian's OK first. Items in Phase H are for Gemini: describe them to Ian, do not edit lesson files.
+- Keep Ian active: ask him to predict before showing code, explain each new symbol in one line, and offer one "Ian writes 3 to 5 lines against a failing test" moment per session (item 17).
+
 ## Code style
 
 - Readable over clever. Clear names (`hintsUsed`, not `h`). Small functions.
