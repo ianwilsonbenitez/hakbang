@@ -27,7 +27,7 @@ The lesson method to aim for is **PRIMM**, a known way to teach beginners to rea
 
 ## Phase A. Close Milestone 1
 
-1. **Export / Import** with a round-trip test (already next on the roadmap). Reuse `parseProgress` for the imported file, so bad files are handled the same way as bad storage.
+1. **(done)** **Export / Import** with a round-trip test (already next on the roadmap). Reuse `parseProgress` for the imported file, so bad files are handled the same way as bad storage.
 2. **Show why a lesson was rejected.** `validateLesson` already returns `errors` with a `path` and a `code`, but `App.tsx` shows only `t.lessonInvalid`. Add one text per `LessonErrorCode` to `en.ts` / `tl.ts` and list `path: message` under the alert.
 3. **Phone-width check** in English and Taglish.
 

@@ -2,6 +2,7 @@ import { useLayoutEffect, useState } from 'react'
 import { useLanguage } from './language-context'
 import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
 import { BackupPanel } from './BackupPanel'
+import { LessonInvalid } from './LessonInvalid'
 import { LessonScreen } from './LessonScreen'
 import { validateLesson } from './lib/lesson'
 import { getLessonParts } from './lib/skill-map'
@@ -132,9 +133,7 @@ function App() {
                   onBugCheckPassed={() => handleBugCheckPassed(lessonResult.lesson.id)}
                 />
               ) : (
-                <p role="alert" className="text-review">
-                  {t.lessonInvalid}
-                </p>
+                <LessonInvalid errors={lessonResult.ok ? [] : lessonResult.errors} />
               )}
             </div>
           </>
