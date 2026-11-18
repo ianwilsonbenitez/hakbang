@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from 'react'
 import { useLanguage } from './language-context'
 import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
+import { BackupPanel } from './BackupPanel'
 import { LessonScreen } from './LessonScreen'
 import { validateLesson } from './lib/lesson'
 import { getLessonParts } from './lib/skill-map'
@@ -13,6 +14,7 @@ import {
   markExerciseSolved,
   markTaskPassed,
   saveProgress,
+  type Progress,
 } from './lib/progress'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
 
@@ -67,6 +69,12 @@ function App() {
     saveProgress(localStorage, updated)
   }
 
+  // The learner confirmed in the panel, so this runs in a click: replace and save, like the other handlers.
+  function handleImport(imported: Progress) {
+    setProgress(imported)
+    saveProgress(localStorage, imported)
+  }
+
   const themeName =theme === 'dark' ? t.themeDark : t.themeLight
 
   return (
@@ -89,11 +97,14 @@ function App() {
       </div>
       <div className="mt-8">
         {view.name === 'map' ? (
-          <SkillMapScreen
-            progress={progress}
-            partsByLessonId={partsByLessonId}
-            onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
-          />
+          <>
+            <SkillMapScreen
+              progress={progress}
+              partsByLessonId={partsByLessonId}
+              onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
+            />
+            <BackupPanel progress={progress} onImport={handleImport} />
+          </>
         ) : (
           <>
             <button type="button" onClick={() => setView({ name: 'map' })} className={buttonClass}>
