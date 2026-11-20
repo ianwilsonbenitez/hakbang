@@ -63,7 +63,7 @@ export function TracerPanel({ tracer }: TracerPanelProps) {
               key={lineNumber}
               aria-current={isCurrent ? 'step' : undefined}
               className={
-                'flex min-h-9 items-center gap-3 px-3 font-mono text-[15px] ' +
+                'flex min-h-9 flex-wrap items-center gap-x-3 px-3 font-mono text-[15px] ' +
                 (isCurrent ? 'bg-surface-raised ' : '') +
                 (isSkipped ? 'opacity-50' : '')
               }
@@ -74,14 +74,14 @@ export function TracerPanel({ tracer }: TracerPanelProps) {
               <span aria-hidden="true" className="w-4 shrink-0 text-text-subtle">
                 {lineNumber}
               </span>
-              <span className="min-w-0 whitespace-pre-wrap break-words">{text}</span>
+              <span className="min-w-0 flex-1 basis-40 whitespace-pre-wrap wrap-break-word">{text}</span>
               {isCurrent && step.condition !== undefined && (
-                <span className="ml-auto whitespace-nowrap pl-4 text-xs text-accent">
+                <span className="ml-auto min-w-0 py-1 pl-4 text-xs text-accent">
                   {step.condition}
                 </span>
               )}
               {isSkipped && (
-                <span className="ml-auto whitespace-nowrap pl-4 text-xs text-text-subtle">
+                <span className="ml-auto min-w-0 py-1 pl-4 text-xs text-text-subtle">
                   {t.tracerSkipped}
                 </span>
               )}

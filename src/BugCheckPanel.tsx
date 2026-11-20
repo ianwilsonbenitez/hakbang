@@ -55,7 +55,7 @@ export function BugCheckPanel({ bugCheck, passed, onPassed }: BugCheckPanelProps
               <span aria-hidden="true" className="w-4 shrink-0 text-text-subtle">
                 {lineNumber}
               </span>
-              <span className="min-w-0 whitespace-pre-wrap break-words text-left">{text}</span>
+              <span className="min-w-0 whitespace-pre-wrap wrap-break-word text-left">{text}</span>
             </button>
           )
         })}

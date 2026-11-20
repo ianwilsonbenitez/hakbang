@@ -43,7 +43,7 @@ export function ExercisePanel({ exercise, solved, onSolved }: ExercisePanelProps
       </h3>
       <p className="mt-3">{pick(exercise.prompt, language)}</p>
 
-      <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words rounded-lg border border-border bg-bg p-4 font-mono text-[15px] leading-[1.9]">
+      <pre className="mt-4 overflow-x-auto whitespace-pre-wrap wrap-break-word rounded-lg border border-border bg-bg p-4 font-mono text-[15px] leading-[1.9]">
         {exercise.code}
       </pre>
 
