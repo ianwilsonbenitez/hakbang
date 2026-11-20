@@ -74,7 +74,7 @@ export function TracerPanel({ tracer }: TracerPanelProps) {
               <span aria-hidden="true" className="w-4 shrink-0 text-text-subtle">
                 {lineNumber}
               </span>
-              <span className="whitespace-pre">{text}</span>
+              <span className="min-w-0 whitespace-pre-wrap break-words">{text}</span>
               {isCurrent && step.condition !== undefined && (
                 <span className="ml-auto whitespace-nowrap pl-4 text-xs text-accent">
                   {step.condition}
