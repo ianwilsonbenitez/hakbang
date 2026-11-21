@@ -103,6 +103,15 @@ function checkPositiveInteger(value: unknown, path: string, errors: Errors): voi
   }
 }
 
+// Like checkPositiveInteger, but 0 is allowed: Unit 0 comes before Unit 1.
+function checkWholeNumber(value: unknown, path: string, errors: Errors): void {
+  if (value === undefined) {
+    addError(errors, path, 'missing')
+  } else if (typeof value !== 'number' || !Number.isInteger(value) || value < 0) {
+    addError(errors, path, 'wrong-type')
+  }
+}
+
 // Checks the fields a { en, tl } object needs. Used for both text objects and glossary entries.
 function checkLanguages(value: Record<string, unknown>, path: string, errors: Errors): void {
   if (value.en === undefined) {
@@ -330,7 +339,7 @@ export function validateLesson(data: unknown): LessonResult {
     addError(errors, 'schemaVersion', 'unsupported-version')
   }
   checkNonEmptyString(data.id, 'id', errors)
-  checkPositiveInteger(data.unit, 'unit', errors)
+  checkWholeNumber(data.unit, 'unit', errors)
   checkPositiveInteger(data.minutes, 'minutes', errors)
   checkText(data.title, 'title', errors)
 

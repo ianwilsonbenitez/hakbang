@@ -19,7 +19,8 @@ Written by Claude Fable 5.2 on Nov 17, 2026. Approved order of work is in `docs/
 6. **Options are shuffled on a retry.** Never write "both of the above" or refer to an option by its position or letter.
 7. **Tracer inputs show a path.** Choose an input where a line is skipped, and say so in the note.
 8. **Do not use `tracer.scenarios` or `arrange` yet.** They are planned (see `docs/design-phases-c-d-f.md`) but the app rejects them until Ian says they are built.
-9. Privacy as always: no real names, no patient data, nothing copied from the lab system or Silip.
+9. **The `id` is the file name, and it never changes.** The file `unit-02-decisions-in-code.json` must have `"id": "unit-02-decisions-in-code"`. The app saves progress by `id`, so once a lesson has been committed, never rename the file or change its `id`. Change the `title` instead if the name needs to change.
+10. Privacy as always: no real names, no patient data, nothing copied from the lab system or Silip.
 
 ## Task 1. Fix Unit 1 (plan items 25 and 26)
 

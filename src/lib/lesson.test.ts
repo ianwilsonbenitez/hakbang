@@ -33,6 +33,20 @@ describe('validateLesson: good files', () => {
   })
 })
 
+describe('validateLesson: unit number', () => {
+  it('accepts unit 0, the lessons before Unit 1', () => {
+    const lesson = makeLesson()
+    lesson.unit = 0
+    expect(validateLesson(lesson).ok).toBe(true)
+  })
+
+  it.each([-1, 1.5, '1'])('rejects the unit %s', (badUnit) => {
+    const lesson = makeLesson()
+    lesson.unit = badUnit
+    expect(errorsFor(lesson)).toContainEqual({ path: 'unit', code: 'wrong-type' })
+  })
+})
+
 describe('validateLesson: broken files', () => {
   it('rejects things that are not a lesson object', () => {
     for (const bad of [null, 'text', 42, [], undefined]) {
