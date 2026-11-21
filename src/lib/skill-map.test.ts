@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import unit01 from '../../content/lessons/unit-01-how-web-apps-work.json'
 import { strings } from '../i18n/strings'
 import { validateLesson } from './lesson'
+import { listBundledLessonFiles, loadLessonLibrary } from './lesson-library'
 import type { Progress } from './progress'
 import {
   SKILL_COLUMNS,
@@ -32,10 +33,13 @@ describe('SKILL_NODES', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('points every lesson node at a lesson that exists', () => {
-    const knownLessonIds = [unit01.id]
+  // Catches a typo in a lessonId, and a lesson file that is broken, before a learner opens it.
+  it('points every lesson node at a valid lesson file', () => {
+    const library = loadLessonLibrary(listBundledLessonFiles())
     for (const node of SKILL_NODES) {
-      if (node.lessonId !== null) expect(knownLessonIds).toContain(node.lessonId)
+      if (node.lessonId !== null) {
+        expect(library[node.lessonId]?.ok, `${node.lessonId} is missing or invalid`).toBe(true)
+      }
     }
   })
 

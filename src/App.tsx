@@ -1,10 +1,9 @@
 import { useLayoutEffect, useState } from 'react'
 import { useLanguage } from './language-context'
-import unit01 from '../content/lessons/unit-01-how-web-apps-work.json'
 import { BackupPanel } from './BackupPanel'
 import { LessonInvalid } from './LessonInvalid'
 import { LessonScreen } from './LessonScreen'
-import { validateLesson } from './lib/lesson'
+import { listBundledLessonFiles, loadLessonLibrary } from './lib/lesson-library'
 import { getLessonParts } from './lib/skill-map'
 import { SkillMapScreen } from './SkillMapScreen'
 import {
@@ -19,13 +18,15 @@ import {
 } from './lib/progress'
 import { loadTheme, saveTheme, toggleTheme } from './lib/theme'
 
-// Checked once when the app loads. Later, lessons will come from imported files too.
-const lessonResult = validateLesson(unit01)
+// Every file in content/lessons/, checked once when the app loads.
+const library = loadLessonLibrary(listBundledLessonFiles())
 
-// The optional parts of each known lesson, so the map can work out the pips.
-const partsByLessonId = lessonResult.ok
-  ? { [lessonResult.lesson.id]: getLessonParts(lessonResult.lesson) }
-  : {}
+// The optional parts of each valid lesson, so the map can work out the pips.
+const partsByLessonId = Object.fromEntries(
+  Object.entries(library).flatMap(([lessonId, result]) =>
+    result.ok ? [[lessonId, getLessonParts(result.lesson)]] : [],
+  ),
+)
 
 type View = { name: 'map' } | { name: 'lesson'; lessonId: string }
 
@@ -76,6 +77,35 @@ function App() {
     saveProgress(localStorage, imported)
   }
 
+  // A plain function and not a component, so typed answers in the lesson are not lost on each re-render.
+  function renderLesson(lessonId: string) {
+    const result = library[lessonId]
+    if (result === undefined) {
+      return (
+        <p role="alert" className="font-semibold text-review">
+          {t.lessonNotFound}
+        </p>
+      )
+    }
+    if (!result.ok) {
+      return <LessonInvalid errors={result.errors} />
+    }
+    const lesson = result.lesson
+    return (
+      <LessonScreen
+        lesson={lesson}
+        taskPassed={isTaskPassed(progress, lesson.id)}
+        onTaskPassed={() => handleTaskPassed(lesson.id)}
+        exerciseSolved={progress.lessons[lesson.id]?.exerciseSolved === true}
+        onExerciseSolved={(hintsUsed) => handleExerciseSolved(lesson.id, hintsUsed)}
+        checkBestScore={progress.lessons[lesson.id]?.checkBestScore}
+        onCheckFinished={(rightCount) => handleCheckFinished(lesson.id, rightCount)}
+        bugCheckPassed={progress.lessons[lesson.id]?.bugCheckPassed === true}
+        onBugCheckPassed={() => handleBugCheckPassed(lesson.id)}
+      />
+    )
+  }
+
   const themeName =theme === 'dark' ? t.themeDark : t.themeLight
 
   return (
@@ -112,29 +142,7 @@ function App() {
               {t.backToMap}
             </button>
             <div className="mt-6">
-              {lessonResult.ok && lessonResult.lesson.id === view.lessonId ? (
-                <LessonScreen
-                  lesson={lessonResult.lesson}
-                  taskPassed={isTaskPassed(progress, lessonResult.lesson.id)}
-                  onTaskPassed={() => handleTaskPassed(lessonResult.lesson.id)}
-                  exerciseSolved={
-                    progress.lessons[lessonResult.lesson.id]?.exerciseSolved === true
-                  }
-                  onExerciseSolved={(hintsUsed) =>
-                    handleExerciseSolved(lessonResult.lesson.id, hintsUsed)
-                  }
-                  checkBestScore={progress.lessons[lessonResult.lesson.id]?.checkBestScore}
-                  onCheckFinished={(rightCount) =>
-                    handleCheckFinished(lessonResult.lesson.id, rightCount)
-                  }
-                  bugCheckPassed={
-                    progress.lessons[lessonResult.lesson.id]?.bugCheckPassed === true
-                  }
-                  onBugCheckPassed={() => handleBugCheckPassed(lessonResult.lesson.id)}
-                />
-              ) : (
-                <LessonInvalid errors={lessonResult.ok ? [] : lessonResult.errors} />
-              )}
+              {renderLesson(view.lessonId)}
             </div>
           </>
         )}

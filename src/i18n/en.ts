@@ -23,6 +23,7 @@ export const en = {
   checkRightAnswerLabel: 'Right answer',
   taskDone: 'Task done',
   lessonInvalid: 'This lesson file is not valid, so it cannot be shown.',
+  lessonNotFound: 'This lesson file was not found.',
   skillMapTitle: 'Skill map',
   columnFoundations: 'Foundations',
   columnJavascript: 'JavaScript',

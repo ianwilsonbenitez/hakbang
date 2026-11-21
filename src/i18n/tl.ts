@@ -25,6 +25,7 @@ export const tl: typeof en = {
   checkRightAnswerLabel: 'Tamang sagot',
   taskDone: 'Tapos na ang task',
   lessonInvalid: 'Hindi valid ang lesson file na ito, kaya hindi ito maipapakita.',
+  lessonNotFound: 'Hindi nahanap ang lesson file na ito.',
   skillMapTitle: 'Mapa ng mga skill',
   columnFoundations: 'Pundasyon',
   columnJavascript: 'JavaScript',
