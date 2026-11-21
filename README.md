@@ -4,9 +4,7 @@ A visual, self-paced web app that teaches the skills junior AI-assisted develope
 
 **Live app: https://hakbang-one.vercel.app/**
 
-<!-- Screenshot goes here once it is saved in docs/ (cropped to the app only):
-![Hakbang skill map](docs/screenshot.png)
--->
+![Hakbang skill map in dark theme](docs/screenshot.png)
 
 ## What it does
 
