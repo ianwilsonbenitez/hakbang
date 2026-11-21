@@ -29,6 +29,7 @@ export const en = {
   columnJavascript: 'JavaScript',
   columnDebugging: 'Debugging',
   columnReact: 'React',
+  nodeValuesAndVariables: 'Values and variables',
   nodeHowWebAppsWork: 'How a web app works',
   nodeDecisionsInCode: 'Decisions in Code',
   nodeSpotTheBug: 'Spot the Bug',

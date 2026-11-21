@@ -19,6 +19,12 @@ export type SkillNode = {
 
 export const SKILL_NODES: SkillNode[] = [
   {
+    id: 'values-and-variables',
+    column: 'foundations',
+    titleKey: 'nodeValuesAndVariables',
+    lessonId: 'unit-00a-values-and-variables',
+  },
+  {
     id: 'how-web-apps-work',
     column: 'foundations',
     titleKey: 'nodeHowWebAppsWork',

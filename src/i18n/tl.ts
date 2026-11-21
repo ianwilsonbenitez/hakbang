@@ -31,6 +31,7 @@ export const tl: typeof en = {
   columnJavascript: 'JavaScript',
   columnDebugging: 'Pag-debug',
   columnReact: 'React',
+  nodeValuesAndVariables: 'Mga value at variable',
   nodeHowWebAppsWork: 'Paano gumagana ang web app',
   nodeDecisionsInCode: 'Desisyon sa Code',
   nodeSpotTheBug: 'Hanapin ang Bug',

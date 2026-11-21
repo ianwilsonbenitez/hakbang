@@ -24,8 +24,8 @@ function progressWith(entry: Progress['lessons'][string]): Progress {
 }
 
 describe('SKILL_NODES', () => {
-  it('has exactly three nodes', () => {
-    expect(SKILL_NODES).toHaveLength(3)
+  it('has exactly four nodes', () => {
+    expect(SKILL_NODES).toHaveLength(4)
   })
 
   it('gives every node its own id', () => {
@@ -114,7 +114,7 @@ describe('SKILL_COLUMNS', () => {
 describe('getNodesInColumn', () => {
   it('returns only the nodes of that column', () => {
     const nodes = getNodesInColumn('foundations')
-    expect(nodes.map((node) => node.id)).toEqual(['how-web-apps-work'])
+    expect(nodes.map((node) => node.id)).toEqual(['values-and-variables', 'how-web-apps-work'])
   })
 
   it('returns an empty list for a column with no nodes yet', () => {
