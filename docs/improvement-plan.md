@@ -34,9 +34,9 @@ The lesson method to aim for is **PRIMM**, a known way to teach beginners to rea
 ## Phase B. Portfolio basics (small, high value)
 
 4. **README.md.** It is still the Vite template. Replace with: what Hakbang is, a screenshot, how to run it, how lessons are validated, how two AIs share the repo, and what Ian learned. Ian writes the "what I learned" part himself.
-5. **LICENSE file.** Ian chooses (MIT is the usual choice for "others can use it").
-6. **Deploy on Vercel** and put the live link at the top of the README.
-7. **GitHub Actions**: one small file, `.github/workflows/ci.yml`, that runs `npm test` and `npm run build` on every push. It does not replace Ian running them himself; it shows recruiters a green check and teaches what CI is.
+5. **(done)** **LICENSE file.** Ian chooses (MIT is the usual choice for "others can use it").
+6. **(done)** **Deploy on Vercel** and put the live link at the top of the README.
+7. **(done)** **GitHub Actions**: one small file, `.github/workflows/ci.yml`, that runs `npm test` and `npm run build` on every push. It does not replace Ian running them himself; it shows recruiters a green check and teaches what CI is.
 
 ## Phase C. Make the pips honest
 
