@@ -16,8 +16,8 @@
   },
   "explain": [
     {
-      "en": "In code, a value is a piece of data—like a shop name, a price, or whether a store is open. A variable is a name (like a labeled box) that holds one value so the computer can remember it. The word let starts a new name, and the = symbol stores the value on the right inside the name on the left (for example, let shopName = \"Sari-Sari\").",
-      "tl": "Sa code, ang value ay isang piraso ng data—gaya ng pangalan ng tindahan, presyo, o kung bukas ba ang shop. Ang variable ay isang pangalan (parang kahon na may label) na nagtatabi ng isang value para matandaan ito ng computer. Ang salitang let ang nagsisimula ng bagong pangalan, at ang symbol na = ang nagtatabi ng value sa kanan papasok sa pangalan sa kaliwa (halimbawa, let shopName = \"Sari-Sari\")."
+      "en": "In code, a value is a piece of data—like a shop name, a price, or whether a store is open. A variable is a name (like a labeled box) that holds one value so the computer can remember it. The word let starts a new name, and the = symbol stores the value on the right inside the name on the left (for example, let shopName = \"Sari-Sari\", where double quotation marks mark a text value).",
+      "tl": "Sa code, ang value ay isang piraso ng data—gaya ng pangalan ng tindahan, presyo, o kung bukas ba ang shop. Ang variable ay isang pangalan (parang kahon na may label) na nagtatabi ng isang value para matandaan ito ng computer. Ang salitang let ang nagsisimula ng bagong pangalan, at ang symbol na = ang nagtatabi ng value sa kanan papasok sa pangalan sa kaliwa (halimbawa, let shopName = \"Sari-Sari\", kung saan double quotation marks ang palatandaan ng text value)."
     },
     {
       "en": "The first kind of value is text (also called a string), such as \"Sari-Sari\" or \"Ready\". In this lesson, text is written inside double quotation marks. Without quotation marks, the computer thinks the word is a variable name instead of text, which causes an error.",

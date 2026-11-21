@@ -11,13 +11,13 @@
     "file": "docs/diagrams/unit-00b-function-and-return.svg",
     "alt": {
       "en": "Vertical flow diagram from top to bottom: an input value (price is 100) goes into the round brackets of the function addFee(price), which calculates total as price + 50 and uses return to send back one output value (150).",
-      "tl": "Patayong diagram mula taas pababa: papasok ang isang input value (100 ang price) sa loob ng round brackets ng function na addFee(price), na nagdadagdag ng 50 sa total at gumagamit ng return para magbalik ng isang output value (150)."
+      "tl": "Patayong diagram mula taas pababa: papasok ang isang input value (100 ang price) sa loob ng round brackets ng function na addFee(price), na kumukuha ng total bilang price + 50 at gumagamit ng return para magbalik ng isang output value (150)."
     }
   },
   "explain": [
     {
-      "en": "A function is a named mini-machine in code that does one small job whenever you need it. The new symbol in this lesson is the pair of round brackets ( ) right after the function name, which holds the input variable going into the machine (for example, function addFee(price) takes price as its input).",
-      "tl": "Ang function ay isang may-pangalang mini-machine sa code na gumagawa ng isang maliit na trabaho tuwing kailangan mo. Ang bagong symbol sa lesson na ito ay ang pares ng round brackets ( ) pagkatapos ng function name, na humahawak sa input variable na pumapasok sa machine (halimbawa, ang function addFee(price) ay tumatanggap ng price bilang input)."
+      "en": "A function is a named mini-machine in code that does one small job whenever you need it. The main new symbol in this lesson is the pair of round brackets ( ) right after the function name, which holds the input variable going into the machine (for example, function addFee(price) takes price as its input).",
+      "tl": "Ang function ay isang may-pangalang mini-machine sa code na gumagawa ng isang maliit na trabaho tuwing kailangan mo. Ang pangunahing bagong symbol sa lesson na ito ay ang pares ng round brackets ( ) pagkatapos ng function name, na humahawak sa input variable na pumapasok sa machine (halimbawa, ang function addFee(price) ay tumatanggap ng price bilang input)."
     },
     {
       "en": "Inside the function, { } wrap the steps of the function, and + adds two numbers (the only maths used in this lesson). For example, in function addFee(price), the line let total = price + 50 takes the input price, adds a 50 peso delivery fee, and stores the new number in total.",
