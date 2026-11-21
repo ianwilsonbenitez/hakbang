@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "id": "unit-00b-function-and-return",
+  "unit": 0,
+  "title": {
+    "en": "Function and return",
+    "tl": "Function at return"
+  },
+  "minutes": 10,
+  "diagram": {
+    "file": "docs/diagrams/unit-00b-function-and-return.svg",
+    "alt": {
+      "en": "Vertical flow diagram from top to bottom: an input value (price is 100) goes into the round brackets of the function addFee(price), which calculates total as price + 50 and uses return to send back one output value (150).",
+      "tl": "Patayong diagram mula taas pababa: papasok ang isang input value (100 ang price) sa loob ng round brackets ng function na addFee(price), na nagdadagdag ng 50 sa total at gumagamit ng return para magbalik ng isang output value (150)."
+    }
+  },
+  "explain": [
+    {
+      "en": "A function is a named mini-machine in code that does one small job whenever you need it. The new symbol in this lesson is the pair of round brackets ( ) right after the function name, which holds the input variable going into the machine (for example, function addFee(price) takes price as its input).",
+      "tl": "Ang function ay isang may-pangalang mini-machine sa code na gumagawa ng isang maliit na trabaho tuwing kailangan mo. Ang bagong symbol sa lesson na ito ay ang pares ng round brackets ( ) pagkatapos ng function name, na humahawak sa input variable na pumapasok sa machine (halimbawa, ang function addFee(price) ay tumatanggap ng price bilang input)."
+    },
+    {
+      "en": "Inside the function, { } wrap the steps of the function, and + adds two numbers (the only maths used in this lesson). For example, in function addFee(price), the line let total = price + 50 takes the input price, adds a 50 peso delivery fee, and stores the new number in total.",
+      "tl": "Sa loob ng function, ang { } ang bumabalot sa steps ng function, at ang + ay nagdadagdag ng dalawang number (ito lang ang math sa lesson na ito). Halimbawa, sa function addFee(price), kinukuha ng linyang let total = price + 50 ang input na price, dinadagdagan ng 50 pesos na delivery fee, at itinatabi ang bagong number sa total."
+    },
+    {
+      "en": "The word return gives one final value back out of the function, like a cashier handing back your total at the counter (for example, return total). As soon as return runs, the function stops right away—any line written after return inside that function is skipped.",
+      "tl": "Ang salitang return ang nagbibigay pabalik ng isang final value mula sa function, parang kahera na nag-aabot ng total mo sa counter (halimbawa, return total). Oras na tumakbo ang return, hihinto na agad ang function—kahit anong linya na nakasulat pagkatapos ng return sa loob ng function ay lalaktawan."
+    },
+    {
+      "en": "You can reuse the same function by putting different input values inside the round brackets ( ). Running addFee(100) gives back 150, while running addFee(200) gives back 250.",
+      "tl": "Pwede mong gamitin ulit ang parehong function sa paglalagay ng iba't ibang input value sa loob ng round brackets ( ). Ang pagpapatakbo ng addFee(100) ay magre-return ng 150, habang ang addFee(200) naman ay magre-return ng 250."
+    }
+  ],
+  "glossary": [
+    {
+      "term": "function",
+      "en": "A named set of steps in code that usually takes an input, does one small task, and gives back one value.",
+      "tl": "Isang may-pangalang set ng steps sa code na kadalasang tumatanggap ng input, gumagawa ng isang maliit na task, at nagre-return ng isang value."
+    },
+    {
+      "term": "input",
+      "en": "The value or variable name placed inside the round brackets ( ) that the function receives when it starts.",
+      "tl": "Ang value o variable name sa loob ng round brackets ( ) na tinatanggap ng function kapag nagsimula ito."
+    },
+    {
+      "term": "( )",
+      "en": "Round brackets placed after a function name to hold the input going into the function.",
+      "tl": "Ang round brackets pagkatapos ng function name na humahawak sa input na pumapasok sa function."
+    },
+    {
+      "term": "return",
+      "en": "The word that stops the function immediately and hands one final value back as the output.",
+      "tl": "Ang salitang nagpapahinto agad sa function at nagbibigay pabalik ng isang final value bilang output."
+    }
+  ],
+  "task": {
+    "question": {
+      "en": "A rice shop app has this one-line function: function addSackWeight(kilos) { return kilos + 1 }. What is kilos inside the round brackets ( ), and what value does return give back when kilos is 25?",
+      "tl": "May ganitong function ang isang rice shop app: function addSackWeight(kilos) { return kilos + 1 }. Ano ang kilos sa loob ng round brackets ( ), at anong value ang ibinabalik ng return kapag 25 ang kilos?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "kilos is the input, and return gives back 26",
+          "tl": "Ang kilos ang input, at 26 ang ibinabalik ng return"
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "addSackWeight is the input, and return gives back 25",
+          "tl": "Ang addSackWeight ang input, at 25 ang ibinabalik ng return"
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "return is the input, and kilos gives back 1",
+          "tl": "Ang return ang input, at 1 ang ibinabalik ng kilos"
+        }
+      }
+    ],
+    "answer": "a",
+    "why": {
+      "en": "The round brackets ( ) after addSackWeight hold the input variable kilos. When kilos is 25, return kilos + 1 gives back 26.",
+      "tl": "Hawak ng round brackets ( ) pagkatapos ng addSackWeight ang input variable na kilos. Kapag 25 ang kilos, 26 ang ibinabalik ng return kilos + 1."
+    }
+  },
+  "bugCheck": {
+    "prompt": {
+      "en": "This cafe function should take a bill, add a 20 peso tip, and give back the new total. Tap the line with the bug.",
+      "tl": "Dapat tanggapin ng cafe function na ito ang bill, magdagdag ng 20 pesos na tip, at i-return ang bagong total. Pindutin ang line na may bug."
+    },
+    "code": "function addTip(bill) {\n  let total = bill + 20\n  return bill\n}",
+    "bugLine": 3,
+    "why": {
+      "en": "Line 3 returns bill, which gives back the original input instead of the new variable total. It should say return total so the function gives back the updated amount.",
+      "tl": "Ang bill ang nire-return sa line 3, kaya ang original na input ang naibabalik imbes na ang bagong variable na total. Dapat return total ang nakasulat para ang bagong halaga ang i-return ng function."
+    }
+  },
+  "check": [
+    {
+      "question": {
+        "en": "In the line function addSoapFee(loadPrice), why is loadPrice written inside the round brackets ( )?",
+        "tl": "Sa linyang function addSoapFee(loadPrice), bakit nakasulat ang loadPrice sa loob ng round brackets ( )?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "It is the input variable that receives the value passed into the function",
+            "tl": "Ito ang input variable na tumatanggap ng value na ipinapasa papasok sa function"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "It is the final answer that the function sends back after finishing",
+            "tl": "Ito ang final answer na ipinapadala pabalik ng function pagkatapos tumakbo"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "It is a plain text value because round brackets work the same as quotation marks",
+            "tl": "Isa itong text value dahil pareho lang ang round brackets at quotation marks"
+          }
+        }
+      ],
+      "answer": "a",
+      "why": {
+        "en": "The round brackets ( ) right after the function name hold the input variable that receives a value when the function runs.",
+        "tl": "Ang round brackets ( ) pagkatapos ng function name ang humahawak sa input variable na tumatanggap ng value kapag pinatakbo ang function."
+      }
+    },
+    {
+      "question": {
+        "en": "A parking app has this function: function addParkingTax(rate) { return rate + 10 }. What value does addParkingTax(40) give back?",
+        "tl": "May ganitong function ang isang parking app: function addParkingTax(rate) { return rate + 10 }. Anong value ang ibinabalik ng addParkingTax(40)?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "40, because the input value never changes inside a function",
+            "tl": "40, dahil hindi nagbabago ang input value sa loob ng function"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "50, because rate starts at 40 and return gives back 40 + 10",
+            "tl": "50, dahil nagsimula ang rate sa 40 at ibinabalik ng return ang 40 + 10"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "10, because return only sends back the last number on the line",
+            "tl": "10, dahil ang huling number lang sa linya ang ibinabalik ng return"
+          }
+        }
+      ],
+      "answer": "b",
+      "why": {
+        "en": "Passing 40 into addParkingTax(40) puts 40 into the input rate, and return rate + 10 gives back 50.",
+        "tl": "Ang pagpasa ng 40 sa addParkingTax(40) ay naglalagay ng 40 sa input na rate, at 50 ang ibinabalik ng return rate + 10."
+      }
+    },
+    {
+      "question": {
+        "en": "A cinema app runs function getTicketCost(seatPrice) with seatPrice set to 200. Inside the function, line 2 is let cost = seatPrice + 30, line 3 is return cost, and line 4 is cost = 0. What value does the function give back?",
+        "tl": "Pinatakbo ng isang cinema app ang function getTicketCost(seatPrice) kung saan 200 ang seatPrice. Sa loob ng function, ang line 2 ay let cost = seatPrice + 30, ang line 3 ay return cost, at ang line 4 ay cost = 0. Anong value ang ibinabalik ng function?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "0, because line 4 replaces cost with 0 before the function finishes",
+            "tl": "0, dahil pinapalitan ng line 4 ng 0 ang cost bago matapos ang function"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "200, because return always gives back the original input",
+            "tl": "200, dahil laging ang original input ang ibinabalik ng return"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "230, because return on line 3 gives back cost right away and skips line 4",
+            "tl": "230, dahil ibinabalik agad ng return sa line 3 ang cost at nilalaktawan ang line 4"
+          }
+        }
+      ],
+      "answer": "c",
+      "why": {
+        "en": "Line 2 stores 230 in cost, and line 3 runs return cost, which sends back 230 and stops the function immediately before line 4 can run.",
+        "tl": "Itinabi ng line 2 ang 230 sa cost, at pinatakbo ng line 3 ang return cost na nagbabalik agad ng 230 at nagpapahinto sa function bago pa tumakbo ang line 4."
+      }
+    }
+  ],
+  "tracer": {
+    "code": "function addFee(price) {\n  let total = price + 50\n  return total\n  total = 0\n}",
+    "predict": {
+      "question": {
+        "en": "Before stepping: what value does addFee return when price is 100?",
+        "tl": "Bago i-step: anong value ang ire-return ng addFee kapag 100 ang price?"
+      },
+      "answer": {
+        "en": "150, because line 2 stores 150 in total and line 3 returns it right away, skipping line 4.",
+        "tl": "150, dahil itinabi ng line 2 ang 150 sa total at ni-return agad ito ng line 3, kaya nalaktawan ang line 4."
+      }
+    },
+    "steps": [
+      {
+        "line": 1,
+        "vars": {
+          "price": "100"
+        },
+        "note": {
+          "en": "The function addFee starts with the input price set to 100 inside the round brackets ( ).",
+          "tl": "Nagsimula ang function na addFee kung saan 100 ang laman ng input na price sa loob ng round brackets ( )."
+        }
+      },
+      {
+        "line": 2,
+        "vars": {
+          "price": "100",
+          "total": "150"
+        },
+        "note": {
+          "en": "Line 2 adds the 50 delivery fee to price (100 + 50) and stores 150 in the variable total.",
+          "tl": "Idinagdag ng line 2 ang 50 na delivery fee sa price (100 + 50) at itinabi ang 150 sa variable na total."
+        }
+      },
+      {
+        "line": 3,
+        "vars": {
+          "price": "100",
+          "total": "150"
+        },
+        "skippedLines": [
+          4
+        ],
+        "note": {
+          "en": "Line 3 runs return total, which gives back 150 and stops the function immediately, so line 4 is skipped.",
+          "tl": "Pinatakbo ng line 3 ang return total, na nag-return ng 150 at nagpahinto agad sa function, kaya nilaktawan ang line 4."
+        }
+      }
+    ]
+  }
+}

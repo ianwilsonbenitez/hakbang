@@ -7,6 +7,8 @@ import type { Lesson } from './lib/lesson'
 type CheckPanelProps = {
   questions: Lesson['check']
   bestScore: number | undefined
+  // How many times the check was finished before, so the header can show it quietly.
+  attempts: number | undefined
   // Called once when the learner finishes the last question, with the number of right answers.
   onFinished: (rightCount: number) => void
 }
@@ -14,7 +16,7 @@ type CheckPanelProps = {
 const buttonClass =
   'min-h-11 rounded-md border border-border-strong bg-surface px-4 font-semibold text-accent disabled:opacity-50'
 
-export function CheckPanel({ questions, bestScore, onFinished }: CheckPanelProps) {
+export function CheckPanel({ questions, bestScore, attempts, onFinished }: CheckPanelProps) {
   const { language, t } = useLanguage()
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<(string | null)[]>(() => questions.map(() => null))
@@ -56,6 +58,7 @@ export function CheckPanel({ questions, bestScore, onFinished }: CheckPanelProps
       <h3 className="font-mono text-xs uppercase tracking-wider text-text-subtle">
         {t.checkTitle}
         {bestScore !== undefined && ` · ${t.checkBestLabel}: ${bestScore} ${t.checkOf} ${questions.length}`}
+        {attempts !== undefined && ` · ${t.checkAttemptsLabel}: ${attempts}`}
       </h3>
 
       {!isFinished && (

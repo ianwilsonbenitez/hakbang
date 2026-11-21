@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import { useLanguage } from './language-context'
-import { getCodeLines, isBugLine } from './lib/bug-check'
+import { addWrongLine, getCodeLines, isBugLine } from './lib/bug-check'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
 
 type BugCheckPanelProps = {
   bugCheck: NonNullable<Lesson['bugCheck']>
   passed: boolean
-  // Called in the click when the learner taps the right line.
-  onPassed: () => void
+  // Called in the click when the learner taps the right line, with how many different wrong lines were tapped first.
+  onPassed: (wrongTaps: number) => void
 }
 
 export function BugCheckPanel({ bugCheck, passed, onPassed }: BugCheckPanelProps) {
   const { language, t } = useLanguage()
   const [tappedLine, setTappedLine] = useState<number | null>(null)
+  // Every wrong line tried so far. They stay amber, so the learner sees what was already tried.
+  const [wrongLines, setWrongLines] = useState<number[]>([])
 
   const lines = getCodeLines(bugCheck.code)
   const isFound = tappedLine !== null && isBugLine(bugCheck.bugLine, tappedLine)
@@ -21,14 +23,17 @@ export function BugCheckPanel({ bugCheck, passed, onPassed }: BugCheckPanelProps
   // Reported in the click and not in an effect, so switching steps never reports twice.
   function tapLine(lineNumber: number) {
     setTappedLine(lineNumber)
-    if (isBugLine(bugCheck.bugLine, lineNumber)) onPassed()
+    if (isBugLine(bugCheck.bugLine, lineNumber)) {
+      onPassed(wrongLines.length)
+    } else {
+      setWrongLines(addWrongLine(wrongLines, lineNumber))
+    }
   }
 
   function lineClass(lineNumber: number): string {
     const base = 'flex min-h-11 w-full items-center gap-3 px-3 text-left font-mono text-[15px] '
-    if (lineNumber === tappedLine) {
-      return base + (isFound ? 'bg-surface-raised text-success' : 'bg-surface-raised text-review')
-    }
+    if (isFound && lineNumber === tappedLine) return base + 'bg-surface-raised text-success'
+    if (wrongLines.includes(lineNumber)) return base + 'bg-surface-raised text-review'
     return base + 'hover:bg-surface-raised'
   }
 
@@ -66,6 +71,13 @@ export function BugCheckPanel({ bugCheck, passed, onPassed }: BugCheckPanelProps
           <p className={isFound ? 'font-semibold text-success' : 'font-semibold text-review'}>
             {isFound ? t.bugCheckFound : t.bugCheckNotThisLine}
           </p>
+          {isFound && (
+            <p className="mt-2 font-mono text-sm text-text-subtle">
+              {wrongLines.length === 0
+                ? t.bugCheckFirstTap
+                : `${t.bugCheckWrongTapsLabel}: ${wrongLines.length}`}
+            </p>
+          )}
           {isFound && (
             <p className="mt-2 text-text-muted">
               <span className="font-semibold">{t.whyLabel}: </span>

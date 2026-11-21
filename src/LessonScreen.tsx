@@ -137,9 +137,10 @@ type LessonScreenProps = {
   exerciseSolved: boolean
   onExerciseSolved: (hintsUsed: number) => void
   checkBestScore: number | undefined
+  checkAttempts: number | undefined
   onCheckFinished: (rightCount: number) => void
   bugCheckPassed: boolean
-  onBugCheckPassed: () => void
+  onBugCheckPassed: (wrongTaps: number) => void
 }
 
 export function LessonScreen({
@@ -149,6 +150,7 @@ export function LessonScreen({
   exerciseSolved,
   onExerciseSolved,
   checkBestScore,
+  checkAttempts,
   onCheckFinished,
   bugCheckPassed,
   onBugCheckPassed,
@@ -222,6 +224,7 @@ export function LessonScreen({
           <CheckPanel
             questions={lesson.check}
             bestScore={checkBestScore}
+            attempts={checkAttempts}
             onFinished={onCheckFinished}
           />
           {lesson.bugCheck !== undefined && (

@@ -23,7 +23,7 @@ describe('parseBackupText', () => {
     progress = markTaskPassed(progress, 'lesson-a')
     progress = markExerciseSolved(progress, 'lesson-a', 1)
     progress = markCheckScore(progress, 'lesson-a', 3)
-    progress = markBugCheckPassed(progress, 'lesson-a')
+    progress = markBugCheckPassed(progress, 'lesson-a', 2)
 
     const result = parseBackupText(backupText(progress))
 

@@ -91,6 +91,8 @@ describe('parseProgress', () => {
       exerciseHintsUsed: 2,
       checkBestScore: 3,
       bugCheckPassed: false,
+      bugCheckWrongTaps: 2,
+      checkAttempts: 4,
     }
     const raw = { schemaVersion: 1, lessons: { 'lesson-a': entry } }
     expect(parseProgress(raw).lessons['lesson-a']).toEqual(entry)
@@ -118,6 +120,34 @@ describe('parseProgress', () => {
         lessons: { 'lesson-a': { exerciseSolved: true, exerciseHintsUsed: bad } },
       }
       expect(parseProgress(raw).lessons['lesson-a']).toEqual({ exerciseSolved: true })
+    }
+  })
+
+  it('drops a bad bugCheckWrongTaps but keeps the good fields next to it', () => {
+    for (const bad of [-1, 1.5, '2', null, NaN]) {
+      const raw = {
+        schemaVersion: 1,
+        lessons: { 'lesson-a': { taskPassed: true, bugCheckWrongTaps: bad } },
+      }
+      expect(parseProgress(raw).lessons['lesson-a']).toEqual({ taskPassed: true })
+    }
+  })
+
+  it('keeps 0 as bugCheckWrongTaps, but not as checkAttempts', () => {
+    const raw = {
+      schemaVersion: 1,
+      lessons: { 'lesson-a': { bugCheckWrongTaps: 0, checkAttempts: 0 } },
+    }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual({ bugCheckWrongTaps: 0 })
+  })
+
+  it('drops a bad checkAttempts but keeps the good fields next to it', () => {
+    for (const bad of [0, -1, 1.5, '2', null, NaN]) {
+      const raw = {
+        schemaVersion: 1,
+        lessons: { 'lesson-a': { taskPassed: true, checkAttempts: bad } },
+      }
+      expect(parseProgress(raw).lessons['lesson-a']).toEqual({ taskPassed: true })
     }
   })
 
@@ -244,13 +274,32 @@ describe('markExerciseSolved', () => {
 describe('markCheckScore', () => {
   it('records the score of the first try', () => {
     const result = markCheckScore(emptyProgress(), 'lesson-a', 2)
-    expect(result.lessons['lesson-a']).toEqual({ checkBestScore: 2 })
+    expect(result.lessons['lesson-a']).toEqual({ checkBestScore: 2, checkAttempts: 1 })
   })
 
   it('keeps the other saved facts of the lesson', () => {
     const before = { ...emptyProgress(), lessons: { 'lesson-a': { taskPassed: true } } }
     const result = markCheckScore(before, 'lesson-a', 3)
-    expect(result.lessons['lesson-a']).toEqual({ taskPassed: true, checkBestScore: 3 })
+    expect(result.lessons['lesson-a']).toEqual({
+      taskPassed: true,
+      checkBestScore: 3,
+      checkAttempts: 1,
+    })
+  })
+
+  it('counts every finished check as one more attempt', () => {
+    const first = markCheckScore(emptyProgress(), 'lesson-a', 1)
+    const second = markCheckScore(first, 'lesson-a', 3)
+    const third = markCheckScore(second, 'lesson-a', 2)
+    expect(first.lessons['lesson-a'].checkAttempts).toBe(1)
+    expect(second.lessons['lesson-a'].checkAttempts).toBe(2)
+    expect(third.lessons['lesson-a'].checkAttempts).toBe(3)
+  })
+
+  it('counts an attempt for a lesson saved before attempts existed', () => {
+    const before = { ...emptyProgress(), lessons: { 'lesson-a': { checkBestScore: 2 } } }
+    const result = markCheckScore(before, 'lesson-a', 2)
+    expect(result.lessons['lesson-a'].checkAttempts).toBe(1)
   })
 
   it('keeps the higher score when the retake is worse', () => {
@@ -273,25 +322,46 @@ describe('markCheckScore', () => {
 })
 
 describe('markBugCheckPassed', () => {
-  it('records that the bug check was passed', () => {
-    const result = markBugCheckPassed(emptyProgress(), 'lesson-a')
-    expect(result.lessons['lesson-a']).toEqual({ bugCheckPassed: true })
+  it('records that the bug check was passed and how many wrong taps it took', () => {
+    const result = markBugCheckPassed(emptyProgress(), 'lesson-a', 2)
+    expect(result.lessons['lesson-a']).toEqual({ bugCheckPassed: true, bugCheckWrongTaps: 2 })
+  })
+
+  it('records 0 wrong taps when the first tap was right', () => {
+    const result = markBugCheckPassed(emptyProgress(), 'lesson-a', 0)
+    expect(result.lessons['lesson-a']).toEqual({ bugCheckPassed: true, bugCheckWrongTaps: 0 })
   })
 
   it('keeps the other saved facts of the lesson', () => {
     const before = { ...emptyProgress(), lessons: { 'lesson-a': { checkBestScore: 3 } } }
-    const result = markBugCheckPassed(before, 'lesson-a')
-    expect(result.lessons['lesson-a']).toEqual({ checkBestScore: 3, bugCheckPassed: true })
+    const result = markBugCheckPassed(before, 'lesson-a', 1)
+    expect(result.lessons['lesson-a']).toEqual({
+      checkBestScore: 3,
+      bugCheckPassed: true,
+      bugCheckWrongTaps: 1,
+    })
   })
 
-  it('gives the same result when called twice', () => {
-    const once = markBugCheckPassed(emptyProgress(), 'lesson-a')
-    expect(markBugCheckPassed(once, 'lesson-a')).toEqual(once)
+  it('keeps the fewer wrong taps when a later try needs more', () => {
+    const first = markBugCheckPassed(emptyProgress(), 'lesson-a', 1)
+    const second = markBugCheckPassed(first, 'lesson-a', 4)
+    expect(second.lessons['lesson-a'].bugCheckWrongTaps).toBe(1)
+  })
+
+  it('takes the fewer wrong taps when a later try needs fewer', () => {
+    const first = markBugCheckPassed(emptyProgress(), 'lesson-a', 4)
+    const second = markBugCheckPassed(first, 'lesson-a', 1)
+    expect(second.lessons['lesson-a'].bugCheckWrongTaps).toBe(1)
+  })
+
+  it('gives the same result when called twice with the same count', () => {
+    const once = markBugCheckPassed(emptyProgress(), 'lesson-a', 2)
+    expect(markBugCheckPassed(once, 'lesson-a', 2)).toEqual(once)
   })
 
   it('does not change the old progress object', () => {
     const before = emptyProgress()
-    markBugCheckPassed(before, 'lesson-a')
+    markBugCheckPassed(before, 'lesson-a', 2)
     expect(before.lessons).toEqual({})
   })
 })

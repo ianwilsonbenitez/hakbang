@@ -12,6 +12,8 @@ export type LessonProgress = {
   exerciseHintsUsed?: number // whole number 0 to 3
   checkBestScore?: number // whole number 0 to 3; the best one, so a bad retake never takes a level away
   bugCheckPassed?: boolean
+  bugCheckWrongTaps?: number // whole number, 0 or more; the fewest, like the hint count
+  checkAttempts?: number // whole number, 1 or more; goes up by one each time the check is finished
 }
 
 export type Progress = {
@@ -35,6 +37,10 @@ function isWholeNumberFromZeroToThree(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 3
 }
 
+function isWholeNumberAtLeast(value: unknown, min: number): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= min
+}
+
 // Copies each known field only if its value is valid. Returns null when nothing valid was found,
 // so an entry full of junk is dropped instead of kept as an empty object.
 function parseLessonEntry(entry: unknown): LessonProgress | null {
@@ -50,6 +56,12 @@ function parseLessonEntry(entry: unknown): LessonProgress | null {
     lesson.checkBestScore = entry.checkBestScore
   }
   if (typeof entry.bugCheckPassed === 'boolean') lesson.bugCheckPassed = entry.bugCheckPassed
+  if (isWholeNumberAtLeast(entry.bugCheckWrongTaps, 0)) {
+    lesson.bugCheckWrongTaps = entry.bugCheckWrongTaps
+  }
+  if (isWholeNumberAtLeast(entry.checkAttempts, 1)) {
+    lesson.checkAttempts = entry.checkAttempts
+  }
 
   return Object.keys(lesson).length > 0 ? lesson : null
 }
@@ -119,6 +131,7 @@ export function markExerciseSolved(progress: Progress, lessonId: string, hintsUs
 }
 
 // Keeps the best score, so a bad retake never takes a level away (same idea as the hint count above).
+// Every finished check also counts as one more attempt.
 export function markCheckScore(progress: Progress, lessonId: string, score: number): Progress {
   const before = progress.lessons[lessonId]
   const bestScore =
@@ -128,18 +141,33 @@ export function markCheckScore(progress: Progress, lessonId: string, score: numb
     ...progress,
     lessons: {
       ...progress.lessons,
-      [lessonId]: { ...before, checkBestScore: bestScore },
+      [lessonId]: {
+        ...before,
+        checkBestScore: bestScore,
+        checkAttempts: (before?.checkAttempts ?? 0) + 1,
+      },
     },
   }
 }
 
-// Same idea as markTaskPassed: a new object, and calling it twice gives the same result.
-export function markBugCheckPassed(progress: Progress, lessonId: string): Progress {
+// Records the found bug and how many wrong lines were tapped first. If it was found before,
+// the smaller count is kept (same idea as the hint count). Calling it twice with the same count gives the same result.
+export function markBugCheckPassed(
+  progress: Progress,
+  lessonId: string,
+  wrongTaps: number,
+): Progress {
+  const before = progress.lessons[lessonId]
+  const fewestWrongTaps =
+    before?.bugCheckWrongTaps === undefined
+      ? wrongTaps
+      : Math.min(before.bugCheckWrongTaps, wrongTaps)
+
   return {
     ...progress,
     lessons: {
       ...progress.lessons,
-      [lessonId]: { ...progress.lessons[lessonId], bugCheckPassed: true },
+      [lessonId]: { ...before, bugCheckPassed: true, bugCheckWrongTaps: fewestWrongTaps },
     },
   }
 }

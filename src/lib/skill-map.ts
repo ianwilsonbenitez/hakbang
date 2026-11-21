@@ -25,6 +25,12 @@ export const SKILL_NODES: SkillNode[] = [
     lessonId: 'unit-00a-values-and-variables',
   },
   {
+    id: 'function-and-return',
+    column: 'foundations',
+    titleKey: 'nodeFunctionAndReturn',
+    lessonId: 'unit-00b-function-and-return',
+  },
+  {
     id: 'how-web-apps-work',
     column: 'foundations',
     titleKey: 'nodeHowWebAppsWork',

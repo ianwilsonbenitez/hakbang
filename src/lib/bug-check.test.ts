@@ -1,5 +1,22 @@
 import { describe, expect, it } from 'vitest'
-import { getCodeLines, isBugLine } from './bug-check'
+import { addWrongLine, getCodeLines, isBugLine } from './bug-check'
+
+describe('addWrongLine', () => {
+  it('adds a new wrong line to the list', () => {
+    expect(addWrongLine([], 3)).toEqual([3])
+    expect(addWrongLine([3], 1)).toEqual([3, 1])
+  })
+
+  it('does not add the same wrong line twice', () => {
+    expect(addWrongLine([3, 1], 3)).toEqual([3, 1])
+  })
+
+  it('does not change the list that was passed in', () => {
+    const before = [3]
+    addWrongLine(before, 1)
+    expect(before).toEqual([3])
+  })
+})
 
 describe('getCodeLines', () => {
   it('gives one entry for each line of code', () => {

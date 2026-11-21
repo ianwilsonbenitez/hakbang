@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" role="img" aria-label="Vertical flow diagram from top to bottom: an input value (price is 100) goes into the round brackets of the function addFee(price), which calculates total as price + 50 and uses return to send back one output value (150).">
+  <title>Vertical flow diagram from top to bottom: an input value (price is 100) goes into the round brackets of the function addFee(price), which calculates total as price + 50 and uses return to send back one output value (150).</title>
+  <g fill="currentColor" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <!-- Box 1: Input -->
+    <rect x="24" y="16" width="312" height="76" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="46" text-anchor="middle" font-size="16" font-weight="600">1. Input in ( )</text>
+    <text x="180" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" opacity="0.85">price = 100</text>
+
+    <!-- Arrow 1: Input -> Function -->
+    <line x1="180" y1="98" x2="180" y2="140" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,133 180,141 186,133" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="124" text-anchor="start" font-size="14" opacity="0.82">goes into ( )</text>
+
+    <!-- Box 2: Function machine -->
+    <rect x="24" y="148" width="312" height="114" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
+    <text x="180" y="178" text-anchor="middle" font-size="16" font-weight="600">2. Function machine</text>
+    <text x="180" y="206" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="600">function addFee(price)</text>
+    <text x="180" y="230" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" opacity="0.85">let total = price + 50</text>
+    <text x="180" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" opacity="0.85">return total</text>
+
+    <!-- Arrow 2: Function -> Returned Value -->
+    <line x1="180" y1="268" x2="180" y2="310" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,303 180,311 186,303" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="294" text-anchor="start" font-size="14" opacity="0.82">return gives back</text>
+
+    <!-- Box 3: Output -->
+    <rect x="24" y="318" width="312" height="68" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="346" text-anchor="middle" font-size="16" font-weight="600">3. One value out</text>
+    <text x="180" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">150</text>
+  </g>
+</svg>

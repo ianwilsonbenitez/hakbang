@@ -65,8 +65,8 @@ function App() {
     saveProgress(localStorage, updated)
   }
 
-  function handleBugCheckPassed(lessonId: string) {
-    const updated = markBugCheckPassed(progress, lessonId)
+  function handleBugCheckPassed(lessonId: string, wrongTaps: number) {
+    const updated = markBugCheckPassed(progress, lessonId, wrongTaps)
     setProgress(updated)
     saveProgress(localStorage, updated)
   }
@@ -99,9 +99,10 @@ function App() {
         exerciseSolved={progress.lessons[lesson.id]?.exerciseSolved === true}
         onExerciseSolved={(hintsUsed) => handleExerciseSolved(lesson.id, hintsUsed)}
         checkBestScore={progress.lessons[lesson.id]?.checkBestScore}
+        checkAttempts={progress.lessons[lesson.id]?.checkAttempts}
         onCheckFinished={(rightCount) => handleCheckFinished(lesson.id, rightCount)}
         bugCheckPassed={progress.lessons[lesson.id]?.bugCheckPassed === true}
-        onBugCheckPassed={() => handleBugCheckPassed(lesson.id)}
+        onBugCheckPassed={(wrongTaps) => handleBugCheckPassed(lesson.id, wrongTaps)}
       />
     )
   }
