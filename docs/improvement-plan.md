@@ -44,13 +44,13 @@ Today a learner can reach Level 3 by guessing: the bug check allows unlimited fr
 
 Rule to keep: **the learner is never left stuck.** A full, correct explanation always appears. What changes is what gets recorded and what counts.
 
-8. **Record attempts.** New optional fields in `LessonProgress` (no `schemaVersion` bump; defaults in `parseProgress`):
+8. **(done)** **Record attempts.** New optional fields in `LessonProgress` (no `schemaVersion` bump; defaults in `parseProgress`):
    - `bugCheckWrongTaps` (whole number, the fewest is kept, like hints)
    - `checkAttempts` (whole number, goes up by one per finish)
    Show them quietly ("Found after 2 wrong taps"). Tests for each new `mark…` function.
 9. **Explain-back in the bug check** (this is in the approved design, screen 4). After the right line is tapped: a text box "In your own words, why is this a bug?" Then show the model answer (`bugCheck.why`) next to what the learner wrote, with two buttons: "Mine says the same" / "Not quite yet". Save only the yes/no as `bugCheckExplained`. The typed text is not saved in the first version.
 10. **New Level 3 rule** in `getMastery`: check passed **and** bug found **and** `bugCheckExplained === true` (when the lesson has a bug check). Update `mastery.test.ts`.
-11. **Shuffle the options on a check retry**, so a retry is not "tap the same position". A pure function `shuffleOptions(options, random)` with the random source passed in, so the test can control it.
+11. **(done)** **Shuffle the options on a check retry**, so a retry is not "tap the same position". A pure function `shuffleOptions(options, random)` with the random source passed in, so the test can control it.
 12. **Tracer "Think first" needs a commitment.** No schema change: the learner must type a short guess before "Show answer" unlocks. Later (schema change, needs approval): `predict.options` + `predict.answer`, shaped like a `task`, so the guess is a tap.
 13. **Score colour**: "Your score" is green even at 0 of 3. Use amber below `CHECK_PASS_SCORE`.
 
