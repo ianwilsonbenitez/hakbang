@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "id": "unit-00a-values-and-variables",
+  "unit": 0,
+  "title": {
+    "en": "Values and variables",
+    "tl": "Values at variables"
+  },
+  "minutes": 10,
+  "diagram": {
+    "file": "docs/diagrams/unit-00a-values-and-variables.svg",
+    "alt": {
+      "en": "Three labeled variable boxes from top to bottom showing how = stores three kinds of values: shopName = \"Sari-Sari\" (Text in quotes), itemCount = 12 (Number without quotes), and isOpen = true (True/False switch without quotes).",
+      "tl": "Tatlong kahon ng variable mula taas pababa na nagpapakita kung paano nagtatabi ang = ng tatlong klase ng value: shopName = \"Sari-Sari\" (Text na may quotes), itemCount = 12 (Number na walang quotes), at isOpen = true (True/False switch na walang quotes)."
+    }
+  },
+  "explain": [
+    {
+      "en": "In code, a value is a piece of data—like a shop name, a price, or whether a store is open. A variable is a name (like a labeled box) that holds one value so the computer can remember it. The word let starts a new name, and the = symbol stores the value on the right inside the name on the left (for example, let shopName = \"Sari-Sari\").",
+      "tl": "Sa code, ang value ay isang piraso ng data—gaya ng pangalan ng tindahan, presyo, o kung bukas ba ang shop. Ang variable ay isang pangalan (parang kahon na may label) na nagtatabi ng isang value para matandaan ito ng computer. Ang salitang let ang nagsisimula ng bagong pangalan, at ang symbol na = ang nagtatabi ng value sa kanan papasok sa pangalan sa kaliwa (halimbawa, let shopName = \"Sari-Sari\")."
+    },
+    {
+      "en": "The first kind of value is text (also called a string), such as \"Sari-Sari\" or \"Ready\". In this lesson, text is written inside double quotation marks. Without quotation marks, the computer thinks the word is a variable name instead of text, which causes an error.",
+      "tl": "Ang unang klase ng value ay text (tinatawag ding string), gaya ng \"Sari-Sari\" o \"Ready\". Sa lesson na ito, isinusulat ang text sa loob ng double quotation marks. Kapag walang quotation marks, iisipin ng computer na variable name ang salita imbes na text, kaya magkaka-error."
+    },
+    {
+      "en": "The second kind is a number, written as plain digits without quotation marks (for example, let itemCount = 12). The third kind is a true/false value (also called a boolean), which acts like an ON/OFF switch and is written as true or false without quotation marks (for example, let isOpen = true). If you put quotation marks around \"12\" or \"true\", the computer treats them as plain text instead.",
+      "tl": "Ang pangalawang klase ay number, na isinusulat bilang digits nang walang quotation marks (halimbawa, let itemCount = 12). Ang pangatlong klase ay true/false value (tinatawag ding boolean), na parang ON/OFF switch at isinusulat bilang true o false nang walang quotation marks (halimbawa, let isOpen = true). Kapag nilagyan mo ng quotation marks ang \"12\" o \"true\", ituturing sila ng computer na ordinaryong text."
+    },
+    {
+      "en": "A variable holds only one value at a time. When you use = on an existing variable without let (for example, itemCount = 15), the new value replaces the old value inside that box.",
+      "tl": "Isang value lang ang kayang hawakan ng variable sa isang pagkakataon. Kapag ginamit mo ulit ang = sa variable na meron na nang walang let (halimbawa, itemCount = 15), papalitan ng bagong value ang lumang value sa loob ng kahon."
+    }
+  ],
+  "glossary": [
+    {
+      "term": "value",
+      "en": "A single piece of data in code, such as text (\"Coffee\"), a number (45), or true/false (true).",
+      "tl": "Isang piraso ng data sa code, gaya ng text (\"Coffee\"), number (45), o true/false (true)."
+    },
+    {
+      "term": "variable",
+      "en": "A name in code (like a labeled box) that stores one value at a time so the computer can use or update it later.",
+      "tl": "Isang pangalan sa code (parang kahon na may label) na nagtatabi ng isang value para magamit o mapalitan ito ng computer."
+    },
+    {
+      "term": "let",
+      "en": "The word that starts a new variable name before storing a value in it.",
+      "tl": "Ang salitang nagsisimula ng bagong variable name bago magtabi ng value sa loob nito."
+    },
+    {
+      "term": "=",
+      "en": "The symbol that stores the value on the right inside the variable name on the left, replacing any old value.",
+      "tl": "Ang symbol na nagtatabi ng value sa kanan papasok sa variable name sa kaliwa, at nagpapalit sa lumang value kung meron na."
+    },
+    {
+      "term": "text (string)",
+      "en": "Words or characters written inside double quotation marks in this lesson, such as \"Sari-Sari\".",
+      "tl": "Mga salita o characters na isinusulat sa loob ng double quotation marks sa lesson na ito, gaya ng \"Sari-Sari\"."
+    },
+    {
+      "term": "number",
+      "en": "A numeric value written with digits and no quotation marks, such as 12 or 45.",
+      "tl": "Isang value na numero na isinusulat gamit ang digits at walang quotation marks, gaya ng 12 o 45."
+    },
+    {
+      "term": "true/false (boolean)",
+      "en": "A value that can only be true or false (written without quotation marks), like an ON/OFF switch.",
+      "tl": "Isang value na true o false lang ang pwedeng laman (walang quotation marks), parang ON/OFF switch."
+    }
+  ],
+  "task": {
+    "question": {
+      "en": "A bakery app runs the line let bagCount = 6. Which part is the variable name, and what kind of value is stored inside it?",
+      "tl": "Pinatakbo ng isang bakery app ang linyang let bagCount = 6. Alin dito ang variable name, at anong klase ng value ang nakalagay sa loob nito?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "bagCount is the variable name, and 6 is a number value",
+          "tl": "Ang bagCount ang variable name, at ang 6 ay isang number value"
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "6 is the variable name, and bagCount is a text value",
+          "tl": "Ang 6 ang variable name, at ang bagCount ay isang text value"
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "let is the variable name, and 6 is a true/false value",
+          "tl": "Ang let ang variable name, at ang 6 ay isang true/false value"
+        }
+      }
+    ],
+    "answer": "a",
+    "why": {
+      "en": "The = symbol stores the value on the right (the number 6) inside the variable name on the left (bagCount), while let starts the new variable name.",
+      "tl": "Itinatabi ng symbol na = ang value sa kanan (ang number na 6) papasok sa variable name sa kaliwa (bagCount), habang ang let ang nagsisimula ng bagong variable name."
+    }
+  },
+  "bugCheck": {
+    "prompt": {
+      "en": "This code for a laundry shop should store the number 104, store the word Pending as text, and store the true/false value true—but one line causes an error. Tap the line with the bug.",
+      "tl": "Dapat itabi ng code na ito para sa laundry shop ang number na 104, itabi ang salitang Pending bilang text, at itabi ang true/false value na true—pero may isang linya na nagkaka-error. Pindutin ang line na may bug."
+    },
+    "code": "let ticketNumber = 104\nlet status = Pending\nlet isPaid = true",
+    "bugLine": 2,
+    "why": {
+      "en": "Line 2 writes Pending without double quotation marks, so the computer looks for a variable named Pending instead of storing text. It should wrap the text in double quotation marks: let status = \"Pending\".",
+      "tl": "Walang double quotation marks ang Pending sa line 2, kaya hinahanap ito ng computer bilang variable name imbes na itabi bilang text. Dapat nakapaloob sa double quotation marks ang text: let status = \"Pending\"."
+    }
+  },
+  "check": [
+    {
+      "question": {
+        "en": "A bookstore app needs a variable named inStock that holds a true/false value showing the book is available. Which line stores a real true/false value instead of text?",
+        "tl": "Kailangan ng isang bookstore app ng variable na inStock na may true/false value para ipakita na available ang libro. Aling linya ang nagtatabi ng totoong true/false value imbes na text?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "let inStock = \"true\"",
+            "tl": "let inStock = \"true\""
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "let inStock = true",
+            "tl": "let inStock = true"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "let \"inStock\" = true",
+            "tl": "let \"inStock\" = true"
+          }
+        }
+      ],
+      "answer": "b",
+      "why": {
+        "en": "A true/false value is written as true or false without quotation marks. Putting quotation marks around \"true\" turns it into plain text.",
+        "tl": "Isinusulat ang true/false value bilang true o false nang walang quotation marks. Kapag nilagyan ng quotation marks ang \"true\", nagiging ordinaryong text ito."
+      }
+    },
+    {
+      "question": {
+        "en": "A delivery app runs let shippingFee = 60 on line 1, and then runs shippingFee = 85 on line 2. What value is inside shippingFee after line 2?",
+        "tl": "Pinatakbo ng isang delivery app ang let shippingFee = 60 sa line 1, tapos pinatakbo ang shippingFee = 85 sa line 2. Anong value na ang nasa loob ng shippingFee pagkatapos ng line 2?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "60, because the first value in a variable can never change",
+            "tl": "60, dahil hindi na pwedeng mapalitan ang unang value sa variable"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "145, because = adds the two numbers together",
+            "tl": "145, dahil pinagsasama ng = ang dalawang number"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "85, because the new value replaces the old value inside shippingFee",
+            "tl": "85, dahil pinalitan ng bagong value ang lumang value sa loob ng shippingFee"
+          }
+        }
+      ],
+      "answer": "c",
+      "why": {
+        "en": "A variable holds only one value at a time, so shippingFee = 85 replaces the old 60 with 85.",
+        "tl": "Isang value lang ang hawak ng variable sa isang pagkakataon, kaya pinapalitan ng shippingFee = 85 ng 85 ang dating 60."
+      }
+    },
+    {
+      "question": {
+        "en": "A bus ticket app runs let seatLabel = \"25\". How does the computer treat \"25\"?",
+        "tl": "Pinatakbo ng isang bus ticket app ang let seatLabel = \"25\". Paano ituturing ng computer ang \"25\"?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "As text, because it is written inside quotation marks",
+            "tl": "Bilang text, dahil nakasulat ito sa loob ng quotation marks"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "As a number, because 25 is made of digits",
+            "tl": "Bilang number, dahil binubuo ng digits ang 25"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "As a variable name, because every value on the right is a variable",
+            "tl": "Bilang variable name, dahil variable lahat ng nasa kanan ng ="
+          }
+        }
+      ],
+      "answer": "a",
+      "why": {
+        "en": "Anything written inside quotation marks—even digits like \"25\"—is treated by the computer as text rather than a number.",
+        "tl": "Kahit anong nakasulat sa loob ng quotation marks—kahit digits gaya ng \"25\"—ay itinuturing ng computer na text imbes na number."
+      }
+    }
+  ],
+  "tracer": {
+    "code": "let drink = \"Coffee\"\nlet price = 45\nlet isHot = true\nprice = 50",
+    "predict": {
+      "question": {
+        "en": "Before stepping: after line 4 runs, what value is stored inside price?",
+        "tl": "Bago i-step: pagkatapos tumakbo ng line 4, anong value na ang nakalagay sa loob ng price?"
+      },
+      "answer": {
+        "en": "50, because line 4 uses = to replace the old 45 inside price with 50.",
+        "tl": "50, dahil ginamit ang = sa line 4 para palitan ng 50 ang dating 45 sa loob ng price."
+      }
+    },
+    "steps": [
+      {
+        "line": 1,
+        "vars": {
+          "drink": "\"Coffee\""
+        },
+        "note": {
+          "en": "Line 1 creates the variable drink and stores the text value \"Coffee\" inside it.",
+          "tl": "Gumawa ang line 1 ng variable na drink at itinabi ang text value na \"Coffee\" sa loob nito."
+        }
+      },
+      {
+        "line": 2,
+        "vars": {
+          "drink": "\"Coffee\"",
+          "price": "45"
+        },
+        "note": {
+          "en": "Line 2 creates the variable price and stores the number value 45 inside it.",
+          "tl": "Gumawa ang line 2 ng variable na price at itinabi ang number value na 45 sa loob nito."
+        }
+      },
+      {
+        "line": 3,
+        "vars": {
+          "drink": "\"Coffee\"",
+          "price": "45",
+          "isHot": "true"
+        },
+        "note": {
+          "en": "Line 3 creates the variable isHot and stores the true/false value true inside it.",
+          "tl": "Gumawa ang line 3 ng variable na isHot at itinabi ang true/false value na true sa loob nito."
+        }
+      },
+      {
+        "line": 4,
+        "vars": {
+          "drink": "\"Coffee\"",
+          "price": "50",
+          "isHot": "true"
+        },
+        "note": {
+          "en": "Line 4 uses = on price to replace the old 45 with the new number value 50.",
+          "tl": "Ginamit ng line 4 ang = sa price para palitan ang dating 45 ng bagong number value na 50."
+        }
+      }
+    ]
+  }
+}

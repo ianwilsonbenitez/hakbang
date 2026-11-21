@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" role="img" aria-label="Three labeled variable boxes from top to bottom showing how = stores three kinds of values: shopName = &quot;Sari-Sari&quot; (Text in quotes), itemCount = 12 (Number without quotes), and isOpen = true (True/False switch without quotes).">
+  <title>Three labeled variable boxes from top to bottom showing how = stores three kinds of values: shopName = "Sari-Sari" (Text in quotes), itemCount = 12 (Number without quotes), and isOpen = true (True/False switch without quotes).</title>
+  <g fill="currentColor" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <!-- Top rule banner -->
+    <text x="180" y="28" text-anchor="middle" font-size="13" font-weight="600">name = value (stores value inside box)</text>
+
+    <!-- Box 1: Text (string) -->
+    <rect x="20" y="46" width="320" height="96" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.75" />
+    <text x="40" y="74" text-anchor="start" font-size="14" font-weight="600" opacity="0.85">1. Text value (in double quotes)</text>
+    <text x="180" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">let shopName = "Sari-Sari"</text>
+    <text x="180" y="128" text-anchor="middle" font-size="14" opacity="0.82">box label: shopName   |   inside: "Sari-Sari"</text>
+
+    <!-- Box 2: Number -->
+    <rect x="20" y="160" width="320" height="96" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.75" />
+    <text x="40" y="188" text-anchor="start" font-size="14" font-weight="600" opacity="0.85">2. Number value (digits, no quotes)</text>
+    <text x="180" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">let itemCount = 12</text>
+    <text x="180" y="242" text-anchor="middle" font-size="14" opacity="0.82">box label: itemCount   |   inside: 12</text>
+
+    <!-- Box 3: True / False (boolean) -->
+    <rect x="20" y="274" width="320" height="96" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.75" />
+    <text x="40" y="302" text-anchor="start" font-size="14" font-weight="600" opacity="0.85">3. True/false value (switch, no quotes)</text>
+    <text x="180" y="334" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">let isOpen = true</text>
+    <text x="180" y="356" text-anchor="middle" font-size="14" opacity="0.82">box label: isOpen   |   inside: true</text>
+  </g>
+</svg>
