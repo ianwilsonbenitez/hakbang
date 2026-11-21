@@ -98,5 +98,7 @@ export const en = {
   lessonErrorCodeTooLong: 'the code is longer than 14 lines',
   lessonErrorLineOutOfRange: 'the line number is outside the code',
   lessonErrorAnswerNotInOptions: 'the answer is not one of the options',
+  lessonErrorDuplicateOptionId: 'two options have the same id',
+  lessonErrorBlankMissing: 'the code has no blank (____) to fill in',
   lessonErrorsMore: 'more problems',
 }

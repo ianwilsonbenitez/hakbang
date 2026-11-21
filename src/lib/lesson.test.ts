@@ -110,6 +110,24 @@ describe('validateLesson: broken files', () => {
     })
   })
 
+  it('rejects two options with the same id', () => {
+    const lesson = makeLesson()
+    lesson.check[1].options[1].id = lesson.check[1].options[0].id
+    expect(errorsFor(lesson)).toContainEqual({
+      path: 'check[1].options',
+      code: 'duplicate-option-id',
+    })
+  })
+
+  it('rejects an exercise whose code has no blank', () => {
+    const lesson = makeLesson()
+    lesson.exercise.code = 'function f(x) {\n  return x\n}'
+    expect(errorsFor(lesson)).toContainEqual({
+      path: 'exercise.code',
+      code: 'blank-missing',
+    })
+  })
+
   it('rejects a check that is not exactly 3 questions', () => {
     const lesson = makeLesson()
     lesson.check.pop()

@@ -18,6 +18,8 @@ const codeKeys: Record<LessonErrorCode, keyof typeof en> = {
   'code-too-long': 'lessonErrorCodeTooLong',
   'line-out-of-range': 'lessonErrorLineOutOfRange',
   'answer-not-in-options': 'lessonErrorAnswerNotInOptions',
+  'duplicate-option-id': 'lessonErrorDuplicateOptionId',
+  'blank-missing': 'lessonErrorBlankMissing',
 }
 
 export function LessonInvalid({ errors }: { errors: LessonError[] }) {

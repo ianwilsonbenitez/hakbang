@@ -62,6 +62,8 @@ export type LessonErrorCode =
   | 'code-too-long'
   | 'line-out-of-range'
   | 'answer-not-in-options'
+  | 'duplicate-option-id'
+  | 'blank-missing'
 
 // path says where the problem is, e.g. "check[1].answer".
 export type LessonError = { path: string; code: LessonErrorCode }
@@ -217,6 +219,11 @@ function checkChoice(value: unknown, path: string, errors: Errors): void {
     checkText(option.text, `${optionPath}.text`, errors)
   })
 
+  // Two options with the same id would make the answer ambiguous.
+  if (new Set(optionIds).size !== optionIds.length) {
+    addError(errors, `${path}.options`, 'duplicate-option-id')
+  }
+
   checkNonEmptyString(value.answer, `${path}.answer`, errors)
   // Only compare when the options list was readable; otherwise the answer would be blamed unfairly.
   if (typeof value.answer === 'string' && options !== null && !optionIds.includes(value.answer)) {
@@ -231,6 +238,10 @@ function checkExercise(value: unknown, path: string, errors: Errors): void {
   }
   checkText(value.prompt, `${path}.prompt`, errors)
   checkCode(value.code, `${path}.code`, errors)
+  // The learner fills a blank, so the code must show one.
+  if (typeof value.code === 'string' && value.code.trim() !== '' && !value.code.includes('____')) {
+    addError(errors, `${path}.code`, 'blank-missing')
+  }
 
   const answers = checkList(
     value.acceptedAnswers,

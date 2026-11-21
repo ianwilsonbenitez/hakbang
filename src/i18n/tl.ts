@@ -100,5 +100,7 @@ export const tl: typeof en = {
   lessonErrorCodeTooLong: 'mas mahaba sa 14 lines ang code',
   lessonErrorLineOutOfRange: 'nasa labas ng code ang line number',
   lessonErrorAnswerNotInOptions: 'wala sa options ang answer',
+  lessonErrorDuplicateOptionId: 'magkapareho ang id ng dalawang option',
+  lessonErrorBlankMissing: 'walang blank (____) ang code na lalagyan ng sagot',
   lessonErrorsMore: 'pang problema',
 }
