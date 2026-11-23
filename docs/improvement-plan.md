@@ -59,7 +59,7 @@ Later, with the Review screen: Level 3 is "confirmed" only when the check is pas
 ## Phase D. One thing per screen
 
 14. **(done)** "Try it" stacks five panels (task, tracer, exercise, check, bug check). Split the lesson into steps: **Picture → Explain → Task → Trace → Build → Check**. Add `getLessonSteps(lesson)` in `lesson-flow.ts` that leaves out steps a lesson does not have; test it. Keep the "hidden, not removed" pattern so typed answers survive.
-15. Show small step dots and "2 of 6", so a 10-minute lesson feels short.
+15. **(done)** Show small step dots and "2 of 6", so a 10-minute lesson feels short.
 
 ## Phase E. Hakbang teaches Hakbang
 
