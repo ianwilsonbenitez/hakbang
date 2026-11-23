@@ -75,6 +75,8 @@ export const tl: typeof en = {
   tracerThinkFirst: 'Isipin muna',
   tracerShowAnswer: 'Show answer',
   tracerAnswerLabel: 'Sagot',
+  tracerGuessPlaceholder: 'I-type muna ang hula mo',
+  tracerYourGuessLabel: 'Ang hula mo',
   tracerVarsTitle: 'Ang tanda ng computer',
   tracerNoVars: 'Wala pa.',
   tracerSkipped: 'nilaktawan',

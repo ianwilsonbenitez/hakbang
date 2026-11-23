@@ -5,6 +5,7 @@ import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
 import {
   getVarRows,
+  hasGuess,
   isLastStep,
   isLineSkipped,
   nextStepIndex,
@@ -23,6 +24,8 @@ export function TracerPanel({ tracer }: TracerPanelProps) {
   // The learner thinks first: stepping starts only after the answer is shown.
   const [isRevealed, setIsRevealed] = useState(false)
   const [stepIndex, setStepIndex] = useState(0)
+  // Typed before the answer unlocks; not saved anywhere.
+  const [guess, setGuess] = useState('')
 
   const lines = getCodeLines(tracer.code)
   const totalSteps = tracer.steps.length
@@ -41,15 +44,36 @@ export function TracerPanel({ tracer }: TracerPanelProps) {
         </p>
         <p className="mt-2 font-semibold">{pick(tracer.predict.question, language)}</p>
         {!isRevealed && (
-          <button type="button" onClick={() => setIsRevealed(true)} className={`${buttonClass} mt-3`}>
-            {t.tracerShowAnswer}
-          </button>
+          <>
+            <textarea
+              value={guess}
+              onChange={(event) => setGuess(event.target.value)}
+              placeholder={t.tracerGuessPlaceholder}
+              aria-label={t.tracerGuessPlaceholder}
+              rows={2}
+              className="mt-3 w-full rounded-lg border border-border-strong bg-surface p-3 text-base"
+            />
+            <button
+              type="button"
+              disabled={!hasGuess(guess)}
+              onClick={() => setIsRevealed(true)}
+              className={`${buttonClass} mt-3`}
+            >
+              {t.tracerShowAnswer}
+            </button>
+          </>
         )}
         {isRevealed && (
-          <p className="mt-3 text-text-muted">
-            <span className="font-semibold">{t.tracerAnswerLabel}: </span>
-            {pick(tracer.predict.answer, language)}
-          </p>
+          <div className="mt-3 space-y-2 text-text-muted">
+            <p>
+              <span className="font-semibold">{t.tracerYourGuessLabel}: </span>
+              {guess.trim()}
+            </p>
+            <p>
+              <span className="font-semibold">{t.tracerAnswerLabel}: </span>
+              {pick(tracer.predict.answer, language)}
+            </p>
+          </div>
         )}
       </div>
 

@@ -1,5 +1,27 @@
 import { describe, expect, it } from 'vitest'
-import { getVarRows, isLastStep, isLineSkipped, nextStepIndex, previousStepIndex } from './tracer'
+import {
+  getVarRows,
+  hasGuess,
+  isLastStep,
+  isLineSkipped,
+  nextStepIndex,
+  previousStepIndex,
+} from './tracer'
+
+describe('hasGuess', () => {
+  it('is false for an empty guess', () => {
+    expect(hasGuess('')).toBe(false)
+  })
+
+  it('is false when the guess is only spaces or new lines', () => {
+    expect(hasGuess('   \n  ')).toBe(false)
+  })
+
+  it('is true when there is any real text', () => {
+    expect(hasGuess('yes')).toBe(true)
+    expect(hasGuess('  18  ')).toBe(true)
+  })
+})
 
 describe('nextStepIndex', () => {
   it('moves forward one step', () => {

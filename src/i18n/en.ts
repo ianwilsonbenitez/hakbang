@@ -73,6 +73,8 @@ export const en = {
   tracerThinkFirst: 'Think first',
   tracerShowAnswer: 'Show answer',
   tracerAnswerLabel: 'Answer',
+  tracerGuessPlaceholder: 'Type your guess first',
+  tracerYourGuessLabel: 'Your guess',
   tracerVarsTitle: 'What the computer remembers',
   tracerNoVars: 'Nothing yet.',
   tracerSkipped: 'skipped',

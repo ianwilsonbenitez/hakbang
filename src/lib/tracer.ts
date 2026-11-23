@@ -16,6 +16,11 @@ export function isLastStep(current: number, totalSteps: number): boolean {
   return current >= totalSteps - 1
 }
 
+// The learner must commit to a guess before the answer unlocks. Spaces alone do not count.
+export function hasGuess(text: string): boolean {
+  return text.trim().length > 0
+}
+
 // Line numbers count from 1, like the lesson file says.
 export function isLineSkipped(step: Pick<TracerStep, 'skippedLines'>, lineNumber: number): boolean {
   return step.skippedLines?.includes(lineNumber) === true

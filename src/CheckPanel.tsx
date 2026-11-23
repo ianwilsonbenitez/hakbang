@@ -3,6 +3,7 @@ import { useLanguage } from './language-context'
 import { scoreCheck } from './lib/check'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
+import { shuffle } from './lib/shuffle'
 
 type CheckPanelProps = {
   questions: Lesson['check']
@@ -21,8 +22,10 @@ export function CheckPanel({ questions, bestScore, attempts, onFinished }: Check
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<(string | null)[]>(() => questions.map(() => null))
   const [isFinished, setIsFinished] = useState(false)
+  // File order on the first try; options are shuffled on each retry.
+  const [shownQuestions, setShownQuestions] = useState(questions)
 
-  const question = questions[index]
+  const question = shownQuestions[index]
   const selectedId = answers[index]
   const isLastQuestion = index === questions.length - 1
 
@@ -40,7 +43,12 @@ export function CheckPanel({ questions, bestScore, attempts, onFinished }: Check
     onFinished(scoreCheck(questions, answers).right)
   }
 
+  // Shuffled here in the click, not while drawing the screen, so it does not change on every redraw.
+  // Answers are saved by option id, so scoring does not care about the new order.
   function retry() {
+    setShownQuestions(
+      questions.map((item) => ({ ...item, options: shuffle(item.options, Math.random) })),
+    )
     setIndex(0)
     setAnswers(questions.map(() => null))
     setIsFinished(false)
