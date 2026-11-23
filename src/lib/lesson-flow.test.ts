@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLessonSteps, isCorrectAnswer, nextStep, previousStep } from './lesson-flow'
+import { getLessonSteps, isCorrectAnswer, isStepDone, nextStep, previousStep } from './lesson-flow'
 
 const allParts = { hasTracer: true, hasExercise: true, hasBugCheck: true }
 const noParts = { hasTracer: false, hasExercise: false, hasBugCheck: false }
@@ -69,6 +69,41 @@ describe('previousStep', () => {
 
   it('stays on the first step when going back', () => {
     expect(previousStep(steps, 'picture')).toBe('picture')
+  })
+})
+
+describe('isStepDone', () => {
+  it('is false for every step when nothing is saved', () => {
+    for (const step of getLessonSteps(allParts)) {
+      expect(isStepDone(step, undefined)).toBe(false)
+    }
+  })
+
+  it('task follows taskPassed', () => {
+    expect(isStepDone('task', { taskPassed: true })).toBe(true)
+    expect(isStepDone('task', { taskPassed: false })).toBe(false)
+  })
+
+  it('build follows exerciseSolved', () => {
+    expect(isStepDone('build', { exerciseSolved: true })).toBe(true)
+    expect(isStepDone('build', {})).toBe(false)
+  })
+
+  it('check is done only at the pass score', () => {
+    expect(isStepDone('check', { checkBestScore: 1 })).toBe(false)
+    expect(isStepDone('check', { checkBestScore: 2 })).toBe(true)
+  })
+
+  it('debug follows bugCheckExplained, not only finding the bug', () => {
+    expect(isStepDone('debug', { bugCheckPassed: true })).toBe(false)
+    expect(isStepDone('debug', { bugCheckPassed: true, bugCheckExplained: true })).toBe(true)
+  })
+
+  it('picture, explain and trace are never done', () => {
+    const full = { taskPassed: true, exerciseSolved: true, checkBestScore: 3 }
+    expect(isStepDone('picture', full)).toBe(false)
+    expect(isStepDone('explain', full)).toBe(false)
+    expect(isStepDone('trace', full)).toBe(false)
   })
 })
 

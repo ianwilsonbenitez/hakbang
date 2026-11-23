@@ -4,6 +4,7 @@ import { CheckPanel } from './CheckPanel'
 import { DiagramView } from './DiagramView'
 import { ExercisePanel } from './ExercisePanel'
 import { useLanguage } from './language-context'
+import { StepDots } from './StepDots'
 import { TracerPanel } from './TracerPanel'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
@@ -213,23 +214,13 @@ export function LessonScreen({
         </p>
       )}
 
-      <nav aria-label={t.stepsLabel} className="mt-4 flex flex-wrap gap-2">
-        {steps.map((lessonStep) => (
-          <button
-            key={lessonStep}
-            type="button"
-            aria-current={lessonStep === step ? 'step' : undefined}
-            onClick={() => setStep(lessonStep)}
-            className={
-              lessonStep === step
-                ? 'min-h-11 rounded-md border border-accent bg-surface-raised px-4 font-semibold text-accent'
-                : 'min-h-11 rounded-md border border-border-strong bg-surface px-4 text-text-muted'
-            }
-          >
-            {stepLabels[lessonStep]}
-          </button>
-        ))}
-      </nav>
+      <StepDots
+        steps={steps}
+        current={step}
+        labels={stepLabels}
+        entry={{ taskPassed, exerciseSolved, checkBestScore, bugCheckExplained }}
+        onSelect={setStep}
+      />
 
       <div className="mt-6">
         {step === 'picture' && <PictureStep lesson={lesson} />}

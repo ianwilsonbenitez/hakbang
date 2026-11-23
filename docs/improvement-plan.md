@@ -48,8 +48,8 @@ Rule to keep: **the learner is never left stuck.** A full, correct explanation a
    - `bugCheckWrongTaps` (whole number, the fewest is kept, like hints)
    - `checkAttempts` (whole number, goes up by one per finish)
    Show them quietly ("Found after 2 wrong taps"). Tests for each new `mark…` function.
-9. **Explain-back in the bug check** (this is in the approved design, screen 4). After the right line is tapped: a text box "In your own words, why is this a bug?" Then show the model answer (`bugCheck.why`) next to what the learner wrote, with two buttons: "Mine says the same" / "Not quite yet". Save only the yes/no as `bugCheckExplained`. The typed text is not saved in the first version.
-10. **New Level 3 rule** in `getMastery`: check passed **and** bug found **and** `bugCheckExplained === true` (when the lesson has a bug check). Update `mastery.test.ts`.
+9. **(done)** **Explain-back in the bug check** (this is in the approved design, screen 4). After the right line is tapped: a text box "In your own words, why is this a bug?" Then show the model answer (`bugCheck.why`) next to what the learner wrote, with two buttons: "Mine says the same" / "Not quite yet". Save only the yes/no as `bugCheckExplained`. The typed text is not saved in the first version.
+10. **(done)** **New Level 3 rule** in `getMastery`: check passed **and** bug found **and** `bugCheckExplained === true` (when the lesson has a bug check). Update `mastery.test.ts`.
 11. **(done)** **Shuffle the options on a check retry**, so a retry is not "tap the same position". A pure function `shuffleOptions(options, random)` with the random source passed in, so the test can control it.
 12. **(done)** **Tracer "Think first" needs a commitment.** No schema change: the learner must type a short guess before "Show answer" unlocks. Later (schema change, needs approval): `predict.options` + `predict.answer`, shaped like a `task`, so the guess is a tap.
 13. **(done)** **Score colour**: "Your score" is green even at 0 of 3. Use amber below `CHECK_PASS_SCORE`.
@@ -58,7 +58,7 @@ Later, with the Review screen: Level 3 is "confirmed" only when the check is pas
 
 ## Phase D. One thing per screen
 
-14. "Try it" stacks five panels (task, tracer, exercise, check, bug check). Split the lesson into steps: **Picture → Explain → Task → Trace → Build → Check**. Add `getLessonSteps(lesson)` in `lesson-flow.ts` that leaves out steps a lesson does not have; test it. Keep the "hidden, not removed" pattern so typed answers survive.
+14. **(done)** "Try it" stacks five panels (task, tracer, exercise, check, bug check). Split the lesson into steps: **Picture → Explain → Task → Trace → Build → Check**. Add `getLessonSteps(lesson)` in `lesson-flow.ts` that leaves out steps a lesson does not have; test it. Keep the "hidden, not removed" pattern so typed answers survive.
 15. Show small step dots and "2 of 6", so a 10-minute lesson feels short.
 
 ## Phase E. Hakbang teaches Hakbang
