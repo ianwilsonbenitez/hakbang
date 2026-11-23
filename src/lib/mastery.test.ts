@@ -1,5 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { CHECK_PASS_SCORE, getMastery, isFinished } from './mastery'
+import { CHECK_PASS_SCORE, getMastery, isCheckPassed, isFinished } from './mastery'
+
+describe('isCheckPassed', () => {
+  it('is false below the pass mark, including 0', () => {
+    expect(isCheckPassed(0)).toBe(false)
+    expect(isCheckPassed(CHECK_PASS_SCORE - 1)).toBe(false)
+  })
+
+  it('is true at the pass mark and above', () => {
+    expect(isCheckPassed(CHECK_PASS_SCORE)).toBe(true)
+    expect(isCheckPassed(CHECK_PASS_SCORE + 1)).toBe(true)
+  })
+})
 
 const fullLesson = { hasExercise: true, hasBugCheck: true }
 const plainLesson = { hasExercise: false, hasBugCheck: false }

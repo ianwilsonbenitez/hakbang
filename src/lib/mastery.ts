@@ -3,6 +3,11 @@ import type { LessonProgress } from './progress'
 // The pass mark lives here and not in saved data, so changing it later needs no data change.
 export const CHECK_PASS_SCORE = 2
 
+// One place that knows what "passed" means, so the pip and the score colour always agree.
+export function isCheckPassed(score: number): boolean {
+  return score >= CHECK_PASS_SCORE
+}
+
 // Which optional parts this lesson has. Small flags, so we do not need the whole lesson file.
 export type LessonParts = {
   hasExercise: boolean
@@ -22,7 +27,7 @@ export function getMastery(entry: LessonProgress | undefined, parts: LessonParts
   // A lesson without an exercise cannot ask for one, so Level 2 follows Level 1.
   const builds = parts.hasExercise ? entry?.exerciseSolved === true : understands
 
-  const checkPassed = (entry?.checkBestScore ?? 0) >= CHECK_PASS_SCORE
+  const checkPassed = isCheckPassed(entry?.checkBestScore ?? 0)
   const bugCheckMet = parts.hasBugCheck ? entry?.bugCheckPassed === true : true
   const debugs = checkPassed && bugCheckMet
 

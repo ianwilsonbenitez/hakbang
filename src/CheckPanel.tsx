@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLanguage } from './language-context'
 import { scoreCheck } from './lib/check'
 import { pick } from './lib/language'
+import { isCheckPassed } from './lib/mastery'
 import type { Lesson } from './lib/lesson'
 import { shuffle } from './lib/shuffle'
 
@@ -101,7 +102,13 @@ export function CheckPanel({ questions, bestScore, attempts, onFinished }: Check
 
       {isFinished && (
         <div className="mt-3 space-y-4">
-          <p role="status" className="text-lg font-semibold text-success">
+          <p
+            role="status"
+            className={
+              'text-lg font-semibold ' +
+              (isCheckPassed(scoreCheck(questions, answers).right) ? 'text-success' : 'text-review')
+            }
+          >
             {t.checkScoreLabel}: {scoreCheck(questions, answers).right} {t.checkOf} {questions.length}
           </p>
           <ol className="space-y-3">
