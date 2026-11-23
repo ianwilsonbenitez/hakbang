@@ -8,7 +8,7 @@ import { TracerPanel } from './TracerPanel'
 import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
 import {
-  LESSON_STEPS,
+  getLessonSteps,
   isCorrectAnswer,
   nextStep,
   previousStep,
@@ -54,7 +54,7 @@ function ExplainStep({ lesson }: { lesson: Lesson }) {
   )
 }
 
-function TryStep({ lesson, onTaskPassed }: { lesson: Lesson; onTaskPassed: () => void }) {
+function TaskStep({ lesson, onTaskPassed }: { lesson: Lesson; onTaskPassed: () => void }) {
   const { language, t } = useLanguage()
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [isChecked, setIsChecked] = useState(false)
@@ -143,6 +143,8 @@ type LessonScreenProps = {
   onBugCheckPassed: (wrongTaps: number) => void
   bugCheckExplained: boolean
   onBugCheckExplained: () => void
+  // Called on the last step, so the learner can go back to the skill map.
+  onClose: () => void
 }
 
 export function LessonScreen({
@@ -158,14 +160,32 @@ export function LessonScreen({
   onBugCheckPassed,
   bugCheckExplained,
   onBugCheckExplained,
+  onClose,
 }: LessonScreenProps) {
   const { language, t } = useLanguage()
   const [step, setStep] = useState<LessonStep>('picture')
 
+  const steps = getLessonSteps({
+    hasTracer: lesson.tracer !== undefined,
+    hasExercise: lesson.exercise !== undefined,
+    hasBugCheck: lesson.bugCheck !== undefined,
+  })
+  const isLastStep = step === steps[steps.length - 1]
+
   const stepLabels: Record<LessonStep, string> = {
     picture: t.stepPicture,
     explain: t.stepExplain,
-    try: t.stepTry,
+    task: t.stepTask,
+    trace: t.stepTrace,
+    build: t.stepBuild,
+    check: t.stepCheck,
+    debug: t.stepDebug,
+  }
+
+  // Each panel sits in its own wrapper that is hidden, not removed, so opened hints,
+  // typed answers and the tracer position survive a step change.
+  function stepClass(lessonStep: LessonStep): string {
+    return step === lessonStep ? '' : 'hidden'
   }
 
   return (
@@ -194,7 +214,7 @@ export function LessonScreen({
       )}
 
       <nav aria-label={t.stepsLabel} className="mt-4 flex flex-wrap gap-2">
-        {LESSON_STEPS.map((lessonStep) => (
+        {steps.map((lessonStep) => (
           <button
             key={lessonStep}
             type="button"
@@ -214,24 +234,33 @@ export function LessonScreen({
       <div className="mt-6">
         {step === 'picture' && <PictureStep lesson={lesson} />}
         {step === 'explain' && <ExplainStep lesson={lesson} />}
-        {/* Hidden and not removed, so opened hints and typed answers survive a step change. */}
-        <div className={step === 'try' ? 'space-y-8' : 'hidden'}>
-          <TryStep lesson={lesson} onTaskPassed={onTaskPassed} />
-          {lesson.tracer !== undefined && <TracerPanel tracer={lesson.tracer} />}
-          {lesson.exercise !== undefined && (
+        <div className={stepClass('task')}>
+          <TaskStep lesson={lesson} onTaskPassed={onTaskPassed} />
+        </div>
+        {lesson.tracer !== undefined && (
+          <div className={stepClass('trace')}>
+            <TracerPanel tracer={lesson.tracer} />
+          </div>
+        )}
+        {lesson.exercise !== undefined && (
+          <div className={stepClass('build')}>
             <ExercisePanel
               exercise={lesson.exercise}
               solved={exerciseSolved}
               onSolved={onExerciseSolved}
             />
-          )}
+          </div>
+        )}
+        <div className={stepClass('check')}>
           <CheckPanel
             questions={lesson.check}
             bestScore={checkBestScore}
             attempts={checkAttempts}
             onFinished={onCheckFinished}
           />
-          {lesson.bugCheck !== undefined && (
+        </div>
+        {lesson.bugCheck !== undefined && (
+          <div className={stepClass('debug')}>
             <BugCheckPanel
               bugCheck={lesson.bugCheck}
               passed={bugCheckPassed}
@@ -239,26 +268,25 @@ export function LessonScreen({
               onPassed={onBugCheckPassed}
               onExplained={onBugCheckExplained}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <button
           type="button"
           disabled={step === 'picture'}
-          onClick={() => setStep(previousStep(step))}
+          onClick={() => setStep(previousStep(steps, step))}
           className={secondaryButtonClass}
         >
           {t.back}
         </button>
         <button
           type="button"
-          disabled={step === 'try'}
-          onClick={() => setStep(nextStep(step))}
+          onClick={() => (isLastStep ? onClose() : setStep(nextStep(steps, step)))}
           className={secondaryButtonClass}
         >
-          {t.next}
+          {isLastStep ? t.backToMap : t.next}
         </button>
       </div>
     </section>

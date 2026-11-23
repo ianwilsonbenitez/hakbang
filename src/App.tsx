@@ -112,6 +112,7 @@ function App() {
         onBugCheckPassed={(wrongTaps) => handleBugCheckPassed(lesson.id, wrongTaps)}
         bugCheckExplained={progress.lessons[lesson.id]?.bugCheckExplained === true}
         onBugCheckExplained={() => handleBugCheckExplained(lesson.id)}
+        onClose={() => setView({ name: 'map' })}
       />
     )
   }
