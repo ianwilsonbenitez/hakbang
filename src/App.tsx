@@ -9,6 +9,7 @@ import { SkillMapScreen } from './SkillMapScreen'
 import {
   isTaskPassed,
   loadProgress,
+  markBugCheckExplained,
   markBugCheckPassed,
   markCheckScore,
   markExerciseSolved,
@@ -71,6 +72,12 @@ function App() {
     saveProgress(localStorage, updated)
   }
 
+  function handleBugCheckExplained(lessonId: string) {
+    const updated = markBugCheckExplained(progress, lessonId)
+    setProgress(updated)
+    saveProgress(localStorage, updated)
+  }
+
   // The learner confirmed in the panel, so this runs in a click: replace and save, like the other handlers.
   function handleImport(imported: Progress) {
     setProgress(imported)
@@ -103,6 +110,8 @@ function App() {
         onCheckFinished={(rightCount) => handleCheckFinished(lesson.id, rightCount)}
         bugCheckPassed={progress.lessons[lesson.id]?.bugCheckPassed === true}
         onBugCheckPassed={(wrongTaps) => handleBugCheckPassed(lesson.id, wrongTaps)}
+        bugCheckExplained={progress.lessons[lesson.id]?.bugCheckExplained === true}
+        onBugCheckExplained={() => handleBugCheckExplained(lesson.id)}
       />
     )
   }

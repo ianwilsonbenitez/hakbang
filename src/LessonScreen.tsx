@@ -141,6 +141,8 @@ type LessonScreenProps = {
   onCheckFinished: (rightCount: number) => void
   bugCheckPassed: boolean
   onBugCheckPassed: (wrongTaps: number) => void
+  bugCheckExplained: boolean
+  onBugCheckExplained: () => void
 }
 
 export function LessonScreen({
@@ -154,6 +156,8 @@ export function LessonScreen({
   onCheckFinished,
   bugCheckPassed,
   onBugCheckPassed,
+  bugCheckExplained,
+  onBugCheckExplained,
 }: LessonScreenProps) {
   const { language, t } = useLanguage()
   const [step, setStep] = useState<LessonStep>('picture')
@@ -231,7 +235,9 @@ export function LessonScreen({
             <BugCheckPanel
               bugCheck={lesson.bugCheck}
               passed={bugCheckPassed}
+              explained={bugCheckExplained}
               onPassed={onBugCheckPassed}
+              onExplained={onBugCheckExplained}
             />
           )}
         </div>

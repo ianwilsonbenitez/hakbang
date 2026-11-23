@@ -51,8 +51,8 @@ Rule to keep: **the learner is never left stuck.** A full, correct explanation a
 9. **Explain-back in the bug check** (this is in the approved design, screen 4). After the right line is tapped: a text box "In your own words, why is this a bug?" Then show the model answer (`bugCheck.why`) next to what the learner wrote, with two buttons: "Mine says the same" / "Not quite yet". Save only the yes/no as `bugCheckExplained`. The typed text is not saved in the first version.
 10. **New Level 3 rule** in `getMastery`: check passed **and** bug found **and** `bugCheckExplained === true` (when the lesson has a bug check). Update `mastery.test.ts`.
 11. **(done)** **Shuffle the options on a check retry**, so a retry is not "tap the same position". A pure function `shuffleOptions(options, random)` with the random source passed in, so the test can control it.
-12. **Tracer "Think first" needs a commitment.** No schema change: the learner must type a short guess before "Show answer" unlocks. Later (schema change, needs approval): `predict.options` + `predict.answer`, shaped like a `task`, so the guess is a tap.
-13. **Score colour**: "Your score" is green even at 0 of 3. Use amber below `CHECK_PASS_SCORE`.
+12. **(done)** **Tracer "Think first" needs a commitment.** No schema change: the learner must type a short guess before "Show answer" unlocks. Later (schema change, needs approval): `predict.options` + `predict.answer`, shaped like a `task`, so the guess is a tap.
+13. **(done)** **Score colour**: "Your score" is green even at 0 of 3. Use amber below `CHECK_PASS_SCORE`.
 
 Later, with the Review screen: Level 3 is "confirmed" only when the check is passed again on a different day. That needs a saved date, as already noted in `later-ideas.md`.
 

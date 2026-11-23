@@ -18,7 +18,7 @@ export type LessonParts = {
 export type Mastery = {
   understands: boolean // Level 1: the lesson task was answered right
   builds: boolean // Level 2: the exercise was solved
-  debugs: boolean // Level 3: the check was passed and the bug check was right
+  debugs: boolean // Level 3: the check was passed, the bug was found and explained
 }
 
 export function getMastery(entry: LessonProgress | undefined, parts: LessonParts): Mastery {
@@ -28,7 +28,10 @@ export function getMastery(entry: LessonProgress | undefined, parts: LessonParts
   const builds = parts.hasExercise ? entry?.exerciseSolved === true : understands
 
   const checkPassed = isCheckPassed(entry?.checkBestScore ?? 0)
-  const bugCheckMet = parts.hasBugCheck ? entry?.bugCheckPassed === true : true
+  // Finding the line is not enough: the learner must also explain it (and say it matched the model answer).
+  const bugCheckMet = parts.hasBugCheck
+    ? entry?.bugCheckPassed === true && entry?.bugCheckExplained === true
+    : true
   const debugs = checkPassed && bugCheckMet
 
   return { understands, builds, debugs }

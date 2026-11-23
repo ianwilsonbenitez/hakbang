@@ -46,13 +46,27 @@ describe('getMastery', () => {
     expect(getMastery(entry, fullLesson).builds).toBe(false)
   })
 
-  it('gives Level 3 when the check score reaches the pass mark and the bug check is right', () => {
-    const entry = { checkBestScore: CHECK_PASS_SCORE, bugCheckPassed: true }
+  it('gives Level 3 when the check is passed and the bug is found and explained', () => {
+    const entry = {
+      checkBestScore: CHECK_PASS_SCORE,
+      bugCheckPassed: true,
+      bugCheckExplained: true,
+    }
     expect(getMastery(entry, fullLesson).debugs).toBe(true)
   })
 
+  it('does not give Level 3 when the bug was found but not explained', () => {
+    const entry = { checkBestScore: CHECK_PASS_SCORE, bugCheckPassed: true }
+    expect(getMastery(entry, fullLesson).debugs).toBe(false)
+    expect(getMastery({ ...entry, bugCheckExplained: false }, fullLesson).debugs).toBe(false)
+  })
+
   it('does not give Level 3 when the check score is below the pass mark', () => {
-    const entry = { checkBestScore: CHECK_PASS_SCORE - 1, bugCheckPassed: true }
+    const entry = {
+      checkBestScore: CHECK_PASS_SCORE - 1,
+      bugCheckPassed: true,
+      bugCheckExplained: true,
+    }
     expect(getMastery(entry, fullLesson).debugs).toBe(false)
   })
 
@@ -80,6 +94,7 @@ describe('isFinished', () => {
       exerciseSolved: true,
       checkBestScore: 3,
       bugCheckPassed: true,
+      bugCheckExplained: true,
     }
     expect(isFinished(getMastery(entry, fullLesson))).toBe(true)
   })

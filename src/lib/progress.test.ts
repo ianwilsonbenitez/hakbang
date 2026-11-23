@@ -4,6 +4,7 @@ import {
   emptyProgress,
   isTaskPassed,
   loadProgress,
+  markBugCheckExplained,
   markBugCheckPassed,
   markCheckScore,
   markExerciseSolved,
@@ -363,5 +364,51 @@ describe('markBugCheckPassed', () => {
     const before = emptyProgress()
     markBugCheckPassed(before, 'lesson-a', 2)
     expect(before.lessons).toEqual({})
+  })
+})
+
+describe('markBugCheckExplained', () => {
+  it('records that the explanation matched', () => {
+    const result = markBugCheckExplained(emptyProgress(), 'lesson-a')
+    expect(result.lessons['lesson-a']).toEqual({ bugCheckExplained: true })
+  })
+
+  it('keeps the other saved facts of the lesson', () => {
+    const before = {
+      ...emptyProgress(),
+      lessons: { 'lesson-a': { bugCheckPassed: true, bugCheckWrongTaps: 1 } },
+    }
+    const result = markBugCheckExplained(before, 'lesson-a')
+    expect(result.lessons['lesson-a']).toEqual({
+      bugCheckPassed: true,
+      bugCheckWrongTaps: 1,
+      bugCheckExplained: true,
+    })
+  })
+
+  it('gives the same result when called twice', () => {
+    const once = markBugCheckExplained(emptyProgress(), 'lesson-a')
+    expect(markBugCheckExplained(once, 'lesson-a')).toEqual(once)
+  })
+
+  it('does not change the old progress object', () => {
+    const before = emptyProgress()
+    markBugCheckExplained(before, 'lesson-a')
+    expect(before.lessons).toEqual({})
+  })
+})
+
+describe('parseProgress with bugCheckExplained', () => {
+  it('keeps a boolean value', () => {
+    const raw = { schemaVersion: 1, lessons: { 'lesson-a': { bugCheckExplained: true } } }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual({ bugCheckExplained: true })
+  })
+
+  it('drops a value that is not a boolean', () => {
+    const raw = {
+      schemaVersion: 1,
+      lessons: { 'lesson-a': { taskPassed: true, bugCheckExplained: 'yes' } },
+    }
+    expect(parseProgress(raw).lessons['lesson-a']).toEqual({ taskPassed: true })
   })
 })

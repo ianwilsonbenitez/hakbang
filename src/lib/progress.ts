@@ -14,6 +14,7 @@ export type LessonProgress = {
   bugCheckPassed?: boolean
   bugCheckWrongTaps?: number // whole number, 0 or more; the fewest, like the hint count
   checkAttempts?: number // whole number, 1 or more; goes up by one each time the check is finished
+  bugCheckExplained?: boolean // only ever true: the learner said their explanation matched the model answer
 }
 
 export type Progress = {
@@ -58,6 +59,9 @@ function parseLessonEntry(entry: unknown): LessonProgress | null {
   if (typeof entry.bugCheckPassed === 'boolean') lesson.bugCheckPassed = entry.bugCheckPassed
   if (isWholeNumberAtLeast(entry.bugCheckWrongTaps, 0)) {
     lesson.bugCheckWrongTaps = entry.bugCheckWrongTaps
+  }
+  if (typeof entry.bugCheckExplained === 'boolean') {
+    lesson.bugCheckExplained = entry.bugCheckExplained
   }
   if (isWholeNumberAtLeast(entry.checkAttempts, 1)) {
     lesson.checkAttempts = entry.checkAttempts
@@ -168,6 +172,18 @@ export function markBugCheckPassed(
     lessons: {
       ...progress.lessons,
       [lessonId]: { ...before, bugCheckPassed: true, bugCheckWrongTaps: fewestWrongTaps },
+    },
+  }
+}
+
+// The learner compared their own explanation with the model answer and said it matched.
+// Only ever sets true. Safe to call twice.
+export function markBugCheckExplained(progress: Progress, lessonId: string): Progress {
+  return {
+    ...progress,
+    lessons: {
+      ...progress.lessons,
+      [lessonId]: { ...progress.lessons[lessonId], bugCheckExplained: true },
     },
   }
 }

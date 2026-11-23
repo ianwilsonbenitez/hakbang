@@ -78,6 +78,7 @@ describe('getNodeStatus', () => {
       exerciseSolved: true,
       checkBestScore: 3,
       bugCheckPassed: true,
+      bugCheckExplained: true,
     })
     expect(getNodeStatus(nodeWithLesson, progress, fullLesson)).toBe('finished')
   })

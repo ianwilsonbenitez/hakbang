@@ -1,5 +1,31 @@
 import { describe, expect, it } from 'vitest'
-import { addWrongLine, getCodeLines, isBugLine } from './bug-check'
+import {
+  MIN_EXPLANATION_LENGTH,
+  addWrongLine,
+  getCodeLines,
+  isBugLine,
+  isExplanationReady,
+} from './bug-check'
+
+describe('isExplanationReady', () => {
+  it('is false for an empty text and for only spaces', () => {
+    expect(isExplanationReady('')).toBe(false)
+    expect(isExplanationReady('      \n    ')).toBe(false)
+  })
+
+  it('is false one character below the minimum', () => {
+    expect(isExplanationReady('a'.repeat(MIN_EXPLANATION_LENGTH - 1))).toBe(false)
+  })
+
+  it('is true at the minimum', () => {
+    expect(isExplanationReady('a'.repeat(MIN_EXPLANATION_LENGTH))).toBe(true)
+  })
+
+  it('does not count the spaces around the text', () => {
+    expect(isExplanationReady('   ' + 'a'.repeat(MIN_EXPLANATION_LENGTH - 1) + '   ')).toBe(false)
+    expect(isExplanationReady('   ' + 'a'.repeat(MIN_EXPLANATION_LENGTH) + '   ')).toBe(true)
+  })
+})
 
 describe('addWrongLine', () => {
   it('adds a new wrong line to the list', () => {
