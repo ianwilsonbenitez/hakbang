@@ -89,7 +89,7 @@ This answers the Milestone 1 line "Ian can explain, without AI, what each main f
 
 ## Phase G. Match the approved design
 
-21. Top bar with the language and theme switches at the top right (today they are large buttons under the title, with a "Theme: Dark" line).
+21. **(done)** Top bar with the language and theme switches at the top right (today they are large buttons under the title, with a "Theme: Dark" line).
 22. Skill map: dot-grid background, the selected-skill panel with its 3 steps and a "Continue lesson" button, and pip labels that can be read on a phone (`title` does not show on touch).
 23. A node with no lesson says "Coming soon", not "Locked". Nothing unlocks it, so "Locked" is misleading.
 24. Exercise panel: when already solved, show the accepted answer inside the code instead of an empty box.
