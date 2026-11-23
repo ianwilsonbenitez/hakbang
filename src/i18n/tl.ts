@@ -41,6 +41,7 @@ export const tl: typeof en = {
   nodeValuesAndVariables: 'Mga value at variable',
   nodeFunctionAndReturn: 'Function at return',
   nodeHowWebAppsWork: 'Paano gumagana ang web app',
+  nodeComparingWithEquals: 'Pag-compare gamit ang ===',
   nodeDecisionsInCode: 'Desisyon sa Code',
   nodeSpotTheBug: 'Hanapin ang Bug',
   statusLocked: 'Naka-lock',

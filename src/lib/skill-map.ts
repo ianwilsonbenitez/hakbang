@@ -36,6 +36,12 @@ export const SKILL_NODES: SkillNode[] = [
     titleKey: 'nodeHowWebAppsWork',
     lessonId: 'unit-01-how-web-apps-work',
   },
+  {
+    id: 'comparing-with-equals',
+    column: 'javascript',
+    titleKey: 'nodeComparingWithEquals',
+    lessonId: 'unit-02-isbugline',
+  },
   { id: 'decisions-in-code', column: 'javascript', titleKey: 'nodeDecisionsInCode', lessonId: null },
   { id: 'spot-the-bug', column: 'debugging', titleKey: 'nodeSpotTheBug', lessonId: null },
 ]

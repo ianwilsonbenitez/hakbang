@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "id": "unit-02-isbugline",
+  "unit": 2,
+  "title": {
+    "en": "Checking a match with ===",
+    "tl": "Pag-check kung tugma gamit ang ==="
+  },
+  "minutes": 10,
+  "diagram": {
+    "file": "docs/diagrams/unit-02-isbugline.svg",
+    "alt": {
+      "en": "Vertical flow diagram from top to bottom: two input numbers (bugLine = 2 and tappedLine = 2) go into the function box isBugLine(bugLine, tappedLine), which uses === to compare tappedLine === bugLine and returns true.",
+      "tl": "Patayong diagram mula taas pababa: papasok ang dalawang input number (bugLine = 2 at tappedLine = 2) sa function box na isBugLine(bugLine, tappedLine), na gumagamit ng === para i-compare ang tappedLine === bugLine at nagre-return ng true."
+    }
+  },
+  "explain": [
+    {
+      "en": "Every time you tap a line in a Hakbang bug check, the app runs a real function named isBugLine (from src/lib/bug-check.ts) to check if you tapped the right line. It takes two inputs inside its round brackets ( ), separated by a comma: function isBugLine(bugLine, tappedLine).",
+      "tl": "Tuwing pumipindot ka ng linya sa bug check ng Hakbang, nagpapatakbo ang app ng totoong function na isBugLine (mula sa src/lib/bug-check.ts) para i-check kung tama ang napindot mong linya. Tumatanggap ito ng dalawang input sa loob ng round brackets ( ), na pinaghihiwalay ng comma: function isBugLine(bugLine, tappedLine)."
+    },
+    {
+      "en": "The new symbol in this lesson is === (three equals signs). It compares two values to ask if they are the same, and gives back true when they match or false when they do not (for example, 2 === 2 gives true, while 3 === 2 gives false).",
+      "tl": "Ang bagong symbol sa lesson na ito ay === (tatlong equals signs). Kino-compare nito ang dalawang value para itanong kung magkapareho sila, at nagbibigay ng true kapag tugma o false kapag hindi (halimbawa, true ang 2 === 2, habang false naman ang 3 === 2)."
+    },
+    {
+      "en": "Do not confuse === with a single =. As you learned in Unit 0, a single = stores a new value into a variable name, while === only compares two values without changing either one.",
+      "tl": "Huwag ipagpalit ang === sa isang = lang. Gaya ng natutunan mo sa Unit 0, ang isang = ay nagtatabi ng bagong value sa isang variable name, habang ang === ay nagko-compare lang ng dalawang value nang hindi binabago ang kahit alin sa kanila."
+    },
+    {
+      "en": "Because tappedLine === bugLine already gives back true or false on its own, the real function in src/lib/bug-check.ts returns that answer directly in one line: return tappedLine === bugLine. The tracer is a longer way of writing the same check, so you can see the line that gets skipped.",
+      "tl": "Dahil nagbibigay na agad ng true o false ang tappedLine === bugLine, direkta na itong nire-return ng totoong function sa src/lib/bug-check.ts sa isang linya: return tappedLine === bugLine. Ang tracer ay mas mahabang paraan ng pagsulat ng parehong check, para makita ang line na nilalaktawan."
+    }
+  ],
+  "glossary": [
+    {
+      "term": "===",
+      "en": "Three equals signs that compare two values and give back true if they match, or false if they do not.",
+      "tl": "Tatlong equals signs na nagko-compare ng dalawang value at nagbibigay ng true kapag magkapareho, o false kapag magkaiba."
+    },
+    {
+      "term": "= vs ===",
+      "en": "A single = stores a value into a variable name; === compares two values without changing them.",
+      "tl": "Ang isang = ay nagtatabi ng value sa variable name; ang === ay nagko-compare lang ng dalawang value nang hindi sila binabago."
+    },
+    {
+      "term": "isBugLine",
+      "en": "The real function in Hakbang (src/lib/bug-check.ts) that checks if the line number you tapped matches the lesson's bugLine.",
+      "tl": "Ang totoong function sa Hakbang (src/lib/bug-check.ts) na nagche-check kung tugma ang line number na pinindot mo sa bugLine ng lesson."
+    }
+  ],
+  "task": {
+    "question": {
+      "en": "In the diagram, bugLine is 2 and the learner taps line 2 (tappedLine is 2). What does return tappedLine === bugLine give back?",
+      "tl": "Sa diagram, 2 ang bugLine at pinindot ng learner ang line 2 (2 ang tappedLine). Ano ang ibinabalik ng return tappedLine === bugLine?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "true, because 2 === 2 compares two matching numbers",
+          "tl": "true, dahil nagko-compare ang 2 === 2 ng dalawang magkaparehong number"
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "false, because === only works on text inside quotation marks",
+          "tl": "false, dahil gumagana lang ang === sa text na nasa loob ng quotation marks"
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "2, because === gives back the number on the right side",
+          "tl": "2, dahil ibinabalik ng === ang number na nasa kanang bahagi"
+        }
+      }
+    ],
+    "answer": "a",
+    "why": {
+      "en": "The === symbol compares tappedLine (2) and bugLine (2). Since both numbers match, tappedLine === bugLine gives back true.",
+      "tl": "Kino-compare ng === symbol ang tappedLine (2) at bugLine (2). Dahil magkapareho ang dalawang number, true ang ibinabalik ng tappedLine === bugLine."
+    }
+  },
+  "exercise": {
+    "prompt": {
+      "en": "Fill in the blank inside isBugLine so it uses === to compare tappedLine and bugLine.",
+      "tl": "Punan ang patlang sa loob ng isBugLine gamit ang === para i-compare ang tappedLine at bugLine."
+    },
+    "code": "function isBugLine(bugLine, tappedLine) {\n  return ____\n}",
+    "acceptedAnswers": [
+      "tappedLine === bugLine",
+      "bugLine === tappedLine",
+      "tappedLine === bugLine;",
+      "bugLine === tappedLine;"
+    ],
+    "hints": [
+      {
+        "en": "Compare the two input names using three equals signs.",
+        "tl": "I-compare ang dalawang input name gamit ang tatlong equals signs."
+      },
+      {
+        "en": "Put === between tappedLine and bugLine.",
+        "tl": "Maglagay ng === sa pagitan ng tappedLine at bugLine."
+      },
+      {
+        "en": "Type tappedLine === bugLine in the blank.",
+        "tl": "I-type ang tappedLine === bugLine sa patlang."
+      }
+    ]
+  },
+  "bugCheck": {
+    "prompt": {
+      "en": "This function should give back true only when tappedLine and bugLine are the same line. Tap the line with the bug.",
+      "tl": "Dapat magbalik lang ng true ang function na ito kapag parehong line ang tappedLine at bugLine. Pindutin ang line na may bug."
+    },
+    "code": "function isBugLine(bugLine, tappedLine) {\n  return tappedLine = bugLine\n}",
+    "bugLine": 2,
+    "why": {
+      "en": "Line 2 uses a single =, which overwrites tappedLine with bugLine instead of comparing them. It should use === (return tappedLine === bugLine) so it gives back true or false.",
+      "tl": "Isang = lang ang gamit sa line 2, kaya pinapalitan nito ang tappedLine ng laman ng bugLine imbes na i-compare sila. Dapat === ang gamit (return tappedLine === bugLine) para true o false ang i-return nito."
+    }
+  },
+  "check": [
+    {
+      "question": {
+        "en": "In a lesson where bugLine is 4, the learner taps line 1. What does isBugLine(4, 1) return?",
+        "tl": "Sa isang lesson kung saan 4 ang bugLine, pinindot ng learner ang line 1. Ano ang ire-return ng isBugLine(4, 1)?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "false, because 1 === 4 compares two different numbers",
+            "tl": "false, dahil magkaibang number ang kino-compare ng 1 === 4"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "true, because both inputs are numbers",
+            "tl": "true, dahil parehong number ang dalawang input"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "4, because bugLine is larger than tappedLine",
+            "tl": "4, dahil mas malaki ang bugLine kaysa sa tappedLine"
+          }
+        }
+      ],
+      "answer": "a",
+      "why": {
+        "en": "Inside isBugLine(4, 1), tappedLine is 1 and bugLine is 4. Since 1 and 4 do not match, 1 === 4 gives back false.",
+        "tl": "Sa loob ng isBugLine(4, 1), 1 ang tappedLine at 4 ang bugLine. Dahil hindi magkapareho ang 1 at 4, false ang ibinabalik ng 1 === 4."
+      }
+    },
+    {
+      "question": {
+        "en": "In another lesson, what does isBugLine(3, 7) return, and why?",
+        "tl": "Sa isa pang lesson, ano ang ire-return ng isBugLine(3, 7), at bakit?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "3, because bugLine is the first input inside the round brackets ( )",
+            "tl": "3, dahil ang bugLine ang unang input sa loob ng round brackets ( )"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "false, because bugLine is 3 and tappedLine is 7, so 7 === 3 is not a match",
+            "tl": "false, dahil 3 ang bugLine at 7 ang tappedLine, kaya hindi tugma ang 7 === 3"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "true, because 7 is greater than 3",
+            "tl": "true, dahil mas malaki ang 7 kaysa sa 3"
+          }
+        }
+      ],
+      "answer": "b",
+      "why": {
+        "en": "In isBugLine(3, 7), the first input bugLine is 3 and the second input tappedLine is 7. Since 7 and 3 do not match, 7 === 3 returns false.",
+        "tl": "Sa isBugLine(3, 7), 3 ang unang input na bugLine at 7 ang pangalawang input na tappedLine. Dahil hindi magkapareho ang 7 at 3, false ang ire-return ng 7 === 3."
+      }
+    },
+    {
+      "question": {
+        "en": "At a lab front desk, a function checks return ticketNumber === 12 when ticketNumber is 8. What happens to ticketNumber, and what value is returned?",
+        "tl": "Sa front desk ng isang lab, nagche-check ang isang function ng return ticketNumber === 12 kapag 8 ang ticketNumber. Ano ang mangyayari sa ticketNumber, at anong value ang ire-return?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "en": "ticketNumber stays 8, and the function returns false",
+            "tl": "Mananatiling 8 ang ticketNumber, at magre-return ang function ng false"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "en": "ticketNumber changes to 12, and the function returns true",
+            "tl": "Magiging 12 ang ticketNumber, at magre-return ang function ng true"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "en": "ticketNumber changes to false, and the function returns 12",
+            "tl": "Magiging false ang ticketNumber, at magre-return ang function ng 12"
+          }
+        }
+      ],
+      "answer": "a",
+      "why": {
+        "en": "Unlike a single =, the === symbol only compares values without changing ticketNumber. Because 8 and 12 do not match, it returns false.",
+        "tl": "Hindi gaya ng isang =, nagko-compare lang ng values ang === symbol nang hindi binabago ang ticketNumber. Dahil hindi tugma ang 8 at 12, false ang ire-return nito."
+      }
+    }
+  ],
+  "tracer": {
+    "code": "function isBugLine(bugLine, tappedLine) {\n  if (tappedLine === bugLine) {\n    return true\n  }\n  return false\n}",
+    "predict": {
+      "question": {
+        "en": "Before stepping: what does isBugLine return when bugLine is 2 and tappedLine is 3?",
+        "tl": "Bago i-step: ano ang ire-return ng isBugLine kapag 2 ang bugLine at 3 ang tappedLine?"
+      },
+      "answer": {
+        "en": "false, because 3 === 2 is false, so line 3 is skipped and line 5 returns false.",
+        "tl": "false, dahil false ang 3 === 2, kaya lalaktawan ang line 3 at ire-return ng line 5 ang false."
+      }
+    },
+    "steps": [
+      {
+        "line": 1,
+        "vars": {
+          "bugLine": "2",
+          "tappedLine": "3"
+        },
+        "note": {
+          "en": "The function starts with bugLine set to 2 and tappedLine set to 3.",
+          "tl": "Nagsimula ang function kung saan 2 ang bugLine at 3 ang tappedLine."
+        }
+      },
+      {
+        "line": 2,
+        "vars": {
+          "bugLine": "2",
+          "tappedLine": "3"
+        },
+        "condition": "3 === 2 → false",
+        "skippedLines": [
+          3
+        ],
+        "note": {
+          "en": "if runs the lines inside { } only when the check in round brackets ( ) is true. Here 3 === 2 is false, so line 3 is skipped.",
+          "tl": "Pinatatakbo lang ng if ang mga linya sa loob ng { } kapag true ang check sa loob ng round brackets ( ). Dito ay false ang 3 === 2, kaya nilaktawan ang line 3."
+        }
+      },
+      {
+        "line": 5,
+        "vars": {
+          "bugLine": "2",
+          "tappedLine": "3"
+        },
+        "skippedLines": [
+          3
+        ],
+        "note": {
+          "en": "The function runs line 5 and returns false.",
+          "tl": "Pinatakbo ng function ang line 5 at nag-return ng false."
+        }
+      }
+    ]
+  }
+}

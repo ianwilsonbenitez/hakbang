@@ -39,6 +39,7 @@ export const en = {
   nodeValuesAndVariables: 'Values and variables',
   nodeFunctionAndReturn: 'Functions and return',
   nodeHowWebAppsWork: 'How a web app works',
+  nodeComparingWithEquals: 'Comparing with ===',
   nodeDecisionsInCode: 'Decisions in Code',
   nodeSpotTheBug: 'Spot the Bug',
   statusLocked: 'Locked',

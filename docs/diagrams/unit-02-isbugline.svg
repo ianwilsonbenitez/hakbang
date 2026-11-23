@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" role="img" aria-label="Vertical flow diagram from top to bottom: two input numbers (bugLine = 2 and tappedLine = 2) go into the function box isBugLine(bugLine, tappedLine), which uses === to compare tappedLine === bugLine and returns true.">
+  <title>Vertical flow diagram from top to bottom: two input numbers (bugLine = 2 and tappedLine = 2) go into the function box isBugLine(bugLine, tappedLine), which uses === to compare tappedLine === bugLine and returns true.</title>
+  <g fill="currentColor" font-family="Inter, system-ui, -apple-system, sans-serif" style="font-variant-ligatures: none; font-feature-settings: 'liga' 0, 'calt' 0">
+    <!-- Box 1: Inputs -->
+    <rect x="24" y="16" width="312" height="82" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="44" text-anchor="middle" font-size="16" font-weight="600">1. Two inputs in ( )</text>
+    <text x="180" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" opacity="0.85">bugLine = 2</text>
+    <text x="180" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" opacity="0.85">tappedLine = 2</text>
+
+    <!-- Arrow 1: Inputs -> Function -->
+    <line x1="180" y1="104" x2="180" y2="142" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,135 180,143 186,135" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="128" text-anchor="start" font-size="14" opacity="0.82">go into function</text>
+
+    <!-- Box 2: Function box -->
+    <rect x="24" y="150" width="312" height="114" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
+    <text x="180" y="178" text-anchor="middle" font-size="16" font-weight="600">2. Function: isBugLine</text>
+    <text x="180" y="204" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">(bugLine, tappedLine)</text>
+    <text x="180" y="228" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">return tappedLine === bugLine</text>
+    <text x="180" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">2 === 2 is true</text>
+
+    <!-- Arrow 2: Function -> Output -->
+    <line x1="180" y1="270" x2="180" y2="310" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,303 180,311 186,303" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="294" text-anchor="start" font-size="14" opacity="0.82">=== gives back</text>
+
+    <!-- Box 3: Output -->
+    <rect x="24" y="318" width="312" height="68" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="346" text-anchor="middle" font-size="16" font-weight="600">3. True or false out</text>
+    <text x="180" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">true</text>
+  </g>
+</svg>
