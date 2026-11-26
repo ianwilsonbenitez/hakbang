@@ -70,3 +70,9 @@ body {
   font-size: 16px;
   line-height: 1.6;
 }
+
+/* Skill map panel: 1px dots every 20px (docs/design-tokens.md). Uses a theme colour, so it follows light and dark. */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--hk-border-strong) 1px, transparent 1px);
+  background-size: 20px 20px;
+}

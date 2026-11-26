@@ -7,7 +7,11 @@ import type { Progress } from './progress'
 import {
   SKILL_COLUMNS,
   SKILL_NODES,
+  countLevelsDone,
+  getDefaultSelectedNode,
+  getLessonAction,
   getLessonParts,
+  getNodeParts,
   getNodeStatus,
   getNodesInColumn,
   type SkillNode,
@@ -139,5 +143,77 @@ describe('getLessonParts', () => {
   it('sees a lesson without exercise and bug check', () => {
     const plain = { ...lesson, exercise: undefined, bugCheck: undefined }
     expect(getLessonParts(plain)).toEqual({ hasExercise: false, hasBugCheck: false })
+  })
+})
+
+describe('getNodeParts', () => {
+  it('gives no parts to a node without a lesson', () => {
+    expect(getNodeParts(nodeWithoutLesson, { 'lesson-a': fullLesson })).toEqual(plainLesson)
+  })
+
+  it('gives the lesson its own parts', () => {
+    expect(getNodeParts(nodeWithLesson, { 'lesson-a': fullLesson })).toEqual(fullLesson)
+  })
+
+  it('gives no parts when the lesson is missing from the list', () => {
+    expect(getNodeParts(nodeWithLesson, {})).toEqual(plainLesson)
+  })
+})
+
+describe('getLessonAction', () => {
+  it('has no button for a locked node', () => {
+    expect(getLessonAction('locked')).toBeNull()
+  })
+
+  it('says start, continue or review for the other statuses', () => {
+    expect(getLessonAction('notStarted')).toBe('start')
+    expect(getLessonAction('inProgress')).toBe('continue')
+    expect(getLessonAction('finished')).toBe('review')
+  })
+})
+
+describe('countLevelsDone', () => {
+  it('counts 0 when no pip is on', () => {
+    expect(countLevelsDone({ understands: false, builds: false, debugs: false })).toBe(0)
+  })
+
+  it('counts only the pips that are on', () => {
+    expect(countLevelsDone({ understands: true, builds: false, debugs: true })).toBe(2)
+  })
+
+  it('counts 3 when all pips are on', () => {
+    expect(countLevelsDone({ understands: true, builds: true, debugs: true })).toBe(3)
+  })
+})
+
+describe('getDefaultSelectedNode', () => {
+  const nodeA: SkillNode = { ...SKILL_NODES[0], id: 'a', lessonId: 'lesson-a' }
+  const nodeB: SkillNode = { ...SKILL_NODES[0], id: 'b', lessonId: 'lesson-b' }
+  const lockedNode: SkillNode = { ...SKILL_NODES[0], id: 'locked', lessonId: null }
+  const parts = { 'lesson-a': plainLesson, 'lesson-b': plainLesson }
+  // With no exercise and no bug check, a passed task and a check score of 2 finish a lesson.
+  const finished = { taskPassed: true, checkBestScore: 2 }
+
+  it('picks the first lesson when nothing is done yet', () => {
+    const progress: Progress = { schemaVersion: 1, lessons: {} }
+    expect(getDefaultSelectedNode([lockedNode, nodeA, nodeB], progress, parts)?.id).toBe('a')
+  })
+
+  it('skips a finished lesson and picks the next one', () => {
+    const progress: Progress = { schemaVersion: 1, lessons: { 'lesson-a': finished } }
+    expect(getDefaultSelectedNode([nodeA, nodeB], progress, parts)?.id).toBe('b')
+  })
+
+  it('picks the first lesson again when every lesson is finished', () => {
+    const progress: Progress = {
+      schemaVersion: 1,
+      lessons: { 'lesson-a': finished, 'lesson-b': finished },
+    }
+    expect(getDefaultSelectedNode([nodeA, nodeB], progress, parts)?.id).toBe('a')
+  })
+
+  it('picks nothing when no node has a lesson', () => {
+    const progress: Progress = { schemaVersion: 1, lessons: {} }
+    expect(getDefaultSelectedNode([lockedNode], progress, parts)).toBeUndefined()
   })
 })

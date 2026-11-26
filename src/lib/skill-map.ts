@@ -1,6 +1,6 @@
 import type { en } from '../i18n/en'
 import type { Lesson } from './lesson'
-import type { LessonParts } from './mastery'
+import type { LessonParts, Mastery } from './mastery'
 import type { Progress } from './progress'
 import { getMastery, isFinished } from './mastery'
 
@@ -89,4 +89,42 @@ export function getNodeStatus(node: SkillNode, progress: Progress, parts: Lesson
   }
 
   return 'notStarted'
+}
+
+// A node without a lesson, or a lesson that is missing from the library, has no optional parts.
+const NO_PARTS: LessonParts = { hasExercise: false, hasBugCheck: false }
+
+export function getNodeParts(node: SkillNode, partsByLessonId: Record<string, LessonParts>): LessonParts {
+  if (node.lessonId === null) return NO_PARTS
+  return partsByLessonId[node.lessonId] ?? NO_PARTS
+}
+
+// What the big button in the selected-skill panel says. A locked node has no button.
+export type LessonAction = 'start' | 'continue' | 'review'
+
+export function getLessonAction(status: NodeStatus): LessonAction | null {
+  if (status === 'locked') return null
+  if (status === 'notStarted') return 'start'
+  if (status === 'inProgress') return 'continue'
+  return 'review'
+}
+
+// How many of the three pips are on, for the small "2 of 3" text under the pips.
+export function countLevelsDone(mastery: Mastery): number {
+  return [mastery.understands, mastery.builds, mastery.debugs].filter((on) => on).length
+}
+
+// The skill the panel shows before the learner taps one: the first lesson that is
+// not finished yet, so "Continue lesson" is one tap away. If every lesson is finished,
+// the first lesson. If no node has a lesson, nothing.
+export function getDefaultSelectedNode(
+  nodes: SkillNode[],
+  progress: Progress,
+  partsByLessonId: Record<string, LessonParts>,
+): SkillNode | undefined {
+  const withLesson = nodes.filter((node) => node.lessonId !== null)
+  const notFinished = withLesson.find(
+    (node) => getNodeStatus(node, progress, getNodeParts(node, partsByLessonId)) !== 'finished',
+  )
+  return notFinished ?? withLesson[0]
 }
