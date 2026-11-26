@@ -28,8 +28,8 @@ function progressWith(entry: Progress['lessons'][string]): Progress {
 }
 
 describe('SKILL_NODES', () => {
-  it('has exactly six nodes', () => {
-    expect(SKILL_NODES).toHaveLength(6)
+  it('has exactly seven nodes', () => {
+    expect(SKILL_NODES).toHaveLength(7)
   })
 
   it('gives every node its own id', () => {
@@ -56,9 +56,9 @@ describe('SKILL_NODES', () => {
 })
 
 describe('getNodeStatus', () => {
-  it('is locked when the node has no lesson, even if progress exists', () => {
+  it('is coming soon when the node has no lesson, even if progress exists', () => {
     const progress = progressWith({ taskPassed: true })
-    expect(getNodeStatus(nodeWithoutLesson, progress, fullLesson)).toBe('locked')
+    expect(getNodeStatus(nodeWithoutLesson, progress, fullLesson)).toBe('comingSoon')
   })
 
   it('is not started when nothing is saved for the lesson', () => {
@@ -161,8 +161,8 @@ describe('getNodeParts', () => {
 })
 
 describe('getLessonAction', () => {
-  it('has no button for a locked node', () => {
-    expect(getLessonAction('locked')).toBeNull()
+  it('has no button for a coming-soon node', () => {
+    expect(getLessonAction('comingSoon')).toBeNull()
   })
 
   it('says start, continue or review for the other statuses', () => {
@@ -189,14 +189,14 @@ describe('countLevelsDone', () => {
 describe('getDefaultSelectedNode', () => {
   const nodeA: SkillNode = { ...SKILL_NODES[0], id: 'a', lessonId: 'lesson-a' }
   const nodeB: SkillNode = { ...SKILL_NODES[0], id: 'b', lessonId: 'lesson-b' }
-  const lockedNode: SkillNode = { ...SKILL_NODES[0], id: 'locked', lessonId: null }
+  const comingSoonNode: SkillNode = { ...SKILL_NODES[0], id: 'comingSoon', lessonId: null }
   const parts = { 'lesson-a': plainLesson, 'lesson-b': plainLesson }
   // With no exercise and no bug check, a passed task and a check score of 2 finish a lesson.
   const finished = { taskPassed: true, checkBestScore: 2 }
 
   it('picks the first lesson when nothing is done yet', () => {
     const progress: Progress = { schemaVersion: 1, lessons: {} }
-    expect(getDefaultSelectedNode([lockedNode, nodeA, nodeB], progress, parts)?.id).toBe('a')
+    expect(getDefaultSelectedNode([comingSoonNode, nodeA, nodeB], progress, parts)?.id).toBe('a')
   })
 
   it('skips a finished lesson and picks the next one', () => {
@@ -214,6 +214,6 @@ describe('getDefaultSelectedNode', () => {
 
   it('picks nothing when no node has a lesson', () => {
     const progress: Progress = { schemaVersion: 1, lessons: {} }
-    expect(getDefaultSelectedNode([lockedNode], progress, parts)).toBeUndefined()
+    expect(getDefaultSelectedNode([comingSoonNode], progress, parts)).toBeUndefined()
   })
 })

@@ -24,7 +24,7 @@ type SkillMapScreenProps = {
 }
 
 const statusKeys = {
-  locked: 'statusLocked',
+  comingSoon: 'statusComingSoon',
   notStarted: 'statusNotStarted',
   inProgress: 'statusInProgress',
   finished: 'statusFinished',
@@ -43,7 +43,7 @@ function nodeClass(status: NodeStatus, selected: boolean): string {
   const ring = selected ? 'ring-2 ring-accent ' : ''
   if (status === 'finished') return base + ring + 'border-success bg-surface-raised'
   if (status === 'inProgress') return base + ring + 'border-accent bg-surface-raised'
-  if (status === 'locked') return base + 'border-border bg-surface opacity-70'
+  if (status === 'comingSoon') return base + 'border-border bg-surface opacity-70'
   return base + ring + 'border-border-strong bg-surface'
 }
 
@@ -110,7 +110,7 @@ function NodeCard({
     </>
   )
 
-  // A locked node has no lesson yet, so it is a plain box and not a button.
+  // A coming-soon node has no lesson yet, so it is a plain box and not a button.
   if (node.lessonId === null) {
     return <div className={nodeClass(status, false)}>{content}</div>
   }

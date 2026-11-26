@@ -16,20 +16,16 @@
   },
   "explain": [
     {
-      "en": "When you open Hakbang, the browser checks your saved language setting and passes it into the round brackets ( ) of a real function named parseLanguage (from src/lib/language.ts). If the saved value is missing—like null when nothing is saved yet—or broken, parseLanguage safely falls back to \"en\" so the app still shows English instead of crashing.",
-      "tl": "Pagbukas mo ng Hakbang, tinitingnan ng browser ang naka-save mong language setting at ipinapasa ito sa loob ng round brackets ( ) ng totoong function na parseLanguage (mula sa src/lib/language.ts). Kapag wala pang naka-save na value—gaya ng null kapag bagong bukas pa lang—o sira ang nakasulat, babagsak nang ligtas ang parseLanguage sa \"en\" para English pa rin ang ipakita ng app imbes na mag-crash."
+      "en": "When you open Hakbang, Hakbang reads your saved language setting and passes it into the round brackets ( ) of a real function named parseLanguage (from src/lib/language.ts). If the saved value is missing—like null when nothing is saved yet—or broken, parseLanguage safely falls back to \"en\" so the app still shows English instead of crashing.",
+      "tl": "Pagbukas mo ng Hakbang, binabasa ng Hakbang ang naka-save mong language setting at ipinapasa ito sa loob ng round brackets ( ) ng totoong function na parseLanguage (mula sa src/lib/language.ts). Kapag wala pang naka-save na value—gaya ng null kapag bagong bukas pa lang—o sira ang nakasulat, ligtas na babagsak ang parseLanguage sa \"en\" para English pa rin ang ipakita ng app imbes na mag-crash."
     },
     {
-      "en": "Remember from Unit 2 that === checks for an exact match—including uppercase and lowercase letters—and gives back true or false (so \"tl\" === \"tl\" is true, while \"TL\" === \"tl\" is false). Also note that text can use double quotes \"tl\" or single quotes 'tl', and a ; at the end simply marks the end of a line.",
-      "tl": "Tandaan mula sa Unit 2 na eksaktong pagkakatugma ang chine-check ng ===—pati malalaki at maliliit na titik—at nagbibigay ito ng true o false (kaya true ang \"tl\" === \"tl\", habang false naman ang \"TL\" === \"tl\"). Tandaan din na pwedeng isulat ang text sa double quotes \"tl\" o single quotes 'tl', at ang ; sa dulo ay palatandaan lang na tapos na ang linya."
+      "en": "Remember === from Unit 2: it compares two values. It also works on text, and it is exact, so \"TL\" === \"tl\" is false.",
+      "tl": "Tandaan ang === mula sa Unit 2: nagko-compare ito ng dalawang value. Gumagana rin ito sa text, at eksakto ang check nito, kaya false ang \"TL\" === \"tl\"."
     },
     {
-      "en": "The new symbol in this lesson is the ? : pair (called a ternary), written as condition ? valueIfTrue : valueIfFalse. When the condition before ? is true, it picks the first value right after ?; when the condition is false, it skips the first value and picks the second value after :.",
-      "tl": "Ang bagong symbol sa lesson na ito ay ang pares na ? : (tinatawag na ternary), na isinusulat bilang condition ? valueIfTrue : valueIfFalse. Kapag true ang condition bago ang ?, pinipili nito ang unang value pagkatapos ng ?; kapag false naman ang condition, nilalaktawan nito ang unang value at pinipili ang pangalawang value pagkatapos ng :."
-    },
-    {
-      "en": "Inside parseLanguage, the line return value === \"tl\" ? \"tl\" : \"en\"; checks if value is \"tl\", picks \"tl\" when true or \"en\" for anything else, and returns that picked value right away. The tracer splits the same ? : expression across lines so you can step through which branch runs and which line gets skipped.",
-      "tl": "Sa loob ng parseLanguage, chine-check ng linyang return value === \"tl\" ? \"tl\" : \"en\"; kung \"tl\" ba ang value, pinipili ang \"tl\" kapag true o \"en\" kapag kahit anong iba pa, at agad nire-return ang napiling value. Hinati ng tracer sa ilang linya ang parehong ? : expression para makita mo step-by-step kung aling branch ang tatakbo at aling line ang lalaktawan."
+      "en": "The new symbol in this lesson is ? : (called a ternary), written as condition ? valueIfTrue : valueIfFalse—for example, return value === \"tl\" ? \"tl\" : \"en\". When the condition before ? is true, it picks \"tl\" right after ?; when the condition is false, it skips \"tl\" and picks \"en\" after :. The tracer splits this same ? : expression across lines so you can see which value gets picked and which line gets skipped.",
+      "tl": "Ang bagong symbol sa lesson na ito ay ang ? : (tinatawag na ternary), na isinusulat bilang condition ? valueIfTrue : valueIfFalse—halimbawa, return value === \"tl\" ? \"tl\" : \"en\". Kapag true ang condition bago ang ?, pinipili nito ang \"tl\" pagkatapos ng ?; kapag false naman ang condition, nilalaktawan nito ang \"tl\" at pinipili ang \"en\" pagkatapos ng :. Hinati ng tracer sa ilang linya ang parehong ? : expression para makita mo kung aling value ang mapipili at aling line ang lalaktawan."
     }
   ],
   "glossary": [
@@ -92,24 +88,22 @@
     "acceptedAnswers": [
       "\"tl\" : \"en\"",
       "\"tl\" : \"en\";",
-      "'tl' : 'en'",
-      "'tl' : 'en';",
-      "\"tl\" : 'en'",
-      "\"tl\" : 'en';",
-      "'tl' : \"en\"",
-      "'tl' : \"en\";",
+      "\"tl\" : \"en\" ;",
       "\"tl\":\"en\"",
       "\"tl\":\"en\";",
+      "'tl' : 'en'",
+      "'tl' : 'en';",
+      "'tl' : 'en' ;",
       "'tl':'en'",
       "'tl':'en';",
-      "\"tl\": \"en\"",
-      "\"tl\": \"en\";",
-      "'tl': 'en'",
-      "'tl': 'en';",
-      "\"tl\" :\"en\"",
-      "\"tl\" :\"en\";",
-      "'tl' :'en'",
-      "'tl' :'en';"
+      "\"tl\" : 'en'",
+      "\"tl\" : 'en';",
+      "\"tl\":'en'",
+      "\"tl\":'en';",
+      "'tl' : \"en\"",
+      "'tl' : \"en\";",
+      "'tl':\"en\"",
+      "'tl':\"en\";"
     ],
     "hints": [
       {
@@ -121,8 +115,8 @@
         "tl": "Ilagay ang \"tl\" bago ang : at ang \"en\" pagkatapos ng :."
       },
       {
-        "en": "Type \"tl\" : \"en\"; in the blank.",
-        "tl": "I-type ang \"tl\" : \"en\"; sa patlang."
+        "en": "Type \"tl\" : \"en\" in the blank.",
+        "tl": "I-type ang \"tl\" : \"en\" sa patlang."
       }
     ]
   },
@@ -131,11 +125,11 @@
       "en": "This function should return \"tl\" when value is \"tl\", and \"en\" for any other value. Tap the line with the bug.",
       "tl": "Dapat mag-return ng \"tl\" ang function na ito kapag \"tl\" ang value, at \"en\" naman para sa kahit anong ibang value. Pindutin ang line na may bug."
     },
-    "code": "function parseLanguage(value) {\n  return value === \"tl\" ? \"en\" : \"tl\";\n}",
+    "code": "function parseLanguage(value) {\n  return value === \"tl\" ? \"en\" : \"tl\"\n}",
     "bugLine": 2,
     "why": {
-      "en": "Line 2 swaps the two values, so it returns \"en\" when value is \"tl\" and \"tl\" for everything else. It should put \"tl\" right after ? and \"en\" after : (return value === \"tl\" ? \"tl\" : \"en\";).",
-      "tl": "Nagkapalit ang dalawang value sa line 2, kaya \"en\" ang nire-return nito kapag \"tl\" ang value at \"tl\" naman sa lahat ng iba pa. Dapat nasa kanan agad ng ? ang \"tl\" at nasa kanan ng : ang \"en\" (return value === \"tl\" ? \"tl\" : \"en\";)."
+      "en": "Line 2 swaps the two values, so it returns \"en\" when value is \"tl\" and \"tl\" for everything else. It should put \"tl\" right after ? and \"en\" after : (return value === \"tl\" ? \"tl\" : \"en\").",
+      "tl": "Nagkapalit ang dalawang value sa line 2, kaya \"en\" ang nire-return nito kapag \"tl\" ang value at \"tl\" naman sa lahat ng iba pa. Dapat nasa kanan agad ng ? ang \"tl\" at nasa kanan ng : ang \"en\" (return value === \"tl\" ? \"tl\" : \"en\")."
     }
   },
   "check": [
@@ -162,7 +156,7 @@
         {
           "id": "c",
           "text": {
-            "en": "\"tl\", because null matches any text inside === ",
+            "en": "\"tl\", because null matches any text inside ===",
             "tl": "\"tl\", dahil tumutugma ang null sa kahit anong text sa loob ng ==="
           }
         }
@@ -175,36 +169,36 @@
     },
     {
       "question": {
-        "en": "Someone manually edits browser storage and types \"TL\" in capital letters. What does parseLanguage(\"TL\") return, and why?",
-        "tl": "May nag-edit ng browser storage at nag-type ng \"TL\" gamit ang malalaking titik. Ano ang ire-return ng parseLanguage(\"TL\"), at bakit?"
+        "en": "Someone edits the saved setting and types \"Tl\" with a capital T. What does parseLanguage(\"Tl\") return, and why?",
+        "tl": "May nag-edit ng naka-save na setting at nag-type ng \"Tl\" na malaki ang titik T. Ano ang ire-return ng parseLanguage(\"Tl\"), at bakit?"
       },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "\"tl\", because === ignores uppercase and lowercase letters",
+            "en": "\"tl\", because === ignores whether letters are capital or small",
             "tl": "\"tl\", dahil hindi pinapansin ng === kung malaki o maliit ang titik"
           }
         },
         {
           "id": "b",
           "text": {
-            "en": "\"en\", because === checks exact letter case, so \"TL\" === \"tl\" is false",
-            "tl": "\"en\", dahil chine-check ng === ang eksaktong laki ng titik, kaya false ang \"TL\" === \"tl\""
+            "en": "\"en\", because === is exact, so \"Tl\" === \"tl\" is false",
+            "tl": "\"en\", dahil eksakto ang ===, kaya false ang \"Tl\" === \"tl\""
           }
         },
         {
           "id": "c",
           "text": {
-            "en": "\"TL\", because ? : returns whatever capital letters were typed in",
-            "tl": "\"TL\", dahil kung ano ang tinype na malalaking titik ay iyon din ang ire-return ng ? :"
+            "en": "\"Tl\", because ? : returns whatever value was passed in",
+            "tl": "\"Tl\", dahil kung anong value ang ipinasa ay iyon din ang ire-return ng ? :"
           }
         }
       ],
       "answer": "b",
       "why": {
-        "en": "Because === checks for an exact match, \"TL\" and \"tl\" are different. The condition \"TL\" === \"tl\" is false, so ? : picks \"en\".",
-        "tl": "Dahil eksaktong pagkakatugma ang chine-check ng ===, magkaiba ang \"TL\" at \"tl\". False ang condition na \"TL\" === \"tl\", kaya \"en\" ang pinipili ng ? :."
+        "en": "Because === checks for an exact match, \"Tl\" and \"tl\" do not match. The condition \"Tl\" === \"tl\" is false, so ? : picks \"en\".",
+        "tl": "Dahil eksaktong pagkakatugma ang chine-check ng ===, hindi tugma ang \"Tl\" at \"tl\". False ang condition na \"Tl\" === \"tl\", kaya \"en\" ang pinipili ng ? :."
       }
     },
     {
@@ -243,7 +237,7 @@
     }
   ],
   "tracer": {
-    "code": "function parseLanguage(value) {\n  return value === \"tl\"\n    ? \"tl\"\n    : \"en\";\n}",
+    "code": "function parseLanguage(value) {\n  return value === \"tl\"\n    ? \"tl\"\n    : \"en\"\n}",
     "predict": {
       "question": {
         "en": "Before stepping: what does parseLanguage return when value is \"tl\"?",
@@ -285,8 +279,8 @@
           4
         ],
         "note": {
-          "en": "Because the condition was true, ? : picks \"tl\" after ?, skips line 4 after :, and returns \"tl\".",
-          "tl": "Dahil true ang condition, pinili ng ? : ang \"tl\" pagkatapos ng ?, nilaktawan ang line 4 pagkatapos ng :, at ni-return ang \"tl\"."
+          "en": "Because the condition was true, ? : picks \"tl\" on line 3 and skips line 4, and \"tl\" is the value that return on line 2 gives back.",
+          "tl": "Dahil true ang condition, pinili ng ? : ang \"tl\" sa line 3 at nilaktawan ang line 4, at \"tl\" ang value na ibinabalik ng return sa line 2."
         }
       }
     ]

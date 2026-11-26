@@ -6,14 +6,14 @@ import { getMastery, isFinished } from './mastery'
 
 export type SkillColumn = 'foundations' | 'javascript' | 'debugging' | 'react'
 
-export type NodeStatus = 'locked' | 'notStarted' | 'inProgress' | 'finished'
+export type NodeStatus = 'comingSoon' | 'notStarted' | 'inProgress' | 'finished'
 
 export type SkillNode = {
   id: string
   column: SkillColumn
   // A key of en.ts, so the title comes from the language files and not from here.
   titleKey: keyof typeof en
-  // null means the lesson is not written yet, so the node stays locked.
+  // null means the lesson is not written yet, so the node says "Coming soon".
   lessonId: string | null
 }
 
@@ -42,6 +42,12 @@ export const SKILL_NODES: SkillNode[] = [
     titleKey: 'nodeComparingWithEquals',
     lessonId: 'unit-02-isbugline',
   },
+  {
+    id: 'choosing-with-ternary',
+    column: 'javascript',
+    titleKey: 'nodeChoosingWithTernary',
+    lessonId: 'unit-03-parselanguage',
+  },
   { id: 'decisions-in-code', column: 'javascript', titleKey: 'nodeDecisionsInCode', lessonId: null },
   { id: 'spot-the-bug', column: 'debugging', titleKey: 'nodeSpotTheBug', lessonId: null },
 ]
@@ -68,13 +74,13 @@ export function getLessonParts(lesson: Lesson): LessonParts {
 
 // The status of a node on the skill map. The questions are asked in this order,
 // and the first one that fits decides the answer:
-//   1. the node has no lesson yet            -> 'locked'
+//   1. the node has no lesson yet            -> 'comingSoon'
 //   2. all three pips are on                 -> 'finished'
 //   3. some pips are on, but not all of them -> 'inProgress'
 //   4. nothing else fits (no pip is on)      -> 'notStarted'
 export function getNodeStatus(node: SkillNode, progress: Progress, parts: LessonParts): NodeStatus {
   if (node.lessonId === null) {
-    return 'locked'
+    return 'comingSoon'
   }
 
   const entry = progress.lessons[node.lessonId]
@@ -99,11 +105,11 @@ export function getNodeParts(node: SkillNode, partsByLessonId: Record<string, Le
   return partsByLessonId[node.lessonId] ?? NO_PARTS
 }
 
-// What the big button in the selected-skill panel says. A locked node has no button.
+// What the big button in the selected-skill panel says. A coming-soon node has no button.
 export type LessonAction = 'start' | 'continue' | 'review'
 
 export function getLessonAction(status: NodeStatus): LessonAction | null {
-  if (status === 'locked') return null
+  if (status === 'comingSoon') return null
   if (status === 'notStarted') return 'start'
   if (status === 'inProgress') return 'continue'
   return 'review'
