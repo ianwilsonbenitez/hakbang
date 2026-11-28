@@ -92,14 +92,14 @@ This answers the Milestone 1 line "Ian can explain, without AI, what each main f
 21. **(done)** Top bar with the language and theme switches at the top right (today they are large buttons under the title, with a "Theme: Dark" line).
 22. **(done)** Skill map: dot-grid background, the selected-skill panel with its 3 steps and a "Continue lesson" button, and pip labels that can be read on a phone (`title` does not show on touch).
 23. **(done)** A node with no lesson says "Coming soon", not "Locked". Nothing unlocks it, so "Locked" is misleading.
-24. Exercise panel: when already solved, show the accepted answer inside the code instead of an empty box.
+24. **(done)** Exercise panel: when already solved, show the accepted answer inside the code instead of an empty box.
 
 ## Phase H. Content notes for Gemini (Ian passes these on)
 
-25. **Unit 1 jumps.** The explanation is about browser, server and database, but the exercise asks the learner to type `result.verified === true`. `if`, `===` and the dot are only in the glossary. Either move the code parts to Unit 0, or add them to the explanation with one example each.
-26. The bug check prompt gives the answer away ("=== checks, a single = overwrites"). Move that sentence to `why`.
-27. Unit 0 as two short lessons (values, then function and return), as already agreed.
-28. Validator additions on Claude's side: allow `unit: 0`; reject two options with the same `id`; reject an exercise whose `code` has no `____`.
+25. **(done)** **Unit 1 jumps.** The explanation is about browser, server and database, but the exercise asks the learner to type `result.verified === true`. `if`, `===` and the dot are only in the glossary. Either move the code parts to Unit 0, or add them to the explanation with one example each.
+26. **(done)** The bug check prompt gives the answer away ("=== checks, a single = overwrites"). Move that sentence to `why`.
+27. **(done)** Unit 0 as two short lessons (values, then function and return), as already agreed.
+28. **(done)** Validator additions on Claude's side: allow `unit: 0`; reject two options with the same `id`; reject an exercise whose `code` has no `____`.
 
 ## Phase I. Later
 
