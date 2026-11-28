@@ -16,20 +16,20 @@
   },
   "explain": [
     {
-      "en": "Every lesson exercise in Hakbang has 3 hints. Every time you tap \"Show hint\", Hakbang runs a real function named unlockNextHint (from src/lib/exercise.ts) to update your hint count. In the code, const MAX_HINTS = 3 stores the fixed limit of 3 in a name that never changes.",
-      "tl": "Bawat exercise sa Hakbang ay may 3 hints. Tuwing pinipindot mo ang \"Show hint\", nagpapatakbo ang Hakbang ng totoong function na unlockNextHint (mula sa src/lib/exercise.ts) para i-update ang bilang ng hints mo. Sa code, itinatabi ng const MAX_HINTS = 3 ang fixed limit na 3 sa isang pangalan na hindi nagbabago."
+      "en": "Every lesson exercise in Hakbang has 3 hints. Every time you tap \"Show next hint\", Hakbang runs a real function named unlockNextHint (from src/lib/exercise.ts) to update your hint count. In the code, const MAX_HINTS = 3 saves the fixed limit of 3 in a name that never changes.",
+      "tl": "Bawat exercise sa Hakbang ay may 3 hints. Tuwing pinipindot mo ang \"Show next hint\", nagpapatakbo ang Hakbang ng totoong function na unlockNextHint (mula sa src/lib/exercise.ts) para i-update ang bilang ng hints mo. Sa code, sine-save ng const MAX_HINTS = 3 ang fixed limit na 3 sa isang pangalan na hindi nagbabago."
     },
     {
-      "en": "Inside the function, + adds two numbers together: hintsUsed + 1 adds 1 to the current count (for example, 0 + 1 gives 1). Without a limit, tapping again at 3 would give 3 + 1, which is 4—even though there is no 4th hint.",
-      "tl": "Sa loob ng function, pinagsasama ng + ang dalawang number: ang hintsUsed + 1 ay nagdadagdag ng 1 sa kasalukuyang bilang (halimbawa, 1 ang bigay ng 0 + 1). Kung walang limit, ang pagpindot ulit kapag nasa 3 na ay magbibigay ng 3 + 1 na 4—kahit wala namang pang-apat na hint."
+      "en": "Inside the function, + adds two numbers together: hintsUsed + 1 adds 1 to the current count (for example, 0 + 1 gives 1). Without a limit, calling the function again at 3 would give 3 + 1, which is 4—even though there is no hint 4. Hakbang also disables the button at 3, and Math.min acts as a second safety net.",
+      "tl": "Sa loob ng function, pinagsasama ng + ang dalawang number: ang hintsUsed + 1 ay nagdadagdag ng 1 sa kasalukuyang bilang (halimbawa, 1 ang bigay ng 0 + 1). Kung walang limit, ang pagtawag ulit sa function kapag nasa 3 na ay magbibigay ng 3 + 1 na 4—kahit wala namang hint 4. Naka-disable na rin ang button kapag nasa 3 na, at ang Math.min ang pangalawang safety net."
     },
     {
       "en": "To set a ceiling—a top limit a number can never go past—the code uses Math.min(a, b). Math.min compares two numbers inside its round brackets ( ) and gives back the smaller one (or that same number when both are equal): Math.min(2, 3) gives 2, Math.min(3, 3) gives 3, and Math.min(5, 3) gives 3.",
-      "tl": "Para maglagay ng ceiling—isang pinakamataas na limit na hindi kailanman malalampasan ng number—ginagamit ng code ang Math.min(a, b). Kino-compare ng Math.min ang dalawang number sa loob ng round brackets ( ) nito at ibinabalik ang mas maliit (o iyong parehong number kapag pantay sila): 2 ang bigay ng Math.min(2, 3), 3 ang Math.min(3, 3), at 3 din ang Math.min(5, 3)."
+      "tl": "Para maglagay ng ceiling—isang pinakamataas na limit na hindi kailanman malalampasan ng number—ginagamit ng code ang Math.min(a, b). Kino-compare ng Math.min ang dalawang number sa loob ng round brackets ( ) nito at ibinabalik ang mas maliit (o parehong number kapag pareho sila): 2 ang bigay ng Math.min(2, 3), 3 ang Math.min(3, 3), at 3 din ang Math.min(5, 3)."
     },
     {
-      "en": "Putting both steps together, return Math.min(hintsUsed + 1, MAX_HINTS) adds 1 and caps the result at 3 so hintsUsed moves 0, 1, 2, 3 and stops at 3. Be careful not to mix up Math.min with Math.max(a, b), which picks the larger number instead (for example, Math.max(1, 3) jumps straight to 3).",
-      "tl": "Kapag pinagsama ang dalawang step, ang return Math.min(hintsUsed + 1, MAX_HINTS) ay nagdadagdag ng 1 at nililimitahan ang resulta sa 3 kaya umaakyat ang hintsUsed mula 0, 1, 2, 3 at humihinto na sa 3. Huwag ipagpalit ang Math.min sa Math.max(a, b), na ang mas malaking number naman ang pinipili (halimbawa, lundag agad sa 3 ang Math.max(1, 3))."
+      "en": "Putting both steps together, return Math.min(hintsUsed + 1, MAX_HINTS) adds 1 and caps the result at 3 so hintsUsed moves 0, 1, 2, 3 and stops at 3. Be careful not to mix up Math.min with Math.max(a, b), which picks the larger number instead (for example, Math.max(1, 3) goes straight to 3).",
+      "tl": "Kapag pinagsama ang dalawang step, ang return Math.min(hintsUsed + 1, MAX_HINTS) ay nagdadagdag ng 1 at nililimitahan ang resulta sa 3 kaya umaakyat ang hintsUsed mula 0, 1, 2, 3 at humihinto na sa 3. Huwag ipagpalit ang Math.min sa Math.max(a, b), na ang mas malaking number naman ang pinipili (halimbawa, diretso sa 3 ang Math.max(1, 3))."
     }
   ],
   "glossary": [
@@ -58,22 +58,22 @@
       {
         "id": "a",
         "text": {
-          "en": "5, because Math.min picks the smaller number so the order stops at the ceiling of 5",
-          "tl": "5, dahil pinipili ng Math.min ang mas maliit na number kaya humihinto ang order sa ceiling na 5"
+          "en": "5, because Math.min picks the smaller of the two numbers",
+          "tl": "5, dahil pinipili ng Math.min ang mas maliit sa dalawang number"
         }
       },
       {
         "id": "b",
         "text": {
-          "en": "8, because Math.min always keeps the first number inside the round brackets ( )",
-          "tl": "8, dahil laging pinapanatili ng Math.min ang unang number sa loob ng round brackets ( )"
+          "en": "8, because Math.min always keeps the first number passed in",
+          "tl": "8, dahil laging pinipili ng Math.min ang unang number sa loob"
         }
       },
       {
         "id": "c",
         "text": {
-          "en": "13, because Math.min adds both numbers together",
-          "tl": "13, dahil pinagsasama ng Math.min ang dalawang number"
+          "en": "13, because Math.min adds both numbers inside ( ) together",
+          "tl": "13, dahil pinagsasama ng Math.min ang dalawang number sa loob"
         }
       }
     ],
@@ -99,9 +99,7 @@
       "Math.min(MAX_HINTS, hintsUsed+1)",
       "Math.min(MAX_HINTS,hintsUsed+1)",
       "Math.min(hintsUsed + 1,MAX_HINTS)",
-      "Math.min(MAX_HINTS,hintsUsed + 1)",
-      "Math.min(hintsUsed + 1, MAX_HINTS);",
-      "Math.min(MAX_HINTS, hintsUsed + 1);"
+      "Math.min(MAX_HINTS,hintsUsed + 1)"
     ],
     "hints": [
       {
@@ -126,36 +124,36 @@
     "code": "const MAX_HINTS = 3;\nfunction unlockNextHint(hintsUsed) {\n  return Math.max(hintsUsed + 1, MAX_HINTS);\n}",
     "bugLine": 3,
     "why": {
-      "en": "Line 3 uses Math.max, which picks the larger number—so from 0 it jumps straight to 3, and from 3 it goes up to 4. It should use Math.min(hintsUsed + 1, MAX_HINTS) to pick the smaller number and stop at 3.",
-      "tl": "Math.max ang gamit sa line 3, kaya ang mas malaking number ang pinipili nito—mula 0 ay lundag agad ito sa 3, at mula 3 ay aakyat pa sa 4. Dapat Math.min(hintsUsed + 1, MAX_HINTS) ang gamit para piliin ang mas maliit na number at huminto sa 3."
+      "en": "Line 3 uses Math.max, which picks the larger number—so from 0 it goes straight to 3, and from 3 it goes up to 4. It should use Math.min(hintsUsed + 1, MAX_HINTS) to pick the smaller number and stop at 3.",
+      "tl": "Math.max ang gamit sa line 3, kaya ang mas malaking number ang pinipili nito—mula 0 ay diretso agad sa 3, at mula 3 ay aakyat pa sa 4. Dapat Math.min(hintsUsed + 1, MAX_HINTS) ang gamit para piliin ang mas maliit na number at huminto sa 3."
     }
   },
   "check": [
     {
       "question": {
-        "en": "You have not opened any hints yet (hintsUsed is 0) and you tap \"Show hint\" once. What does unlockNextHint(0) return?",
-        "tl": "Wala ka pang binubuksang hint (0 ang hintsUsed) at pinindot mo nang isang beses ang \"Show hint\". Ano ang ire-return ng unlockNextHint(0)?"
+        "en": "You have not opened any hints yet (hintsUsed is 0) and you tap \"Show next hint\" once. What does unlockNextHint(0) return?",
+        "tl": "Wala ka pang binubuksang hint (0 ang hintsUsed) at pinindot mo nang isang beses ang \"Show next hint\". Ano ang ire-return ng unlockNextHint(0)?"
       },
       "options": [
         {
           "id": "a",
           "text": {
-            "en": "1, because 0 + 1 is 1, and Math.min(1, 3) picks the smaller number 1",
-            "tl": "1, dahil 1 ang 0 + 1, at pinipili ng Math.min(1, 3) ang mas maliit na number na 1"
+            "en": "1, because 0 + 1 is 1 and Math.min(1, 3) picks 1",
+            "tl": "1, dahil 1 ang 0 + 1 at pinipili ng Math.min(1, 3) ang 1"
           }
         },
         {
           "id": "b",
           "text": {
-            "en": "3, because Math.min always returns MAX_HINTS",
-            "tl": "3, dahil laging MAX_HINTS ang nire-return ng Math.min"
+            "en": "3, because Math.min always gives back MAX_HINTS first",
+            "tl": "3, dahil laging MAX_HINTS muna ang nire-return ng Math.min"
           }
         },
         {
           "id": "c",
           "text": {
-            "en": "0, because Math.min keeps hintsUsed unchanged when it starts at 0",
-            "tl": "0, dahil hindi binabago ng Math.min ang hintsUsed kapag nagsimula ito sa 0"
+            "en": "0, because Math.min keeps hintsUsed at 0 when starting",
+            "tl": "0, dahil pinapanatili ng Math.min sa 0 ang hintsUsed sa simula"
           }
         }
       ],
@@ -167,8 +165,8 @@
     },
     {
       "question": {
-        "en": "One hint is already showing (hintsUsed is 1) and you tap \"Show hint\" again. What does unlockNextHint(1) return?",
-        "tl": "Nakabukas na ang unang hint (1 ang hintsUsed) at pinindot mo ulit ang \"Show hint\". Ano ang ire-return ng unlockNextHint(1)?"
+        "en": "One hint is already showing (hintsUsed is 1) and you tap \"Show next hint\" again. What does unlockNextHint(1) return?",
+        "tl": "Nakabukas na ang unang hint (1 ang hintsUsed) at pinindot mo ulit ang \"Show next hint\". Ano ang ire-return ng unlockNextHint(1)?"
       },
       "options": [
         {
@@ -201,15 +199,15 @@
     },
     {
       "question": {
-        "en": "Two hints are open (hintsUsed is 2) and you tap \"Show hint\" to open the third hint. What does unlockNextHint(2) return?",
-        "tl": "Dalawang hint na ang bukas (2 ang hintsUsed) at pinindot mo ang \"Show hint\" para buksan ang pangatlong hint. Ano ang ire-return ng unlockNextHint(2)?"
+        "en": "Two hints are open (hintsUsed is 2) and you tap \"Show next hint\" to open the third hint. What does unlockNextHint(2) return?",
+        "tl": "Dalawang hint na ang bukas (2 ang hintsUsed) at pinindot mo ang \"Show next hint\" para buksan ang pangatlong hint. Ano ang ire-return ng unlockNextHint(2)?"
       },
       "options": [
         {
           "id": "a",
           "text": {
             "en": "2, because Math.min cannot return a number equal to MAX_HINTS",
-            "tl": "2, dahil hindi pwedeng mag-return ang Math.min ng number na kapantay ng MAX_HINTS"
+            "tl": "2, dahil hindi pwedeng mag-return ang Math.min ng number na pareho sa MAX_HINTS"
           }
         },
         {

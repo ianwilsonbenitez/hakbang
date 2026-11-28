@@ -15,7 +15,7 @@
     <rect x="24" y="148" width="312" height="118" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
     <text x="180" y="176" text-anchor="middle" font-size="16" font-weight="600">2. Function: unlockNextHint</text>
     <text x="180" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">MAX_HINTS = 3 (ceiling)</text>
-    <text x="180" y="224" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="600">return Math.min(hintsUsed + 1, MAX_HINTS)</text>
+    <text x="180" y="224" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">return Math.min(hintsUsed + 1, MAX_HINTS)</text>
     <text x="180" y="248" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">Math.min(4, 3) picks 3</text>
 
     <!-- Arrow 2: Function -> Output -->
