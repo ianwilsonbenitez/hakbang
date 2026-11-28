@@ -26,3 +26,30 @@ export function visibleHints(hints: LocalizedText[], hintsUsed: number): Localiz
 export function canUnlockMoreHints(hintsUsed: number): boolean {
   return hintsUsed < MAX_HINTS
 }
+
+// The blank the learner fills in. Lesson code marks it with four underscores.
+export const BLANK = '____'
+
+export type SplitCode = { before: string; after: string }
+
+// Cuts the code at the first blank, so the app can put the answer in its place.
+// Returns null when the code has no blank.
+export function splitAtBlank(code: string): SplitCode | null {
+  const blankStart = code.indexOf(BLANK)
+  if (blankStart === -1) return null
+  return {
+    before: code.slice(0, blankStart),
+    after: code.slice(blankStart + BLANK.length),
+  }
+}
+
+// What goes in the blank once the exercise is solved: the learner's own answer
+// if they just typed it, otherwise the lesson's first accepted answer
+// (for example after closing and reopening the app).
+export function answerToShow(
+  justSolved: boolean,
+  typedAnswer: string,
+  acceptedAnswers: string[],
+): string {
+  return justSolved ? normalizeAnswer(typedAnswer) : acceptedAnswers[0]
+}

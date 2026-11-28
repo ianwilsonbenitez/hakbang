@@ -4,8 +4,10 @@ import { pick } from './lib/language'
 import type { Lesson } from './lib/lesson'
 import {
   MAX_HINTS,
+  answerToShow,
   canUnlockMoreHints,
   isAcceptedAnswer,
+  splitAtBlank,
   unlockNextHint,
   visibleHints,
 } from './lib/exercise'
@@ -35,6 +37,10 @@ export function ExercisePanel({ exercise, solved, onSolved }: ExercisePanelProps
 
   const shownHints = visibleHints(exercise.hints, hintsUsed)
 
+  const isSolved = solved || result === 'correct'
+  const filledAnswer = answerToShow(result === 'correct', answer, exercise.acceptedAnswers)
+  const split = isSolved ? splitAtBlank(exercise.code) : null
+
   return (
     <div className="rounded-2xl border border-accent bg-surface p-5">
       <h3 className="font-mono text-xs uppercase tracking-wider text-text-subtle">
@@ -44,43 +50,64 @@ export function ExercisePanel({ exercise, solved, onSolved }: ExercisePanelProps
       <p className="mt-3">{pick(exercise.prompt, language)}</p>
 
       <pre className="mt-4 overflow-x-auto whitespace-pre-wrap wrap-break-word rounded-lg border border-border bg-bg p-4 font-mono text-[15px] leading-[1.9]">
-        {exercise.code}
+        {split ? (
+          <>
+            {split.before}
+            <span className="rounded bg-surface-raised px-1 font-semibold text-success">
+              {filledAnswer}
+            </span>
+            {split.after}
+          </>
+        ) : (
+          exercise.code
+        )}
       </pre>
 
-      <label className="mt-4 block font-semibold" htmlFor="exercise-answer">
-        {t.exerciseBlankLabel}
-      </label>
-      <input
-        id="exercise-answer"
-        type="text"
-        value={answer}
-        onChange={(event) => setAnswer(event.target.value)}
-        autoComplete="off"
-        spellCheck={false}
-        className="mt-2 min-h-11 w-full rounded-md border border-border-strong bg-surface-raised px-3 font-mono"
-      />
+      {!isSolved && (
+        <>
+          <label className="mt-4 block font-semibold" htmlFor="exercise-answer">
+            {t.exerciseBlankLabel}
+          </label>
+          <input
+            id="exercise-answer"
+            type="text"
+            value={answer}
+            onChange={(event) => setAnswer(event.target.value)}
+            autoComplete="off"
+            spellCheck={false}
+            className="mt-2 min-h-11 w-full rounded-md border border-border-strong bg-surface-raised px-3 font-mono"
+          />
 
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onClick={checkAnswer}
-          disabled={answer.trim() === ''}
-          className={buttonClass}
-        >
-          {t.exerciseCheck}
-        </button>
-        <button
-          type="button"
-          onClick={() => setHintsUsed(unlockNextHint(hintsUsed))}
-          disabled={!canUnlockMoreHints(hintsUsed)}
-          className={buttonClass}
-        >
-          {t.showHint}
-        </button>
-        <p className="font-mono text-sm text-text-subtle">
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={checkAnswer}
+              disabled={answer.trim() === ''}
+              className={buttonClass}
+            >
+              {t.exerciseCheck}
+            </button>
+            <button
+              type="button"
+              onClick={() => setHintsUsed(unlockNextHint(hintsUsed))}
+              disabled={!canUnlockMoreHints(hintsUsed)}
+              className={buttonClass}
+            >
+              {t.showHint}
+            </button>
+            <p className="font-mono text-sm text-text-subtle">
+              {t.hintsUsedLabel}: {hintsUsed} {t.hintsOf} {MAX_HINTS}
+            </p>
+          </div>
+        </>
+      )}
+
+      {/* Only right after solving: after reopening, this session's count would wrongly say 0. */}
+      {isSolved && result === 'correct' && (
+        <p className="mt-4 font-mono text-sm text-text-subtle">
           {t.hintsUsedLabel}: {hintsUsed} {t.hintsOf} {MAX_HINTS}
         </p>
-      </div>
+      )}
 
       {shownHints.length > 0 && (
         <ol className="mt-4 space-y-2">

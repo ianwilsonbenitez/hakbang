@@ -1,4 +1,5 @@
 import type { LocalizedText } from './language'
+import { BLANK } from './exercise'
 
 // The lesson file format is described in docs/lesson-schema.md.
 
@@ -239,7 +240,7 @@ function checkExercise(value: unknown, path: string, errors: Errors): void {
   checkText(value.prompt, `${path}.prompt`, errors)
   checkCode(value.code, `${path}.code`, errors)
   // The learner fills a blank, so the code must show one.
-  if (typeof value.code === 'string' && value.code.trim() !== '' && !value.code.includes('____')) {
+  if (typeof value.code === 'string' && value.code.trim() !== '' && !value.code.includes(BLANK)) {
     addError(errors, `${path}.code`, 'blank-missing')
   }
 

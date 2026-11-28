@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
   MAX_HINTS,
+  answerToShow,
   canUnlockMoreHints,
   isAcceptedAnswer,
   normalizeAnswer,
+  splitAtBlank,
   unlockNextHint,
   visibleHints,
 } from './exercise'
@@ -73,5 +75,40 @@ describe('canUnlockMoreHints', () => {
     expect(canUnlockMoreHints(0)).toBe(true)
     expect(canUnlockMoreHints(2)).toBe(true)
     expect(canUnlockMoreHints(3)).toBe(false)
+  })
+})
+
+describe('splitAtBlank', () => {
+  it('cuts the code into the part before and after the blank', () => {
+    expect(splitAtBlank('if (____) {')).toEqual({ before: 'if (', after: ') {' })
+  })
+
+  it('works when the blank is at the very start', () => {
+    expect(splitAtBlank('____ + 1')).toEqual({ before: '', after: ' + 1' })
+  })
+
+  it('keeps new lines on both sides', () => {
+    expect(splitAtBlank('a\n  return ____;\n}')).toEqual({
+      before: 'a\n  return ',
+      after: ';\n}',
+    })
+  })
+
+  it('returns null when there is no blank', () => {
+    expect(splitAtBlank('return true;')).toBeNull()
+  })
+})
+
+describe('answerToShow', () => {
+  const answers = ['result.verified === true', 'result.verified == true']
+
+  it('shows the learner\'s own answer, cleaned, right after solving', () => {
+    expect(answerToShow(true, '  result.verified  ==  true ', answers)).toBe(
+      'result.verified == true',
+    )
+  })
+
+  it('shows the first accepted answer when the app was reopened', () => {
+    expect(answerToShow(false, '', answers)).toBe('result.verified === true')
   })
 })
