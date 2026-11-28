@@ -48,6 +48,12 @@ export const SKILL_NODES: SkillNode[] = [
     titleKey: 'nodeChoosingWithTernary',
     lessonId: 'unit-03-parselanguage',
   },
+  {
+    id: 'ceiling-with-math-min',
+    column: 'javascript',
+    titleKey: 'nodeCeilingWithMathMin',
+    lessonId: 'unit-04-unlocknexthint',
+  },
   { id: 'decisions-in-code', column: 'javascript', titleKey: 'nodeDecisionsInCode', lessonId: null },
   { id: 'spot-the-bug', column: 'debugging', titleKey: 'nodeSpotTheBug', lessonId: null },
 ]

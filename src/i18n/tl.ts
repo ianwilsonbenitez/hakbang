@@ -43,6 +43,7 @@ export const tl: typeof en = {
   nodeHowWebAppsWork: 'Paano gumagana ang web app',
   nodeComparingWithEquals: 'Pag-compare gamit ang ===',
   nodeChoosingWithTernary: 'Pagpili gamit ang ? :',
+  nodeCeilingWithMathMin: 'Ceiling gamit ang Math.min',
   nodeDecisionsInCode: 'Desisyon sa Code',
   nodeSpotTheBug: 'Hanapin ang Bug',
   statusComingSoon: 'Malapit na',

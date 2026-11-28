@@ -80,7 +80,7 @@ This answers the Milestone 1 line "Ian can explain, without AI, what each main f
 
     **Needed first (Claude):** `App.tsx` imports only `unit-01`. Before these lessons can be seen, the app must load every file in `content/lessons/`, validate each one, and give each a node on the map. Plan this as its own item before item 16. The full brief for Gemini is in `docs/gemini-brief.md`.
 17. **Ian writes 3 to 5 lines per session.** Claude writes a failing test first; Ian writes the function body; `npm test` turns green. First candidates: `isCheckPassed(score)` in `mastery.ts`, `countFinishedNodes(...)`, `backupFileName(date)` for Export.
-18. Replace reading `docs/file-map.md` with a one-minute explain-back in chat at the start of a session: one file, three sentences, in Ian's words.
+18. **(done)** Replace reading `docs/file-map.md` with a one-minute explain-back in chat at the start of a session: one file, three sentences, in Ian's words.
 
 ## Phase F. Richer practice (schema changes, Ian approves, tell Gemini)
 

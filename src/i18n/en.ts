@@ -41,6 +41,7 @@ export const en = {
   nodeHowWebAppsWork: 'How a web app works',
   nodeComparingWithEquals: 'Comparing with ===',
   nodeChoosingWithTernary: 'Choosing with ? :',
+  nodeCeilingWithMathMin: 'A ceiling with Math.min',
   nodeDecisionsInCode: 'Decisions in Code',
   nodeSpotTheBug: 'Spot the Bug',
   statusComingSoon: 'Coming soon',

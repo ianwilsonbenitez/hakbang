@@ -15,7 +15,7 @@
     <rect x="24" y="148" width="312" height="118" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
     <text x="180" y="176" text-anchor="middle" font-size="16" font-weight="600">2. Function: parseLanguage</text>
     <text x="180" y="202" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">function parseLanguage(value)</text>
-    <text x="180" y="226" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">return value === "tl" ? "tl" : "en";</text>
+    <text x="180" y="226" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">return value === "tl" ? "tl" : "en"</text>
     <text x="180" y="250" text-anchor="middle" font-size="13" opacity="0.85">true picks "tl", false picks "en"</text>
 
     <!-- Arrow 2: Function -> Output -->

@@ -29,7 +29,7 @@ function progressWith(entry: Progress['lessons'][string]): Progress {
 
 describe('SKILL_NODES', () => {
   it('has exactly seven nodes', () => {
-    expect(SKILL_NODES).toHaveLength(7)
+    expect(SKILL_NODES).toHaveLength(8)
   })
 
   it('gives every node its own id', () => {

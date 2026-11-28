@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" role="img" aria-label="Vertical flow diagram from top to bottom: an input value (hintsUsed = 3) goes into the function box unlockNextHint(hintsUsed), which runs Math.min(hintsUsed + 1, MAX_HINTS) where MAX_HINTS is 3, picks the smaller number between 4 and 3, and returns 3.">
+  <title>Vertical flow diagram from top to bottom: an input value (hintsUsed = 3) goes into the function box unlockNextHint(hintsUsed), which runs Math.min(hintsUsed + 1, MAX_HINTS) where MAX_HINTS is 3, picks the smaller number between 4 and 3, and returns 3.</title>
+  <g fill="currentColor" font-family="Inter, system-ui, -apple-system, sans-serif" style="font-variant-ligatures: none; font-feature-settings: 'liga' 0, 'calt' 0">
+    <!-- Box 1: Input -->
+    <rect x="24" y="16" width="312" height="76" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="46" text-anchor="middle" font-size="16" font-weight="600">1. Input in ( )</text>
+    <text x="180" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" opacity="0.85">hintsUsed = 3</text>
+
+    <!-- Arrow 1: Input -> Function -->
+    <line x1="180" y1="98" x2="180" y2="140" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,133 180,141 186,133" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="124" text-anchor="start" font-size="14" opacity="0.82">goes into ( )</text>
+
+    <!-- Box 2: Function box -->
+    <rect x="24" y="148" width="312" height="118" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.85" stroke-width="2" />
+    <text x="180" y="176" text-anchor="middle" font-size="16" font-weight="600">2. Function: unlockNextHint</text>
+    <text x="180" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">MAX_HINTS = 3 (ceiling)</text>
+    <text x="180" y="224" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="600">return Math.min(hintsUsed + 1, MAX_HINTS)</text>
+    <text x="180" y="248" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" opacity="0.85">Math.min(4, 3) picks 3</text>
+
+    <!-- Arrow 2: Function -> Output -->
+    <line x1="180" y1="272" x2="180" y2="310" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    <polyline points="174,303 180,311 186,303" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="196" y="294" text-anchor="start" font-size="14" opacity="0.82">stops at 3</text>
+
+    <!-- Box 3: Output -->
+    <rect x="24" y="318" width="312" height="68" rx="12" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="180" y="346" text-anchor="middle" font-size="16" font-weight="600">3. Capped value out</text>
+    <text x="180" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600">3</text>
+  </g>
+</svg>
